@@ -38,7 +38,7 @@ Run the server
 Avoid using scaffolding as it creates extra files & may produce unanticipated side-effects
 
 **Test Site**
-
+https://staging-anspoints-app-1.herokuapp.com/
 
 **Production Site**
 
