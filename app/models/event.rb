@@ -1,7 +1,7 @@
 require 'date'
 
 class Event < ApplicationRecord
-    validates :validDateRange
+    validate :validDateRange
     validates :eventId, presence: true
     validates :name, presence: true
 

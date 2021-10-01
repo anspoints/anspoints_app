@@ -6,6 +6,10 @@ $theme-dark-blue: #3A546C;
 $theme-dark-grey: #474B4F;
 $theme-light-grey: #DEDEDE;
 
+body {
+    background-color: $theme-background-color;
+}
+
 .home-splash {
     height: 20vh;
     background-color: white;
