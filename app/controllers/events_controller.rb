@@ -8,7 +8,7 @@ class EventsController < ApplicationController
 
     # view all events
     def index
-        @events = Events.all
+        @events = Event.all
     end
 
     def join
@@ -17,12 +17,16 @@ class EventsController < ApplicationController
         # show the form
     end
 
+    def getEvents
+        return Event.all
+    end
+
     ###########################
     ##### admin endpoints #####
     ###########################
 
     def new
-        @event = Events.new
+        @event = Event.new
     end
 
     def edit
@@ -30,7 +34,7 @@ class EventsController < ApplicationController
     end
 
     def create
-        @event = Events.new(event_params)
+        @event = Event.new(event_params)
     end
 
     def delete

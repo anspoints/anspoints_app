@@ -1,0 +1,13 @@
+<div class="container">
+    <% @events.each do |e| %>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">e.name</h5>
+            <span class="card-subtitle mb-2 text-muted">e.startTime</span>
+            <span class="card-subtitle mb-2 text-muted">e.endTime</span>
+            e.description
+            <span class="badge bg-secondary">e.eventTypeId</span>
+        </div>
+    </div>
+    <% end %>
+</div>
