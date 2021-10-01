@@ -1,0 +1,22 @@
+@import "home.scss";
+
+.nav-bar {
+    background-color: $theme-dark-blue;
+    border-radius: 0px;
+    .nav-link {
+        color: white;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        :hover {
+            background-color: $theme-light-grey
+        }
+        :active {
+            background-color: $theme-dark-grey;
+        }
+    }
+    ul {
+        list-style-type: none;
+        width: 100%;
+        float: left;
+    }
+}
