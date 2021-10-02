@@ -5,5 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-event = Event.create([{ name: 'Test Event', eventCode: 'TestCode', description: 'Lorum Ipsum Imporum', startTime: DateTime.new(2020, 07, 11, 20, 10, 0) }])
-contact = Contact.create([{ firstname: 'Greg', lastname: 'Petri', title: 'Professor', bio: 'He is a genius', affiliation: 'Texas A&M', email: 'gmoney@gmail.com' }])
+event = Event.create([{ name: 'Test Event', eventCode: 'TestCode', description: 'lorem ipsum emporium', startTime: DateTime.new(2020, 07, 11, 20, 10, 0) }])
+contact = Contact.create([{ firstname: 'Test Firstname', lastname: 'Test Lastname', title: 'Professor', bio: 'A genius', affiliation: 'Texas A&M', email: 'gmoney@gmail.com' }])
