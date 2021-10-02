@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class ContactsController < ApplicationController
     # fetch the event immediately on these actions
     before_action :set_event, only: %i[ join edit delete ]
 
@@ -8,17 +8,7 @@ class EventsController < ApplicationController
 
     # view all events
     def index
-        @events = Event.all
-    end
-
-    def join
-        # ask for a passcode
-
-        # show the form
-    end
-
-    def getEvents
-        return Event.all
+        @contacts = Contact.all
     end
 
     ###########################
@@ -26,7 +16,7 @@ class EventsController < ApplicationController
     ###########################
 
     def new
-        @event = Event.new
+        @contact = Contact.new
     end
 
     def edit
@@ -34,11 +24,11 @@ class EventsController < ApplicationController
     end
 
     def create
-        @event = Event.new(event_params)
+        @contact = Contact.new(contact_params)
     end
 
     def delete
-        @event.destroy
+        @contact.destroy
     end
 
     #########################
@@ -46,11 +36,11 @@ class EventsController < ApplicationController
     #########################
 
     private
-        def set_event
-            @event = Event.find(params[:id])
+        def set_contact
+            @contact = Contact.find(params[:id])
         end
 
-        def event_params
-            params.require(:event).permit(:name, :eventCode, :eventTypeId, :description, :startTime, :endTime, :price, :published_date)
+        def contact_params
+            params.require(:contact).permit(:firstname, :lastname, :title, :bio, :affiliation, :email)
         end
 end

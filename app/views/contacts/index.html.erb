@@ -1,0 +1,18 @@
+<div class="container">
+    <% @contacts.each do |c| %>
+    <tr>
+        <table class="card-table table contact-card">
+            <tbody>
+                <tr>
+                    <td><%= c.firstname %></td>
+                    <td><%= c.lastname %></td>
+                    <td><%= c.title || 'No title' %></td>
+                    <td><%= c.bio || '' %></td>
+                    <td><%= c.affiliation || 'No affiliation' %></td>
+                    <td><%= c.email || ''%></td>
+                </tr>
+            </tbody>
+        </table>
+    </tr>
+    <% end %>
+</div>

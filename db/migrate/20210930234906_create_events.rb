@@ -5,8 +5,8 @@ class CreateEvents < ActiveRecord::Migration[6.1]
       t.string :eventCode
       t.uuid :eventTypeId
       t.string :description
-      t.date :startTime
-      t.date :endTime
+      t.datetime :startTime
+      t.datetime :endTime
       t.timestamps
     end
   end
