@@ -8,17 +8,15 @@ class EventsController < ApplicationController
 
     # view all events
     def index
-        @events = Event.all
+        @pastevents = Event.all.select(:name, :startTime, :endTime, :description).where('"events"."startTime" < ? or "events"."endTime" < ?', DateTime.now, DateTime.now).order(:startTime)
+        # do not return the eventCode mainly
+        @events = Event.all.select(:name, :startTime, :endTime, :description).where('"events"."endTime" >= ? or "events"."startTime" >= ?', DateTime.now, DateTime.now).order(:startTime)
     end
 
     def join
         # ask for a passcode
 
         # show the form
-    end
-
-    def getEvents
-        return Event.all
     end
 
     ###########################

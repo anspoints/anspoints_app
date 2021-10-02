@@ -14,4 +14,7 @@ body {
     height: 20vh;
     background-color: white;
     color: $theme-dark-blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
