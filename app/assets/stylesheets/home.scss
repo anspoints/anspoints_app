@@ -7,7 +7,7 @@ $theme-dark-grey: #474B4F;
 $theme-light-grey: #DEDEDE;
 
 body {
-    background-color: $theme-background-color;
+    background-color: $theme-background-color !important;
 }
 
 .home-splash {

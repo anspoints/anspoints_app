@@ -1,0 +1,13 @@
+@import "home.scss";
+
+.event-card {
+    background-color: white !important;
+    padding: 14px 20px 14px 20px;
+    border-radius: 14px;
+    box-shadow: 0px 5px 5px $theme-light-grey;
+    .event-date {
+        background-color: $theme-light-grey;
+        padding: 4px;
+        border-radius: 5px;
+    }
+}

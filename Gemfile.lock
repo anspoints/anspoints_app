@@ -83,6 +83,9 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    date_validator (0.12.0)
+      activemodel (>= 3)
+      activesupport (>= 3)
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.4)
@@ -210,6 +213,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   capybara (>= 3.26)
+  date_validator
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)
