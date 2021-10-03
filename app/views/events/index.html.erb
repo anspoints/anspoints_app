@@ -1,20 +1,68 @@
-<div class="container">
+<div class="modal fade" id="eventCodeModal" tabindex="-1" role="dialog" aria-labelledby="eventCodeLabel" aria-hidden
+    <%= render 'layouts/eventcode_modal' %>
+</div>
+
+<div id="events-container" class="container">
+
+    <div id="upcoming-events" class="d-flex flex-row event-divider">
+        <div class="p-2">Upcoming Events</div>
+        <div class="p-2 flex-grow-1 line-divider"></div>
+    </div>
+
+    <% if @events.length() == 0 %>
+        <span class="text-muted"><i>No Upcoming Events</i></span>
+    <% end %>
+
     <% @events.each do |e| %>
     <div class="card event-card">
         <div class="card-body">
             <h5 class="card-title"><strong><%= e.name %></strong></h5>
+            <span><%= e.date.to_formatted_s(:long) || 'No Day Set' %></span>
             <% if !e.startTime.blank? %>
-                <span class="card-subtitle mb-2 text-muted event-date"><%= e.startTime %></span>
+                <span class="card-subtitle mb-2 text-muted event-date"><%= e.startTime.strftime("%I:%M %p")  %></span>
                 <% if !e.endTime.blank? %>
                     <span> - </span>
                 <% end %>
             <% end %>
             <% if !e.endTime.blank? %>
-                <span class="card-subtitle mb-2 text-muted event-date"><%= e.endTime %></span>
+                <span class="card-subtitle mb-2 text-muted event-date"><%= e.endTime.strftime("%I:%M %p") %></span>
             <% end %>
             <br></br>
             <p><%= e.description || '' %></p>
-            <span class="badge bg-secondary"><%= e.eventTypeId || '' %></span>
+            <span class="badge bg-secondary">EventType</span>
+            <%= link_to "Join", "#", class: "btn btn-primary", :data => { :event_id => e.id, :event_name => e.name } %>
+        </div>
+    </div>
+    <% end %>
+
+    <br></br>
+
+    <div class="d-flex flex-row event-divider">
+        <div class="p-2">Past Events</div>
+        <div class="p-2 flex-grow-1 line-divider"></div>
+    </div>
+
+    <% if @pastevents.length() == 0 %>
+        <span class="text-muted"><i>No Past Events</i></span>
+    <% end %>
+
+    <% @pastevents.each do |e| %>
+    <div class="card event-card">
+        <div class="card-body">
+            <h5 class="card-title"><strong><%= e.name %></strong></h5>
+            <span><%= e.date.to_formatted_s(:long) || 'No Day Set' %></span>
+            <% if !e.startTime.blank? %>
+                <span class="card-subtitle mb-2 text-muted event-date"><%= e.startTime.strftime("%I:%M %p") %></span>
+                <% if !e.endTime.blank? %>
+                    <span> - </span>
+                <% end %>
+            <% end %>
+            <% if !e.endTime.blank? %>
+                <span class="card-subtitle mb-2 text-muted event-date"><%= e.endTime.strftime("%I:%M %p") %></span>
+            <% end %>
+            <br></br>
+            <p><%= e.description || '' %></p>
+            <span class="badge bg-secondary">EventType</span>
         </div>
     </div>
     <% end %>
