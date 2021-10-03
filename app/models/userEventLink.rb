@@ -1,2 +1,0 @@
-class UserEventLink < ApplicationRecord
-end
