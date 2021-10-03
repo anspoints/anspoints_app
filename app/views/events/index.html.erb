@@ -13,14 +13,15 @@
     <div class="card event-card">
         <div class="card-body">
             <h5 class="card-title"><strong><%= e.name %></strong></h5>
+            <span><%= e.date.to_formatted_s(:long) || 'No Day Set' %></span>
             <% if !e.startTime.blank? %>
-                <span class="card-subtitle mb-2 text-muted event-date"><%= e.startTime %></span>
+                <span class="card-subtitle mb-2 text-muted event-date"><%= e.startTime.strftime("%I:%M %p")  %></span>
                 <% if !e.endTime.blank? %>
                     <span> - </span>
                 <% end %>
             <% end %>
             <% if !e.endTime.blank? %>
-                <span class="card-subtitle mb-2 text-muted event-date"><%= e.endTime %></span>
+                <span class="card-subtitle mb-2 text-muted event-date"><%= e.endTime.strftime("%I:%M %p") %></span>
             <% end %>
             <br></br>
             <p><%= e.description || '' %></p>
@@ -44,14 +45,15 @@
     <div class="card event-card">
         <div class="card-body">
             <h5 class="card-title"><strong><%= e.name %></strong></h5>
+            <span><%= e.date.to_formatted_s(:long) || 'No Day Set' %></span>
             <% if !e.startTime.blank? %>
-                <span class="card-subtitle mb-2 text-muted event-date"><%= e.startTime %></span>
+                <span class="card-subtitle mb-2 text-muted event-date"><%= e.startTime.strftime("%I:%M %p") %></span>
                 <% if !e.endTime.blank? %>
                     <span> - </span>
                 <% end %>
             <% end %>
             <% if !e.endTime.blank? %>
-                <span class="card-subtitle mb-2 text-muted event-date"><%= e.endTime %></span>
+                <span class="card-subtitle mb-2 text-muted event-date"><%= e.endTime.strftime("%I:%M %p") %></span>
             <% end %>
             <br></br>
             <p><%= e.description || '' %></p>

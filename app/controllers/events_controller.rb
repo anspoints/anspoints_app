@@ -8,9 +8,13 @@ class EventsController < ApplicationController
 
     # view all events
     def index
-        @pastevents = Event.all.select(:name, :startTime, :endTime, :description).where('"events"."startTime" < ? or "events"."endTime" < ?', DateTime.now, DateTime.now).order(:startTime)
         # do not return the eventCode mainly
-        @events = Event.all.select(:name, :startTime, :endTime, :description).where('"events"."endTime" >= ? or "events"."startTime" >= ?', DateTime.now, DateTime.now).order(:startTime)
+        @pastevents = Event.select(:name, :date, :startTime, :endTime, :description)
+            .where('"events"."date" < ? and ("events"."endTime" is null or "events"."endTime" < ?)', Date.today, Time.current())
+            .order(date: :asc, startTime: :asc)
+        @events = Event.select(:name, :date, :startTime, :endTime, :description)
+            .where('"events"."date" >= ? and ("events"."endTime" is null or "events"."endTime" <= ?)', Date.today, Time.current())
+            .order(date: :asc, startTime: :asc)
     end
 
     def join
@@ -49,6 +53,6 @@ class EventsController < ApplicationController
         end
 
         def event_params
-            params.require(:event).permit(:name, :eventCode, :eventTypeId, :description, :startTime, :endTime, :price, :published_date)
+            params.require(:event).permit(:name, :eventCode, :eventTypeId, :description, :date, :startTime, :endTime, :price, :published_date)
         end
 end
