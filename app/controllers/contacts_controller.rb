@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
     # fetch the event immediately on these actions
-    before_action :set_event, only: %i[ join edit delete ]
+    before_action :set_contact, only: %i[ show edit delete ]
 
     ###########################
     ###### user endpoints #####
@@ -29,6 +29,9 @@ class ContactsController < ApplicationController
 
     def delete
         @contact.destroy
+    end
+
+    def show
     end
 
     #########################

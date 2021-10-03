@@ -9,17 +9,20 @@ class EventsController < ApplicationController
     # view all events
     def index
         # do not return the eventCode mainly
-        @pastevents = Event.select(:name, :date, :startTime, :endTime, :description)
+        @pastevents = Event.select(:id, :name, :date, :startTime, :endTime, :description)
             .where('"events"."date" < ? and ("events"."endTime" is null or "events"."endTime" < ?)', Date.today, Time.current())
             .order(date: :asc, startTime: :asc)
-        @events = Event.select(:name, :date, :startTime, :endTime, :description)
+        @events = Event.select(:id, :name, :date, :startTime, :endTime, :description)
             .where('"events"."date" >= ? and ("events"."endTime" is null or "events"."endTime" <= ?)', Date.today, Time.current())
             .order(date: :asc, startTime: :asc)
     end
 
     def join
         # ask for a passcode
-
+        respond_to do |format|
+            format.html
+            format.js
+        end
         # show the form
     end
 

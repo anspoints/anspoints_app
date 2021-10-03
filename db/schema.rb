@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_02_005940) do
+ActiveRecord::Schema.define(version: 2021_10_03_191752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2021_10_02_005940) do
   create_table "events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "eventCode"
-    t.uuid "eventTypeId"
     t.string "description"
     t.date "date"
     t.time "startTime"
@@ -39,10 +38,19 @@ ActiveRecord::Schema.define(version: 2021_10_02_005940) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_event_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_user_event_links_on_event_id"
+    t.index ["user_id"], name: "index_user_event_links_on_user_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
     t.string "netId"
     t.string "email"
-    t.uuid "userDetailsId"
     t.boolean "isAdmin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
