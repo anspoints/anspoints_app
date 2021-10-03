@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 2021_10_03_191752) do
   create_table "events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "eventCode"
-    t.uuid "eventTypeId"
     t.string "description"
     t.date "date"
     t.time "startTime"
@@ -42,8 +41,6 @@ ActiveRecord::Schema.define(version: 2021_10_03_191752) do
   create_table "user_event_links", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.bigint "event_id"
     t.bigint "user_id"
-    t.uuid "userId"
-    t.uuid "eventId"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_user_event_links_on_event_id"
@@ -51,9 +48,9 @@ ActiveRecord::Schema.define(version: 2021_10_03_191752) do
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
     t.string "netId"
     t.string "email"
-    t.uuid "userDetailsId"
     t.boolean "isAdmin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
