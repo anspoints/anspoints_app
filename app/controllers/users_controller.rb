@@ -1,13 +1,20 @@
 class UsersController < ApplicationController
     # fetch the event immediately on these actions
-    before_action :set_event, only: %i[ join edit delete ]
+    before_action :set_user, only: %i[ edit delete ]
 
     ###########################
     ###### user endpoints #####
     ###########################
 
-    def searchForm
-        redirect_to "users/user_search"
+    def search
+    end
+
+    def show
+        input = params[:input]
+        if input.match(/\A[a-z0-9\+\-_\.]+@[a-z\d\-.]+\.[a-z]+\z/i)
+            # @user = User.all.where('')
+        else
+        end
     end
 
     ###########################
@@ -44,7 +51,7 @@ class UsersController < ApplicationController
             @user = User.find(params[:id])
         end
 
-        def contact_params
+        def user_params
             params.require(:user).permit(:netId, :userDetailsId, :isAdmin)
         end
 end
