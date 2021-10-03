@@ -1,0 +1,21 @@
+<div class="container">
+    <% @events.each do |e| %>
+    <div class="card event-card">
+        <div class="card-body">
+            <h5 class="card-title"><strong><%= e.name %></strong></h5>
+            <% if !e.startTime.blank? %>
+                <span class="card-subtitle mb-2 text-muted event-date"><%= e.startTime %></span>
+                <% if !e.endTime.blank? %>
+                    <span> - </span>
+                <% end %>
+            <% end %>
+            <% if !e.endTime.blank? %>
+                <span class="card-subtitle mb-2 text-muted event-date"><%= e.endTime %></span>
+            <% end %>
+            <br></br>
+            <p><%= e.description || '' %></p>
+            <span class="badge bg-secondary"><%= e.eventTypeId || '' %></span>
+        </div>
+    </div>
+    <% end %>
+</div>
