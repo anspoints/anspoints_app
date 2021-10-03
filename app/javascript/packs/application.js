@@ -11,3 +11,30 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+//= require jquery
+//= require popper
+//= require turbolinks
+//= require bootstrap
+//= require_tree.
+
+function requestEventPassword(eventId, eventName) {
+    console.log(eventId);
+    console.log(eventName);
+    // $('#eventCodeModal').modal('show');
+}
+  
+window.addEventListener("load", () => {
+    const links = document.querySelectorAll(
+        "a[data-event-id]"
+    );
+    links.forEach((element) => {
+        element.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+    
+            const {eventId, eventName} = element.dataset;
+            requestEventPassword(eventId, eventName);
+        });
+    });
+});

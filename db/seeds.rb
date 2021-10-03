@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# create some events
+Event.create([{ name: 'Test Event', eventCode: 'TestCode', description: 'lorem ipsum emporium', date: Date.yesterday }]) # event without any time
+Event.create([{ name: 'Test Event2', eventCode: 'TestCode', description: 'lorem ipsum emporium', date: Date.tomorrow, startTime: Time.current() }]) # upcoming event
+Event.create([{ name: 'Test Event3', eventCode: 'TestCode', description: 'lorem ipsum emporium', date: Date.new(2020, 12, 20), startTime: Time.current() }]) # past event
+Event.create([{ name: 'Test Event6', eventCode: 'TestCode', description: 'lorem ipsum emporium', date: Date.new(2021, 11, 24), endTime: Time.current() }]) # upcoming event
+
+# create a contact
+contact = Contact.create([{ firstname: 'Test Firstname', lastname: 'Test Lastname', title: 'Professor', bio: 'A genius', affiliation: 'Texas A&M', email: 'gmoney@gmail.com' }])
