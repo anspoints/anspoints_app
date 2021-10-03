@@ -7,14 +7,21 @@ class UsersController < ApplicationController
     ###########################
 
     def search
+        input = params[:input]
+        if input != nil
+            logger.info(input)
+            if input.match(/\A[a-z0-9\+\-_\.]+@[a-z\d\-.]+\.[a-z]+\z/i)
+                @searcheduser = User.all.where('"users"."email" = ?', input).first
+            else
+                @searcheduser = User.all.where('"users"."netId" = ?', input).first
+            end
+            if @searcheduser != nil
+                @pointsCount = UserEventLinks.all.where('"usereventlinks"."userId" = ?', @searcheduser.id).count
+            end
+        end
     end
 
     def show
-        input = params[:input]
-        if input.match(/\A[a-z0-9\+\-_\.]+@[a-z\d\-.]+\.[a-z]+\z/i)
-            # @user = User.all.where('')
-        else
-        end
     end
 
     ###########################
