@@ -8,17 +8,19 @@ class EventsController < ApplicationController
 
     # view all events
     def index
-        @events = Event.all
+        # do not return the eventCode mainly
+        @pastevents = Event.select(:name, :date, :startTime, :endTime, :description)
+            .where('"events"."date" < ? and ("events"."endTime" is null or "events"."endTime" < ?)', Date.today, Time.current())
+            .order(date: :asc, startTime: :asc)
+        @events = Event.select(:name, :date, :startTime, :endTime, :description)
+            .where('"events"."date" >= ? and ("events"."endTime" is null or "events"."endTime" <= ?)', Date.today, Time.current())
+            .order(date: :asc, startTime: :asc)
     end
 
     def join
         # ask for a passcode
 
         # show the form
-    end
-
-    def getEvents
-        return Event.all
     end
 
     ###########################
@@ -51,6 +53,6 @@ class EventsController < ApplicationController
         end
 
         def event_params
-            params.require(:event).permit(:name, :eventCode, :eventTypeId, :description, :startTime, :endTime, :price, :published_date)
+            params.require(:event).permit(:name, :eventCode, :eventTypeId, :description, :date, :startTime, :endTime, :price, :published_date)
         end
 end

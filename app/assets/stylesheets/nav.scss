@@ -1,22 +1,37 @@
 @import "home.scss";
 
+.nav-container {
+    display: flex;
+    justify-content: center;
+}
+
 .nav-bar {
     background-color: $theme-dark-blue;
     border-radius: 0px;
+    padding: 0px;
     .nav-link {
-        color: white;
-        padding-top: 6px;
-        padding-bottom: 6px;
-        :hover {
-            background-color: $theme-light-grey
+        padding: 14px 20px 14px 20px;
+        text-align: center;
+        float: left;
+        &:hover {
+            background-color: $theme-dark-grey
         }
-        :active {
-            background-color: $theme-dark-grey;
+        a {
+            color: white;
+            text-decoration: none;
         }
     }
-    ul {
-        list-style-type: none;
-        width: 100%;
+    .nav-link-admin {
+        padding: 14px 20px 14px 20px;
+        background-color: $theme-dark-blue;
+        text-align: center;
         float: left;
+        &:hover {
+            background-color: $theme-dark-grey;
+        }
+        a {
+            color: $theme-light-grey;
+            text-decoration: none;
+        }
     }
 }

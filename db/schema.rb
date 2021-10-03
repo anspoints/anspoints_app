@@ -32,8 +32,9 @@ ActiveRecord::Schema.define(version: 2021_10_02_005940) do
     t.string "eventCode"
     t.uuid "eventTypeId"
     t.string "description"
-    t.datetime "startTime"
-    t.datetime "endTime"
+    t.date "date"
+    t.time "startTime"
+    t.time "endTime"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
