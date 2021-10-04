@@ -22,3 +22,18 @@
     border: 1px solid #ddd; /* Add a grey border */
     margin-bottom: 12px; /* Add some space below the input */
 }
+
+.table-container{
+    margin: 10px;
+}
+
+.title{
+    color: #3A546C !important;
+    padding: 50px;
+    text-align: center;
+}
+
+.search-container{
+    padding-left: 10px;
+    padding-right: 10px;
+}

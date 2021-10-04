@@ -11,157 +11,36 @@
   </head>
   <body>
     <div id="events-container" class="container">            
-      <h1>Points Dashboard</h1>
+      <h1 class="title">Admin Points Dashboard</h1>
     </div>
 
-    <input type="text" id="searchTableInput" onkeyup="filterTable()" placeholder="Search for names..">
+    <div class="search-container">
+      <input type="text" id="searchTableInput" onkeyup="filterTable()" placeholder="Search emails..">
+    </div>
 
     <div class="table-container">
       <table id="pointsTable" class="table table-responsive table-bordered table-hover table-striped table-md">
         <thead class="table-head">
           <tr>
             <th scope="col" class="table-header" data-field="index" data-align="center" data-sortable="true">#</th>
-            <th scope="col" class="table-header" data-field="id" data-align="center" data-sortable="true">Header</th>
-            <th scope="col" class="table-header" data-field="id" data-align="center" data-sortable="true">Header</th>
-            <th scope="col" class="table-header" data-field="id" data-align="center" data-sortable="true">Header</th>
-            <th scope="col" class="table-header" data-field="id" data-align="center" data-sortable="true">Header</th>
+            <th scope="col" class="table-header" data-field="index" data-align="center" data-sortable="true">Email</th>
+            <th scope="col" class="table-header" data-field="id" data-align="center" data-sortable="true">Points</th>
           </tr>
         </thead>
         <tbody>
+          <% i = 1 %>
+          <% @user_points_counts.each do |data| %>
           <tr>
-            <td>1,001</td>
-            <td>random</td>
-            <td>data</td>
-            <td>placeholder</td>
-            <td>text</td>
+            <td><%= i %></td>
+            <td><%= data.email %></td>
+            <td><%= data.count %></td>
           </tr>
-          <tr>
-            <td>1,002</td>
-            <td>placeholder</td>
-            <td>irrelevant</td>
-            <td>visual</td>
-            <td>layout</td>
-          </tr>
-          <tr>
-            <td>1,003</td>
-            <td>data</td>
-            <td>rich</td>
-            <td>dashboard</td>
-            <td>tabular</td>
-          </tr>
-          <tr>
-            <td>1,003</td>
-            <td>information</td>
-            <td>placeholder</td>
-            <td>illustrative</td>
-            <td>data</td>
-          </tr>
-          <tr>
-            <td>1,004</td>
-            <td>text</td>
-            <td>random</td>
-            <td>layout</td>
-            <td>dashboard</td>
-          </tr>
-          <tr>
-            <td>1,005</td>
-            <td>dashboard</td>
-            <td>irrelevant</td>
-            <td>text</td>
-            <td>placeholder</td>
-          </tr>
-          <tr>
-            <td>1,006</td>
-            <td>dashboard</td>
-            <td>illustrative</td>
-            <td>rich</td>
-            <td>data</td>
-          </tr>
-          <tr>
-            <td>1,007</td>
-            <td>placeholder</td>
-            <td>tabular</td>
-            <td>information</td>
-            <td>irrelevant</td>
-          </tr>
-          <tr>
-            <td>1,008</td>
-            <td>random</td>
-            <td>data</td>
-            <td>placeholder</td>
-            <td>text</td>
-          </tr>
-          <tr>
-            <td>1,009</td>
-            <td>placeholder</td>
-            <td>irrelevant</td>
-            <td>visual</td>
-            <td>layout</td>
-          </tr>
-          <tr>
-            <td>1,010</td>
-            <td>data</td>
-            <td>rich</td>
-            <td>dashboard</td>
-            <td>tabular</td>
-          </tr>
-          <tr>
-            <td>1,011</td>
-            <td>information</td>
-            <td>placeholder</td>
-            <td>illustrative</td>
-            <td>data</td>
-          </tr>
-          <tr>
-            <td>1,012</td>
-            <td>text</td>
-            <td>placeholder</td>
-            <td>layout</td>
-            <td>dashboard</td>
-          </tr>
-          <tr>
-            <td>1,013</td>
-            <td>dashboard</td>
-            <td>irrelevant</td>
-            <td>text</td>
-            <td>visual</td>
-          </tr>
-          <tr>
-            <td>1,014</td>
-            <td>dashboard</td>
-            <td>illustrative</td>
-            <td>rich</td>
-            <td>data</td>
-          </tr>
-          <tr>
-            <td>1,015</td>
-            <td>random</td>
-            <td>tabular</td>
-            <td>information</td>
-            <td>text</td>
-          </tr>
+          <% i = i + 1 %> 
+          <% end %>
         </tbody>
       </table>
     </div>
   
-    <div style="margin-left: 200px; padding-top: 50px; "> 
-    </div>
-    
-    <!-- 
-    <% if @books.blank? %>
-    <p>There are not any books currently in the system.</p>
-    <% else %>
-    <p>These are the current books in our system</p>
-
-    <ul id = "books">
-    <% @books.each do |c| %>
-    <li><%= link_to c.title, {:action => 'show', :id => c.id} -%></li>
-    <% end %>
-    </ul>
-
-    <% end %>
-    <p><%= link_to "Add new Book", {:action => 'new' }%></p>
-    -->
     <script>
     function filterTable() {
       // Declare variables
@@ -173,7 +52,7 @@
 
       // Loop through all table rows, and hide those who don't match the search query
       for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
+        td = tr[i].getElementsByTagName("td")[1];
         if (td) {
           txtValue = td.textContent || td.innerText;
           if (txtValue.toUpperCase().indexOf(filter) > -1) {
