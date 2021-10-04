@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_215802) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "events_users", force: :cascade do |t|
+  create_table "events_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "event_id"
     t.uuid "user_id"
     t.datetime "created_at", precision: 6, null: false

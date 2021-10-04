@@ -64,3 +64,7 @@ gem 'bootstrap-sass'
 gem 'date_validator'
 
 gem 'popper_js', '~> 1.11', '>= 1.11.1'
+
+gem 'rails_admin'
+
+gem 'devise'
