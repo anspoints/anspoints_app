@@ -10,14 +10,15 @@
     <% end %>
     </div>
 </div>
-<div id="user-search-results" class="container">
+<div id="user-search-results" class="container text-center">
     <% if @searcheduser != nil %>
     <div class="card">
         <div class="card-body">
-            <h5><%= @searcheduser.name || 'no name' %></h5>
             <span><%= @searcheduser.email || 'no email' %></span>
-            <span>Points <%= @pointsCount || 0 %></span>
+            <span>Points <%= @pointscount || 0 %></span>
         </div>
     </div>
+    <% else %>
+    <span>No user found</span>
     <% end %>
 </div>

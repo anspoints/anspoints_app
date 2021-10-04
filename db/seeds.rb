@@ -7,16 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # create some events
-event = Event.create([{ name: 'Test Event', eventCode: 'TestCode', description: 'lorem ipsum emporium', date: Date.yesterday }]) # event without any time
-Event.create([{ name: 'Test Event2', eventCode: 'TestCode', description: 'lorem ipsum emporium', date: Date.tomorrow, startTime: Time.current() }]) # upcoming event
-Event.create([{ name: 'Test Event3', eventCode: 'TestCode', description: 'lorem ipsum emporium', date: Date.new(2020, 12, 20), startTime: Time.current() }]) # past event
-Event.create([{ name: 'Test Event6', eventCode: 'TestCode', description: 'lorem ipsum emporium', date: Date.new(2021, 11, 24), endTime: Time.current() }]) # upcoming event
+event = Event.create([{ name: 'Test Event1', eventCode: 'TestCode', description: 'lorem ipsum emporium', date: Date.tomorrow, startTime: Time.current() }]) # upcoming event
+Event.create([{ name: 'Test Event2', eventCode: 'TestCode', description: 'lorem ipsum emporium', date: Date.new(2020, 12, 20), startTime: Time.current() }]) # past event
 
 # create users
-user = User.create([{ name: 'Test user1', isAdmin: false, email: 'testuser@tamu.edu', netId: 'testUser' }])
+user = User.create([{ isAdmin: false, email: 'testuser@tamu.edu' }])
 
-# create userEventLink
-UserEventLink.create([{ user_id: user[0].id, event_id: event[0].id }])
+# create EventsUsers (point tracking)
+EventsUsers.create([{ user_id: user[0].id, event_id: event[0].id }])
 
 
 # create a contact

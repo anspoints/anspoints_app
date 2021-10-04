@@ -10,13 +10,9 @@ class UsersController < ApplicationController
         input = params[:input]
         if input != nil
             logger.info(input)
-            if input.match(/\A[a-z0-9\+\-_\.]+@[a-z\d\-.]+\.[a-z]+\z/i)
-                @searcheduser = User.all.where('"users"."email" = ?', input).first
-            else
-                @searcheduser = User.all.where('"users"."netId" = ?', input).first
-            end
+            @searcheduser = User.all.where('"users"."email" = ?', input).first
             if @searcheduser != nil
-                @pointsCount = UserEventLinks.all.where('"usereventlinks"."userId" = ?', @searcheduser.id).count
+                @pointscount = EventsUsers.all.where('"events_users"."user_id" = ?', @searcheduser.id).count
             end
         end
     end
@@ -42,7 +38,7 @@ class UsersController < ApplicationController
     end
 
     def create
-        @user= User.new(user_params)
+        @user = User.new(user_params)
     end
 
     def delete
