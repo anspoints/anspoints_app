@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# location: spec/feature/events_integration_spec.rb
+# location: spec/feature/usersevents_integration_spec.rb
 require 'rails_helper'
 
-RSpec.describe 'Viewing Events', type: :feature do
+RSpec.describe 'Checking In', type: :feature do
   scenario 'can join using event code' do
     visit events_path
     expect(page).to have_content('Join')
