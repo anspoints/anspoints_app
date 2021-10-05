@@ -25,6 +25,9 @@ For mac:
 For windows:
 <code>docker run --rm -it --volume "${PWD}:/ANSPoints" -e DATABASE_USER=anspoints_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest</code>
 
+If you accedentally quit
+<code>docker exec -it "container-name" bash</code>
+
 In the docker image, create the database
 <code>rails db:create</code>
 
