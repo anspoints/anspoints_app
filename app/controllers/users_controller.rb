@@ -1,60 +1,60 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-    # fetch the event immediately on these actions
-    before_action :set_user, only: %i[ edit delete ]
+  # fetch the event immediately on these actions
+  before_action :set_user, only: %i[edit delete]
 
-    ###########################
-    ###### user endpoints #####
-    ###########################
+  ###########################
+  ###### user endpoints #####
+  ###########################
 
-    def search
-        input = params[:input]
-        if input != nil
-            logger.info(input)
-            @searcheduser = User.all.where('"users"."email" = ?', input).first
-            if @searcheduser != nil
-                @pointscount = EventsUsers.all.where('"events_users"."user_id" = ?', @searcheduser.id).count
-            end
-        end
-    end
+  def search
+    input = params[:input]
+    return if input.nil?
 
-    def show
-    end
+    logger.info(input)
+    @searcheduser = User.all.where('"users"."email" = ?', input).first
+    return if @searcheduser.nil?
 
-    ###########################
-    ##### admin endpoints #####
-    ###########################
+    @pointscount = EventsUsers.all.where('"events_users"."user_id" = ?', @searcheduser.id).count
+  end
 
-    # view all users
-    def index
-        @users = User.all
-    end
+  def show; end
 
-    def new
-        @user = User.new
-    end
+  ###########################
+  ##### admin endpoints #####
+  ###########################
 
-    def edit
-        
-    end
+  # view all users
+  def index
+    @users = User.all
+  end
 
-    def create
-        @user = User.new(user_params)
-    end
+  def new
+    @user = User.new
+  end
 
-    def delete
-        @user.destroy
-    end
+  def edit; end
 
-    #########################
-    #### private methods ####
-    #########################
+  def create
+    @user = User.new(user_params)
+  end
 
-    private
-        def set_user
-            @user = User.find(params[:id])
-        end
+  def delete
+    @user.destroy
+  end
 
-        def user_params
-            params.require(:user).permit(:netId, :userDetailsId, :isAdmin)
-        end
+  #########################
+  #### private methods ####
+  #########################
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:netId, :userDetailsId, :isAdmin)
+  end
 end
