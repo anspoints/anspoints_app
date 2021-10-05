@@ -16,4 +16,9 @@ RSpec.describe 'Viewing Events', type: :feature do
     click_on 'Check In'
     expect(page).to have_content('You have signed in successfully. You may now close this page.')
   end
+
+  scenario 'can access qr code' do
+    visit qr_event_path(Event.find_by(eventCode: 'TestCode'))
+    expect(page).to have_css('.iframe-within-card')
+  end
 end
