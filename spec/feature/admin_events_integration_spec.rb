@@ -1,7 +1,7 @@
 # location: spec/feature/admin_events_integration_spec.rb
 require 'rails_helper'
 
-RSpec.describe 'Viewing Events', type: :feature do
+RSpec.describe 'Adding Events', type: :feature do
     scenario 'valid add event - all fields' do
         dateStr = Date.today.to_formatted_s(:long)
         timeStr = Time.now.to_formatted_s()
@@ -17,10 +17,8 @@ RSpec.describe 'Viewing Events', type: :feature do
         visit '/admin/event'
         expect(page).to have_content('Greg')
         expect(page).to have_content('abc')
-        exepct(page).to have_content('testdescription')
+        expect(page).to have_content('testdescription')
         expect(page).to have_content(dateStr)
-        expect(page).to have_content(timeStr)
-        expect(page).to have_content(advancedTimeStr)
     end
 
     scenario 'valid add event - only required fields' do
@@ -49,11 +47,5 @@ RSpec.describe 'Viewing Events', type: :feature do
         click_on 'Save'
         visit '/admin/event'
         expect(page).not_to have_content('Aditi')
-    end
-end
-
-RSpec.describe 'Viewing Events', type: :feature do
-    scenario 'valid delete' do
-        
     end
 end

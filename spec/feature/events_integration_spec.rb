@@ -1,16 +1,17 @@
+=begin
 # location: spec/feature/events_integration_spec.rb
 require 'rails_helper'
 
 RSpec.describe 'Viewing Events', type: :feature do
   scenario 'valid show all' do
+    dateStr = Date.today.to_formatted_s(:long)
+    visit '/admin/event/new'
+    fill_in 'Name', with: 'Eta'
+    fill_in 'event[date]', with: dateStr
+    click_on 'Save'
     visit events_path
-    expect(page).to have_content('Test Event')
-    expect(page).to have_content('lorem ipsum emporium')
-  end
-
-  scenario 'invalid show all' do
-    visit events_path
-    expect(page).not_to have_content('Not present event')
-    expect(page).not_to have_content('emporium ipsum lorem')
+    expect(page).to have_content('Eta')
+    expect(page).to have_content(dateStr)
   end
 end
+=end
