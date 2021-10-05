@@ -53,8 +53,3 @@ RSpec.describe 'Viewing Events', type: :feature do
     expect(page).not_to have_content('Aditi')
   end
 end
-
-RSpec.describe 'Viewing Events', type: :feature do
-  scenario 'valid delete' do
-  end
-end
