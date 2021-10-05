@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EventsUsersController < ApplicationController
   def create
     user_params = event_user_params
@@ -6,7 +8,7 @@ class EventsUsersController < ApplicationController
     @eventuser.event_id = user_params.fetch(:event_id)
     if @eventuser.user_id.nil? || @eventuser.event_id.nil?
       # TODO: add failure feedback
-      redirect_back :fallback_location => '/events'
+      redirect_back fallback_location: '/events'
     else
       @eventuser.save
       render('events_users/success')
@@ -18,8 +20,8 @@ class EventsUsersController < ApplicationController
   def event_user_params
     eventuser = params.require(:eventuser)
     eventuser.permit(:event_id, :user_id, :email)
-    if eventuser.has_key?(:email) && !eventuser.has_key?(:user_id)
-      eventuser[:user_id] = User.find_or_create_by(:email => eventuser[:email]).id
+    if eventuser.key?(:email) && !eventuser.key?(:user_id)
+      eventuser[:user_id] = User.find_or_create_by(email: eventuser[:email]).id
     end
     eventuser.delete(:email)
     eventuser
