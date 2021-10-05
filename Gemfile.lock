@@ -70,6 +70,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.9.1)
       msgpack (~> 1.0)
+    brakeman (5.1.1)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.35.3)
@@ -291,6 +292,10 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
+<<<<<<< HEAD
+  brakeman
+=======
+>>>>>>> 98834a87014e68f73864e0af728855b3d6aaf254
   byebug
   capybara (>= 3.26)
   date_validator
