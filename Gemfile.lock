@@ -292,7 +292,10 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
+<<<<<<< HEAD
   brakeman
+=======
+>>>>>>> 98834a87014e68f73864e0af728855b3d6aaf254
   byebug
   capybara (>= 3.26)
   date_validator
