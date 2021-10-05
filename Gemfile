@@ -7,6 +7,7 @@ ruby '3.0.2'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -59,12 +60,15 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # use bootstrap
-gem 'bootstrap-sass'
+# gem 'bootstrap-sass'
+# gem 'jquery-rails'
 
 gem 'date_validator'
 
-gem 'popper_js', '~> 1.11', '>= 1.11.1'
+# gem 'popper_js', '~> 1.11', '>= 1.11.1'
 
 gem 'rails_admin'
 
 gem 'devise'
+
+gem 'rqrcode'

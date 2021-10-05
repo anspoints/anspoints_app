@@ -7,23 +7,18 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import '../packs/bootstrap.min'
-import '../../assets/stylesheets/application'
+
+import { Modal } from "bootstrap"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-//= require jquery
-//= require popper
-//= require turbolinks
-//= require bootstrap
 //= require_tree.
 
 function requestEventPassword(eventId, eventName) {
     console.log(eventId);
     console.log(eventName);
-    // $('#eventCodeModal').modal('show');
 }
   
 window.addEventListener("load", () => {

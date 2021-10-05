@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_215802) do
   create_table "events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "eventCode"
+    t.uuid "eventTypeId"
     t.string "description"
     t.date "date"
     t.time "startTime"
@@ -47,7 +48,9 @@ ActiveRecord::Schema.define(version: 2021_10_03_215802) do
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "netId"
     t.string "email"
+    t.uuid "userDetailsId"
     t.boolean "isAdmin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
