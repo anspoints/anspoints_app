@@ -1,0 +1,33 @@
+<style>
+    .navbar {
+        /* There is a gap between the whole page's colour and the navbar unless we remove this bit for this page */
+        margin-bottom: revert;
+    }
+
+    .color-card-background {
+        background-color: #3A546C;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .iframe-card {
+        border-radius: 30px;
+        overflow: hidden;
+        margin: 80px;
+        background-color: white;
+    }
+
+    .iframe-within-card {
+        border: 0;
+        width: 500px;
+        height: 550px;
+    }
+</style>
+
+<div class="color-card-background">
+  <div class="iframe-card">
+    <iframe src="/qr/<%= @event.eventCode %>" class="iframe-within-card"></iframe>
+  </div>
+</div>
