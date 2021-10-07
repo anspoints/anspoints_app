@@ -1,1 +1,1 @@
-release: rails db:migrate RAILS_ENV=production
+release: bundle exec rails db:migrate RAILS_ENV=production
