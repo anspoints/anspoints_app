@@ -1,61 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <title>QR Code</title>
-  <style type="text/css">
-      * {
-          font-family: Arial, sans-serif;
-      }
-
-      body {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin: 7vh;
-      }
-
-      .qr-code {
-          width: 70vmin;
-          height: 70vmin;
-      }
-
-      .footer {
-          line-height: calc(100vmin * 0.07);
-          text-align: center;
-          font-size: calc(72vmin * 0.07);
-          position: relative;
-          top: calc(90vmin * 0.07);
-      }
-
-      .description {
-          font-style: italic;
-      }
-
-      .code {
-          font-size: calc(100vmin * 0.07);
-          line-height: calc(72vmin * 0.07);
-          color: #147e55;
-      }
-
-      .website-url {
-          color: #6698c3;
-      }
-  </style>
-</head>
-<body>
-
 <div class="qr-code">
   ${SVG}
 </div>
-
-<div class="footer">
-  <span class="description">Or enter this code</span>:<br/>
-  <span class="code">${CODE}</span><br/>
-  <span class="description">at</span> <span class="website-url">anspoints.herokuapp.com</span>
+<div class="qr-footer">
+  <span class="qr-description">Or enter this code</span>:<br/>
+  <span class="qr-code-text">${CODE}</span><br/>
+  <span class="qr-description">at</span> <span class="qr-website-url">anspoints.herokuapp.com</span>
 </div>
-
-</body>
-</html>

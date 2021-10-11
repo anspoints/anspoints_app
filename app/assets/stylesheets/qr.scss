@@ -1,5 +1,32 @@
 @import "home";
 
+.qr-code {
+    width: 70vmin;
+    height: 70vmin;
+}
+
+.qr-footer {
+    line-height: calc(100vmin * 0.07);
+    text-align: center;
+    font-size: calc(72vmin * 0.07);
+    position: relative;
+    top: calc(90vmin * 0.07);
+}
+
+.qr-description {
+    font-style: italic;
+}
+
+.qr-code-text {
+    font-size: calc(100vmin * 0.07);
+    line-height: calc(72vmin * 0.07);
+    color: #147e55;
+}
+
+.qr-website-url {
+    color: #6698c3;
+}
+
 .table-header{
     z-index: 100;
     text-align: center;
