@@ -64,3 +64,5 @@ gem 'bootstrap-sass'
 gem 'date_validator'
 
 gem 'popper_js', '~> 1.11', '>= 1.11.1'
+
+gem "rqrcode", "~> 2.0"

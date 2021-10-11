@@ -1,0 +1,30 @@
+<div id="events-container" class="container">            
+    <h1 class="title">Admin Points Dashboard</h1>
+</div>
+
+<div class="search-container">
+    <input type="text" id="searchTableInput" onkeyup="filterTable()" placeholder="Search emails..">
+</div>
+
+<div class="table-container">
+    <table id="pointsTable" class="table table-responsive table-bordered table-hover table-striped table-md">
+    <thead class="table-head">
+        <tr>
+        <th scope="col" class="table-header" data-field="index" data-align="center" data-sortable="true">#</th>
+        <th scope="col" class="table-header" data-field="index" data-align="center" data-sortable="true">Email</th>
+        <th scope="col" class="table-header" data-field="id" data-align="center" data-sortable="true">Points</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% i = 1 %>
+        <% @user_points_counts.each do |data| %>
+        <tr>
+        <td><%= i %></td>
+        <td><%= data.email %></td>
+        <td><%= data.count %></td>
+        </tr>
+        <% i = i + 1 %> 
+        <% end %>
+    </tbody>
+    </table>
+</div>

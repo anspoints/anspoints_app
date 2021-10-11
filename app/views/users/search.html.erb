@@ -1,6 +1,6 @@
 <div class="container text-center">
     <h4>View your current Points</h4>
-    <div class="input-group mx-auto" style="margin: auto">
+    <div class="input-group mx-auto" style="margin: auto; justify-content: center;">
     <%= form_tag('/users/search', :method => "get", id: "search-form") do %>
         <%= text_field_tag :input, params[:input], placeholder: "Search by email or netId", class: 'form-control' %>
         </br>

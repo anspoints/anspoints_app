@@ -1,14 +1,18 @@
 <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">x</button>
-        <h4 class="modal-title" id="myModalLabel"></h4>
+  <div class="modal-content">
+    <div class="modal-header">
+      <!--        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+      <h4 class="modal-title" id="myModalLabel">Event Code</h4>
     </div>
     <div class="modal-body">
-        <span>Enter the meeting code</span>
-        <form accept-charset="UTF-8" action="/events/join" method="post">
-            <input type="text" name="event[eventCode]" value="" />
-        </form>
+      <form accept-charset="UTF-8" action="/events/join" method="post">
+        <label>
+          Enter the meeting code
+          <input type="text" name="event[eventCode]" value=""/>
+        </label>
+        <br/>
+        <button type="submit" class="btn btn-primary">Check In</button>
+      </form>
     </div>
-    </div>
+  </div>
 </div>

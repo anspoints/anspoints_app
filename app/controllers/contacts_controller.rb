@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
     # fetch the event immediately on these actions
-    before_action :set_contact, only: %i[ show edit delete ]
+    before_action :set_contact, only: %i[show edit delete]
 
     ###########################
     ###### user endpoints #####
@@ -19,9 +19,7 @@ class ContactsController < ApplicationController
         @contact = Contact.new
     end
 
-    def edit
-        
-    end
+    def edit; end
 
     def create
         @contact = Contact.new(contact_params)
@@ -31,19 +29,18 @@ class ContactsController < ApplicationController
         @contact.destroy
     end
 
-    def show
-    end
+    def show; end
 
     #########################
     #### private methods ####
     #########################
 
     private
-        def set_contact
-            @contact = Contact.find(params[:id])
-        end
+    def set_contact
+        @contact = Contact.find(params[:id])
+    end
 
-        def contact_params
-            params.require(:contact).permit(:firstname, :lastname, :title, :bio, :affiliation, :email)
-        end
+    def contact_params
+        params.require(:contact).permit(:firstname, :lastname, :title, :bio, :affiliation, :email)
+    end
 end

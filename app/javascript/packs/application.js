@@ -12,16 +12,11 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-//= require jquery
-//= require popper
-//= require turbolinks
-//= require bootstrap
 //= require_tree.
 
 function requestEventPassword(eventId, eventName) {
     console.log(eventId);
     console.log(eventName);
-    // $('#eventCodeModal').modal('show');
 }
   
 window.addEventListener("load", () => {
@@ -38,3 +33,25 @@ window.addEventListener("load", () => {
         });
     });
 });
+
+function filterTable() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchTableInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("pointsTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+        } else {
+            tr[i].style.display = "none";
+        }
+        }
+    }
+}
