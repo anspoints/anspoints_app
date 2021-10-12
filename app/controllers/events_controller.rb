@@ -3,6 +3,7 @@
 class EventsController < ApplicationController
   # fetch the event immediately on these actions
   before_action :set_event, only: %i[qr join edit delete]
+  skip_before_action :verify_authenticity_token, only: [:join_by_code]
 
   ###########################
   ###### user endpoints #####
