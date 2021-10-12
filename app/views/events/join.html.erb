@@ -13,6 +13,7 @@
       <input id="email" name="eventuser[email]" type="text"/>
     </label>
     <br/>
+    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>"/>
     <button type="submit" name="eventuser[event_id]" value="<%= @event.id %>" class="btn btn-primary" style="margin-top: 20px">Check In</button>
   </form>
 </div>
