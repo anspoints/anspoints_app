@@ -1,0 +1,37 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    # These aren't made or maintained by us, so we don't care about their code quality
+    - 'bin/**/*'
+    - 'coverage/**/*'
+    - 'lib/**/*'
+    - 'log/**/*'
+    - 'node_modules/**/*'
+    - 'db/schema.rb'
+    - 'public/**/*'  # we could put our own code in here but we don't; everything here is a default or auto-generated
+    - 'storage/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'Gemfile.lock'
+    - 'yarn.lock'
+
+Metrics/BlockLength:
+  # Required for Rails config
+  Enabled: false
+
+# Not important but it is auto-correctable, so eh
+#Style/FrozenStringLiteralComment:
+#  Enabled: false
+
+Style/BlockComments:
+  # Pointless
+  Enabled: false
+
+Style/Documentation:
+  # Models/controllers/helpers are self-explanatory/idiomatic in Rails
+  Exclude:
+    - 'db/**/*'
+    - 'app/models/**/*'
+    - 'app/controllers/**/*'
+    - 'app/helpers/**/*'
+    - 'config/application.rb'

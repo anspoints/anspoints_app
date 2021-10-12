@@ -1,6 +1,7 @@
 # frozen_string_literal: true
+
 Rails.application.config.assets.configure do |env|
-    env.export_concurrent = false
+  env.export_concurrent = false
 end
 # Be sure to restart your server when you modify this file.
 
