@@ -3,7 +3,7 @@
     <div class="input-group mx-auto" style="margin: auto; justify-content: center;">
     <%= form_tag('/users/search', :method => "get", id: "search-form") do %>
         <%= text_field_tag :input, params[:input], placeholder: "Search by email or netId", class: 'form-control' %>
-        </br>
+        <br/>
         <span class="input-group-btn">
         <%= submit_tag "Search", class: 'btn btn-default' %>
         </span>
