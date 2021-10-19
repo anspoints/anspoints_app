@@ -11,10 +11,10 @@ class EventsController < ApplicationController
   # view all events
   def index
     # do not return the eventCode mainly
-    @pastevents = Event.select(:id, :name, :date, :startTime, :endTime, :description)
-                       .where('"events"."date" < ? and ("events"."endTime" is null or "events"."endTime" < ?)',
-                              Date.today, Time.current)
-                       .order(date: :asc, startTime: :asc)
+    @past_events = Event.select(:id, :name, :date, :startTime, :endTime, :description)
+                        .where('"events"."date" < ? and ("events"."endTime" is null or "events"."endTime" < ?)',
+                               Date.today, Time.current)
+                        .order(date: :asc, startTime: :asc)
     @events = Event.select(:id, :name, :date, :startTime, :endTime, :description)
                    .where('"events"."date" >= ? and ("events"."endTime" is null or "events"."endTime" <= ?)',
                           Date.today, Time.current)

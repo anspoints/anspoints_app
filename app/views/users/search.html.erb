@@ -11,11 +11,11 @@
     </div>
 </div>
 <div id="user-search-results" class="container text-center">
-    <% if @searcheduser != nil %>
+    <% if @searched_user != nil %>
     <div class="card">
         <div class="card-body">
-            <span><%= @searcheduser.email || 'no email' %></span>
-            <span>Points <%= @pointscount || 0 %></span>
+            <span><%= @searched_user.email || 'no email' %></span>
+            <span>Points <%= @points_count || 0 %></span>
         </div>
     </div>
     <% else %>

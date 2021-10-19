@@ -1,5 +1,5 @@
 <div class="modal fade" id="eventCodeModal" tabindex="-1" role="dialog" aria-labelledby="eventCodeLabel" aria-hidden="true">
-    <%= render 'layouts/eventcode_modal' %>
+    <%= render 'layouts/event_code_modal' %>
 </div>
 
 
@@ -44,11 +44,11 @@
         <div class="p-2 flex-grow-1 line-divider"></div>
     </div>
 
-    <% if @pastevents.length == 0 %>
+    <% if @past_events.length == 0 %>
         <span class="text-muted"><i>No Past Events</i></span>
     <% end %>
 
-    <% @pastevents.each do |e| %>
+    <% @past_events.each do |e| %>
     <div class="card event-card">
         <div class="card-body">
             <h5 class="card-title"><strong><%= e.name %></strong></h5>

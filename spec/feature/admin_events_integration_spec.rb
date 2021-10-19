@@ -11,7 +11,7 @@ RSpec.describe 'Viewing Events', type: :feature do
     visit '/admin/event/new'
     fill_in 'Name', with: 'Greg'
     fill_in 'Eventcode', with: 'abc'
-    fill_in 'Description', with: 'testdescription'
+    fill_in 'Description', with: 'testDescription'
     fill_in 'event[date]', with: date_str
     fill_in 'event[startTime]', with: time_str
     fill_in 'event[endTime]', with: advanced_time_str
@@ -19,7 +19,7 @@ RSpec.describe 'Viewing Events', type: :feature do
     visit '/admin/event'
     expect(page).to have_content('Greg')
     expect(page).to have_content('abc')
-    expect(page).to have_content('testdescription')
+    expect(page).to have_content('testDescription')
     expect(page).to have_content(date_str)
     expect(page).to have_content(time_str)
     expect(page).to have_content(advanced_time_str)

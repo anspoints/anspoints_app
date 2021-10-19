@@ -13,10 +13,10 @@ class UsersController < ApplicationController
     return if input.nil?
 
     logger.info(input)
-    @searcheduser = User.all.where('"users"."email" = ?', input).first
-    return if @searcheduser.nil?
+    @searched_user = User.all.where('"users"."email" = ?', input).first
+    return if @searched_user.nil?
 
-    @pointscount = EventsUsers.all.where('"events_users"."user_id" = ?', @searcheduser.id).count
+    @points_count = EventsUsers.all.where('"events_users"."user_id" = ?', @searched_user.id).count
   end
 
   def show; end

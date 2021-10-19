@@ -9,7 +9,7 @@ RSpec.describe 'Adding Contacts', type: :feature do
     fill_in 'Firstname', with: 'Greg'
     fill_in 'Lastname', with: 'abc'
     fill_in 'Title', with: 'testTitle'
-    fill_in 'Bio', with: 'testbio'
+    fill_in 'Bio', with: 'testBio'
     fill_in 'Affiliation', with: 'testAffiliation'
     fill_in 'contact[email]', with: 'gpetri@tamu.edu'
     click_on 'Save'
