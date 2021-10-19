@@ -8,7 +8,7 @@ RSpec.describe 'Creating check-in events', type: :model do
     eventsuser = EventsUsers.new
     eventsuser.event_id = SecureRandom.uuid
     expect(eventsuser.event_id).to_not be_nil
-    eventsuser.user_id = "userbro"
+    eventsuser.user_id = 'userbro'
     expect(eventsuser.user_id).to be_nil
     eventsuser.user_id = SecureRandom.uuid
     expect(eventsuser.user_id).to_not be_nil

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # location: spec/feature/admin_events_users_integration_spec.rb
 require 'rails_helper'
 =begin

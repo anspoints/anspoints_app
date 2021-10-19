@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 =begin
 # location: spec/feature/events_integration_spec.rb
 require 'rails_helper'
