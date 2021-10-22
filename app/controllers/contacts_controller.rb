@@ -31,7 +31,9 @@ class ContactsController < ApplicationController
     @contact.destroy
   end
 
-  def show; end
+  def show; 
+    redirect_to :controller => 'contacts', :action => 'index'
+  end
 
   #########################
   #### private methods ####

@@ -19,7 +19,9 @@ class UsersController < ApplicationController
     @points_count = EventsUsers.all.where('"events_users"."user_id" = ?', @searched_user.id).count
   end
 
-  def show; end
+  def show; 
+    redirect_to :controller => 'users', :action => 'search'
+  end
 
   ###########################
   ##### admin endpoints #####
