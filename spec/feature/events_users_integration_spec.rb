@@ -6,7 +6,7 @@ require 'rails_helper'
 RSpec.describe 'Checking In', type: :feature do
   scenario 'can join using event code' do
     visit events_path
-    expect(page).to have_content('Join')
+    expect(page).to have_content('Upcoming Events')
     click_on 'Join'
     fill_in 'Enter the meeting code', with: 'TestCode'
     click_on 'Check In'
