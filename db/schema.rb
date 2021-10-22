@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 2021_10_03_215802) do
   create_table "contacts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
+    t.string "email"
     t.string "title"
     t.text "bio"
     t.string "affiliation"
-    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

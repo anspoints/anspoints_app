@@ -6,6 +6,7 @@ require 'date_validator'
 class Event < ApplicationRecord
   validates :name, presence: true
   validates :date, presence: true
+  validates :eventCode, presence: true
   validates :endTime, date: { after: proc { :startTime }, allow_blank: true }
 
   attribute :eventCode, :string, default: -> { generate_code }
