@@ -81,4 +81,8 @@ Rails.application.configure do
 
   # added logger
   ActiveSupport::Logger.new($stdout)
+
+  # Google oauth keys [REMOVE BEFORE PRODUCTION]
+  ENV['GOOGLE_OAUTH_CLIENT_ID'] = ''
+  ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = ''
 end
