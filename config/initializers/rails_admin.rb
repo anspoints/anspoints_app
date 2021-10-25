@@ -9,6 +9,12 @@ RailsAdmin.config do |config|
   # end
   # config.current_user_method(&:current_user)
 
+  config.authenticate_with do
+    warden.authenticate! scope: :user
+    check_admin_authorization!
+  end
+  config.current_user_method(&:current_user)
+
   ## == CancanCan ==
   # config.authorize_with :cancancan
 
