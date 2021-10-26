@@ -23,8 +23,7 @@ class EventsUsersController < ApplicationController
     end
   end
 
-  def success
-  end
+  def success; end
 
   def show
     redirect_to controller: 'events_users', action: 'success'
@@ -37,11 +36,11 @@ class EventsUsersController < ApplicationController
     event_user.permit(:event_id, :user_id, :email, :first_name, :last_name)
     event_user.require(%i[event_id first_name last_name])
 
-    if event_user.key?(:user_id)
-      user = User.find(event_user[:user_id])
-    else
-      user = User.find_or_initialize_by(email: event_user.require(:email))
-    end
+    user = if event_user.key?(:user_id)
+             User.find(event_user[:user_id])
+           else
+             User.find_or_initialize_by(email: event_user.require(:email))
+           end
 
     # Update name in case it is outdated
     user.update(first_name: event_user[:first_name], last_name: event_user[:last_name])
@@ -49,7 +48,6 @@ class EventsUsersController < ApplicationController
     event_user[:user_id] = user.id
 
     event_user.require(%i[user_id])
-
 
     event_user.delete(:email)
     event_user.delete(:first_name)

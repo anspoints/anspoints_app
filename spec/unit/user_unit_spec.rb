@@ -5,7 +5,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   subject do
-    described_class.new(email: 'ryan@tamu.edu', first_name: "Ryan", last_name: "Surname")
+    described_class.new(email: 'ryan@tamu.edu', first_name: 'Ryan', last_name: 'Surname')
   end
 
   it 'is valid with valid attributes' do
