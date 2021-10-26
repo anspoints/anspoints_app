@@ -48,6 +48,7 @@ window.addEventListener("load", () => {
             requestEventPassword(eventId, eventName);
         });
     });
+    /*
     const navLinks = document.querySelectorAll(
         "a.nav-link"
     );
@@ -62,5 +63,5 @@ window.addEventListener("load", () => {
             element.style.color = themeDarkGrey;
             element.style.backgroundColor = themeBackgroundColor;
         });
-    });
+    }); */
 });

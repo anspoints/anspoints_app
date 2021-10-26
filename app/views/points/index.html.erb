@@ -8,21 +8,36 @@
       <%= javascript_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div id="events-container" class="container">            
-      <h1 class="title">Admin Points Dashboard</h1>
+    <div class="d-flex flex-row w-100 justify-content-between nav-container">
+      <a class="p-2 w-100 text-center nav-link" href="/events">Events</a>
+      <%= link_to 'Points', "/users/search", class: "p-2 w-100 text-center nav-link" %>
+      <a class="p-2 w-100 text-center nav-link" href="/contacts">Contacts</a>
+      <a class="p-2 w-100 text-center nav-link nav-link-admin" href="/admin">Admin</a>
     </div>
 
-    <div class="search-container">
-      <input type="text" id="searchTableInput" onkeyup="filterTable()" placeholder="Search emails..">
+    <div id="events-container" class="container">            
+      <h1 class="title">Admin Points Dashboard</h1>
+    </div> 
+
+    <div class="row">
+      <div class="col-8 ">
+        <div class="user-search-container">
+          <input class="form-control" type="text" id="searchTableInput" onkeyup="filterTable()" placeholder="Search emails..">
+        </div>
+      </div>
+
+      <div class="col-4 export-button-container">
+        <button class="export-button btn btn-secondary" onclick="download_table_as_csv();">Export Results to CSV</button>
+      </div>
     </div>
 
     <div class="table-container">
-      <table id="pointsTable" class="table table-responsive table-bordered table-hover table-striped table-md">
+      <table id="pointsTable" class="table table-responsive table-bordered table-hover table-striped table-md" data-toggle="table">
         <thead class="table-head">
           <tr>
-            <th scope="col" class="table-header" data-field="index" data-align="center" data-sortable="true">#</th>
-            <th scope="col" class="table-header" data-field="index" data-align="center" data-sortable="true">Email</th>
-            <th scope="col" class="table-header" data-field="id" data-align="center" data-sortable="true">Points</th>
+            <th scope="col" id="table-header" class="table-header" data-field="index" data-align="right" data-sortable="true">#</th>
+            <th scope="col" id="table-header" class="table-header" data-field="email" data-align="right" data-sortable="true"><%= link_to "Email", :sort => "count"%></th>
+            <th scope="col" id="table-header" class="table-header" data-field="points" data-align="right" data-sortable="true"><%= link_to "Points", :sort => "count"%></th>
           </tr>
         </thead>
         <tbody>
@@ -62,5 +77,38 @@
       }
     }
     </script>
+    <script>
+      function download_table_as_csv(table_id="pointsTable", separator = ",") {
+        // Select rows from table_id
+        var rows = document.querySelectorAll("table#" + table_id + " tr");
+        // Construct csv
+        var csv = [];
+          //looping through the table
+        for (var i = 0; i < rows.length; i++) {
+            var row = [], cols = rows[i].querySelectorAll("td, th");
+                //looping through the tr
+            for (var j = 0; j < cols.length; j++) {
+                // removing space from the data
+                var data = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, "").replace(/(\s\s)/gm, " ")
+                  // removing double qoute from the data
+                data = data.replace(/"/g, `""`);
+                // Push escaped string
+                row.push(`"` + data + `"`);
+            }
+            csv.push(row.join(separator));
+        }
+        var csv_string = csv.join("\n");
+        // Download it
+        var filename = "export_" + table_id + "_" + new Date().toLocaleDateString() + ".csv";
+        var link = document.createElement("a");
+        link.style.display = "none";
+        link.setAttribute("target", "_blank");
+        link.setAttribute("href", "data:text/csv;charset=utf-8," + encodeURIComponent(csv_string));
+        link.setAttribute("download", filename);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+      </script>
   </body>
 </html>

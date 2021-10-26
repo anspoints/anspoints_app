@@ -15,6 +15,10 @@ class EventsUsersController < ApplicationController
     end
   end
 
+  def show; 
+    redirect_to :controller => 'event_users', :action => 'success'
+  end
+
   private
 
   def event_user_params
