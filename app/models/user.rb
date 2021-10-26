@@ -16,6 +16,10 @@ class User < ApplicationRecord
 
   def self.from_google(options)
     # return nil unless options[:email] =~ /@tamu.edu\z/
-    create_with(uid: options[:uid]).find_or_create_by!(email: options[:email])
+    begin 
+      create_with(uid: options[:uid], first_name: "admin", last_name: "lastAdmin").find_or_create_by!(email: options[:email])
+    rescue
+      # 
+    end
   end
 end
