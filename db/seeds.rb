@@ -15,9 +15,11 @@ when 'development'
   Event.create([{ name: 'Test Event2', eventCode: 'TestCode', description: 'lorem ipsum emporium',
                   date: Date.yesterday, startTime: Time.current }])
   # create a user
-  user = User.create([{ isAdmin: false, email: 'testuser@tamu.edu', first_name: 'ANSP_ADMIN', last_name: 'ANSP_ADMIN' }])
+  user = User.create([{ isAdmin: false, email: 'testuser@tamu.edu', first_name: 'ANSP_ADMIN',
+                        last_name: 'ANSP_ADMIN' }])
   # create an admin user
-  admin = User.create([{ isAdmin: true, email: 'adminuser@tamu.edu', first_name: 'ANSP_ADMIN', last_name: 'ANSP_ADMIN' }])
+  admin = User.create([{ isAdmin: true, email: 'adminuser@tamu.edu', first_name: 'ANSP_ADMIN',
+                         last_name: 'ANSP_ADMIN' }])
   # create EventsUsers (point tracking)
   EventsUsers.create([{ user_id: user[0].id, event_id: event[0].id }])
   # create a contact
