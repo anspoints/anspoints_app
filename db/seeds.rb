@@ -27,6 +27,8 @@ when 'development'
                     affiliation: 'Texas A&M', email: 'gmoney@gmail.com' }])
 when 'production'
   # master user
-  !User.find_or_create_by(isAdmin: true, email: 'ans.pointstracker@gmail.com',
+  User.find_or_create_by(isAdmin: true, email: 'ans.pointstracker@gmail.com',
                           first_name: 'ANSP_ADMIN', last_name: 'ANSP_ADMIN')
+  User.find_or_create_by(isAdmin: true, email: 'ans.auditor.123@gmail.com',
+                          first_name: 'ANSP_AUDITOR', last_name: 'ANSP_AUDITOR')
 end
