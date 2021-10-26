@@ -2,8 +2,7 @@
 
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  resources :contacts, :pointsx
-  get '/points', to: 'points#index'
+  resources :contacts, :points
   resources :events do
     member do
       # FIXME: note that these are "insecure" if (and only if) a member can find the ID,

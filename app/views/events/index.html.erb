@@ -1,18 +1,21 @@
 <div class="modal fade" id="eventCodeModal" tabindex="-1" role="dialog" aria-labelledby="eventCodeLabel" aria-hidden="true">
-    <%= render 'layouts/eventcode_modal' %>
+    <%= render 'layouts/event_code_modal' %>
 </div>
 
 
-<div id="events-container" class="container">
+<div class="events-container container">
 
-    <div id="upcoming-events" class="d-flex flex-row event-divider">
-        <div class="p-2">Upcoming Events</div>
-        <div class="p-2 flex-grow-1 line-divider"></div>
+    <div class="d-flex flex-row justify-content-between event-divider">
+        <div class="p-2" style="padding-left: 0 !important">Upcoming Events</div>
+        <div class="p-2"><span class="badge badge-secondary" style="background-color: #474B4F"><%= @events.length || 0 %></span></div>
     </div>
+    <hr/>
 
+    <div class="d-flex flex-row">
     <% if @events.length == 0 %>
-        <span class="text-muted"><i>No Upcoming Events</i></span>
+        <span class="text-muted small">No Upcoming Events</span>
     <% end %>
+    </div>
 
     <% @events.each do |e| %>
     <div class="card event-card">
@@ -39,16 +42,19 @@
 
     <br/>
 
-    <div class="d-flex flex-row event-divider">
-        <div class="p-2">Past Events</div>
-        <div class="p-2 flex-grow-1 line-divider"></div>
+    <div class="d-flex flex-row justify-content-between event-divider">
+        <div class="p-2" style="padding-left: 0 !important">Past Events</div>
+        <div class="p-2"><span class="badge badge-secondary" style="background-color: #474B4F"><%= @past_events.length || 0 %></span></div>
+    </div>
+    <hr/>
+
+    <div class="d-flex flex-row">
+    <% if @past_events.length == 0 %>
+        <span class="text-muted small">No Past Events</span>
+    <% end %>
     </div>
 
-    <% if @pastevents.length == 0 %>
-        <span class="text-muted"><i>No Past Events</i></span>
-    <% end %>
-
-    <% @pastevents.each do |e| %>
+    <% @past_events.each do |e| %>
     <div class="card event-card">
         <div class="card-body">
             <h5 class="card-title"><strong><%= e.name %></strong></h5>

@@ -1,21 +1,19 @@
-<div class="container text-center">
-    <h4>View your current Points</h4>
-    <div class="input-group mx-auto" style="margin: auto; justify-content: center;">
-    <%= form_tag('/users/search', :method => "get", id: "search-form") do %>
-        <%= text_field_tag :input, params[:input], placeholder: "Search by email or netId", class: 'form-control' %>
-        </br>
-        <span class="input-group-btn">
-        <%= submit_tag "Search", class: 'btn btn-default' %>
-        </span>
+<div class="search-container container text-center">
+    <h5>View your current Points</h5>
+    <hr/>
+    <div class="input-group mx-auto justify-content-center">
+    <%= form_tag('/users/search', :method => "get", id: "search-form", class: "d-flex w-100") do %>
+        <%= text_field_tag :input, params[:input], placeholder: "Search by Texas A&M University email", class: "form-control text-center", style: "text-align: left !important" %>
+        <%= submit_tag "Search", class: "btn btn-primary", style: "margin-left: 4px" %>
     <% end %>
     </div>
 </div>
-<div id="user-search-results" class="container text-center">
-    <% if @searcheduser != nil %>
+<div id="user-search-results" class="results-container container text-center">
+    <% if @searched_user != nil %>
     <div class="card">
         <div class="card-body">
-            <span><%= @searcheduser.email || 'no email' %></span>
-            <span>Points <%= @pointscount || 0 %></span>
+            <span><%= @searched_user.email || 'no email' %></span>
+            <span>Points <%= @points_count || 0 %></span>
         </div>
     </div>
     <% else %>

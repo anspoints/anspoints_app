@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_03_215802) do
+ActiveRecord::Schema.define(version: 2021_10_26_021240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -19,10 +19,10 @@ ActiveRecord::Schema.define(version: 2021_10_03_215802) do
   create_table "contacts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
+    t.string "email"
     t.string "title"
     t.text "bio"
     t.string "affiliation"
-    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2021_10_03_215802) do
     t.uuid "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id", "user_id"], name: "index_events_users_on_event_id_and_user_id"
+    t.index ["event_id", "user_id"], name: "index_events_users_on_event_id_and_user_id", unique: true
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_215802) do
     t.boolean "isAdmin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
   end
 
 end

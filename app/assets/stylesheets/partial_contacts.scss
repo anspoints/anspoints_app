@@ -1,0 +1,14 @@
+@import "home";
+
+.contacts-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    .contact-card {
+        border: none;
+        background-color: white !important;
+        padding: 8px 10px 8px 10px;
+        border-radius: 6px;
+        box-shadow: 0px 2px 2px $theme-light-grey;
+        margin: 4px;
+    }
+}

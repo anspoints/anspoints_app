@@ -1,18 +1,6 @@
-<nav class="nav-bar navbar">
-  <div class="d-flex container nav-container">
-    <div class="d-flex collapse navbar-collapse justify-content-center" id="navbarNav">
-        <div class="nav-link">
-            <a class="nav-item" aria-current="page" href="/events">Events</a>
-        </div>
-        <div class="nav-link">
-            <%= link_to 'Points', "/users/search", class: "nav-item" %>
-        </div>
-        <div class="nav-link">
-            <a class="nav-item" aria-current="page" href="/contacts">Contacts</a>
-        </div>
-        <div id="adminy" class="nav-link">
-            <a class="nav-item" aria-current="page" href="/admin">Admin Login</a>
-        </div>
-    </div>
-  </div>
-</nav>
+<div class="d-flex flex-row w-100 justify-content-between nav-container">
+    <a class="p-2 w-100 text-center nav-link" href="/events">Events</a>
+    <%= link_to 'Points', "/users/search", class: "p-2 w-100 text-center nav-link" %>
+    <a class="p-2 w-100 text-center nav-link" href="/contacts">Contacts</a>
+    <a class="p-2 w-100 text-center nav-link nav-link-admin" href="/admin">Admin</a>
+</div>

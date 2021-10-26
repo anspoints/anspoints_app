@@ -1,0 +1,25 @@
+@import "home";
+
+.nav-container {
+    background-color: $theme-dark-blue;
+    .nav-link {
+        padding: 10px 14px 10px 14px;
+        background-color: inherit;
+        color: white;
+        text-decoration: none;
+        &:hover {
+            background-color: $theme-light-grey;
+            color: $theme-dark-grey;
+        }
+    }
+    .nav-link-admin {
+        padding: 10px 14px 10px 14px;
+        background-color: $theme-dark-grey;
+        color: white;
+        text-decoration: none;
+        &:hover {
+            background-color: $theme-light-grey;
+            color: $theme-dark-grey
+        }
+    }
+}
