@@ -9,7 +9,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <style>
-        .flash__alert   { color: red; }
+        .flash__alert   { color: black; }
         .flash__notice  { color: blue; }
         .flash__success { color: green; }
     </style>
@@ -18,11 +18,6 @@
   <body>
     <%= render "layouts/splash" %>
     <%= render "layouts/navbar" %>
-     <% if flash.any? %>
-      <% flash.each do |key, value| -%>
-        <section class="flash flash__<%= key %>"><%= value.html_safe %></section>
-      <% end -%>
-    <% end %>
     <%= yield %>
   </body>
 </html>

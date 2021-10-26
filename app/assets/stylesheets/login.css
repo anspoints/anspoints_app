@@ -1,0 +1,13 @@
+@import "home.scss";
+
+.title{
+    color: #3A546C !important;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.login-container{
+    padding-left: 10px;
+    padding-right: 10px;
+}
