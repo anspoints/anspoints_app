@@ -5,8 +5,8 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
   subject do
-    described_class.new(name: "ryan", eventCode: "mujit", description: "test",
-    date: "2021-10-28", startTime: "19:35:00", endTime: "19:50:00")
+    described_class.new(name: 'ryan', eventCode: 'mujit', description: 'test',
+                        date: '2021-10-28', startTime: '19:35:00', endTime: '19:50:00')
   end
 
   it 'is valid with valid attributes' do
