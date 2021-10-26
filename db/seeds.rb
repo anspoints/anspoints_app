@@ -25,7 +25,7 @@ case Rails.env
         affiliation: 'Texas A&M', email: 'gmoney@gmail.com', first }])
     when "production"
         # master user
-        !User.find_or_create_by(isAdmin: true, email: 'ans.pointstracker@gmail.com',
+        User.find_or_create_by(isAdmin: true, email: 'ans.pointstracker@gmail.com',
             firstname: 'ANSP_ADMIN', lastname: 'ANSP_ADMIN')
     end
 end
