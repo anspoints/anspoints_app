@@ -40,6 +40,11 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # By suggestion of devise [host: should be changed for production]
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.web_console.whitelisted_ips = '172.17.0.1'
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
