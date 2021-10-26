@@ -8,9 +8,9 @@ RSpec.describe 'Editing Events', type: :feature do
     # add an event first
     date_str = Date.today.to_formatted_s(:long)
     time_str = Time.now.to_formatted_s
-    #trimmed_time_str = Time.parse(time_str).strftime('%H:%M')
+    # trimmed_time_str = Time.parse(time_str).strftime('%H:%M')
     advanced_time_str = Time.now.advance(minutes: 1).to_formatted_s
-    #trimmed_advanced_time_str = Time.parse(advanced_time_str).strftime('%H:%M')
+    # trimmed_advanced_time_str = Time.parse(advanced_time_str).strftime('%H:%M')
     visit '/admin/event/new'
     fill_in 'Name', with: 'Greg'
     fill_in 'Description', with: 'testDescription'
@@ -24,25 +24,25 @@ RSpec.describe 'Editing Events', type: :feature do
     expect(page).to have_content('testDescription')
     expect(page).to have_content(date_str)
     expect(page).to have_content('codey')
-    #expect(page).to have_content(trimmed_time_str)
-    #expect(page).to have_content(trimmed_advanced_time_str)
+    # expect(page).to have_content(trimmed_time_str)
+    # expect(page).to have_content(trimmed_advanced_time_str)
     # test the edit page
     tr = page.find('tr', text: 'Greg')
-    eventId = tr.find('.id_field').text
-    # eventId = page.find(:xpath, '//*[@id="bulk_form"]/table/tbody/tr/td[2]').title
-    visit '/admin/event/' + eventId + '/edit'
+    event_id = tr.find('.id_field').text
+    # event_id = page.find(:xpath, '//*[@id="bulk_form"]/table/tbody/tr/td[2]').title
+    visit "/admin/event/#{event_id}/edit"
     expect(page).to have_field('event[name]', with: 'Greg')
     expect(page).to have_field('event[description]', with: 'testDescription')
     expect(page).to have_field('event[date]', with: date_str)
     expect(page).to have_field('event[eventCode]', with: 'codey')
-    #expect(page).to have_field('event[startTime]', with: time_str)
-    #expect(page).to have_field('event[endTime]', with: advanced_time_str)
+    # expect(page).to have_field('event[startTime]', with: time_str)
+    # expect(page).to have_field('event[endTime]', with: advanced_time_str)
     # edit everything
     new_date_str = Date.tomorrow.to_formatted_s(:long)
     new_time_str = Time.now.to_formatted_s
-    #trimmed_new_time_str = Time.parse(new_time_str).strftime('%H:%M')
+    # trimmed_new_time_str = Time.parse(new_time_str).strftime('%H:%M')
     new_advanced_time_str = Time.now.advance(minutes: 1).to_formatted_s
-    #trimmed_new_advanced_time_str = Time.parse(new_advanced_time_str).strftime('%H:%M')
+    # trimmed_new_advanced_time_str = Time.parse(new_advanced_time_str).strftime('%H:%M')
     fill_in 'Name', with: 'Danny'
     fill_in 'event[eventCode]', with: 'cba_code'
     fill_in 'Description', with: 'descriptionTest'
@@ -56,17 +56,17 @@ RSpec.describe 'Editing Events', type: :feature do
     expect(page).to have_content('cba_code')
     expect(page).to have_content('descriptionTest')
     expect(page).to have_content(new_date_str)
-    #expect(page).to have_content(trimmed_new_time_str)
-    #expect(page).to have_content(trimmed_new_advanced_time_str)
+    # expect(page).to have_content(trimmed_new_time_str)
+    # expect(page).to have_content(trimmed_new_advanced_time_str)
   end
 
   scenario 'valid edit event - some fields' do
     # add an event first
     date_str = Date.today.to_formatted_s(:long)
     time_str = Time.now.to_formatted_s
-    #trimmed_time_str = Time.parse(time_str).strftime('%H:%M')
+    # trimmed_time_str = Time.parse(time_str).strftime('%H:%M')
     advanced_time_str = Time.now.advance(minutes: 1).to_formatted_s
-    #trimmed_advanced_time_str = Time.parse(advanced_time_str).strftime('%H:%M')
+    # trimmed_advanced_time_str = Time.parse(advanced_time_str).strftime('%H:%M')
     visit '/admin/event/new'
     fill_in 'Name', with: 'Buddy'
     fill_in 'Description', with: 'testDescription'
@@ -80,19 +80,19 @@ RSpec.describe 'Editing Events', type: :feature do
     expect(page).to have_content('codey')
     expect(page).to have_content('testDescription')
     expect(page).to have_content(date_str)
-    #expect(page).to have_content(trimmed_time_str)
-    #expect(page).to have_content(trimmed_advanced_time_str)
+    # expect(page).to have_content(trimmed_time_str)
+    # expect(page).to have_content(trimmed_advanced_time_str)
     # test the edit page
     tr = page.find('tr', text: 'Buddy')
-    eventId = tr.find('.id_field').text
-    # eventId = page.find(:xpath, '//*[@id="bulk_form"]/table/tbody/tr/td[2]').title
-    visit '/admin/event/' + eventId + '/edit'
+    event_id = tr.find('.id_field').text
+    # event_id = page.find(:xpath, '//*[@id="bulk_form"]/table/tbody/tr/td[2]').title
+    visit "/admin/event/#{event_id}/edit"
     expect(page).to have_field('event[name]', with: 'Buddy')
     expect(page).to have_field('event[description]', with: 'testDescription')
     expect(page).to have_field('event[date]', with: date_str)
     expect(page).to have_field('event[eventCode]', with: 'codey')
-    #expect(page).to have_field('event[startTime]', with: time_str)
-    #expect(page).to have_field('event[endTime]', with: advanced_time_str)
+    # expect(page).to have_field('event[startTime]', with: time_str)
+    # expect(page).to have_field('event[endTime]', with: advanced_time_str)
     # edit description
     fill_in 'Eventcode', with: 'cbad___'
     click_on 'Save'
@@ -109,9 +109,9 @@ RSpec.describe 'Adding Events', type: :feature do
   scenario 'valid add event - all fields' do
     date_str = Date.today.to_formatted_s(:long)
     time_str = Time.now.to_formatted_s
-    #trimmed_time_str = Time.parse(time_str).strftime('%H:%M')
+    # trimmed_time_str = Time.parse(time_str).strftime('%H:%M')
     advanced_time_str = Time.now.advance(minutes: 1).to_formatted_s
-    #trimmed_advanced_time_str = Time.parse(advanced_time_str).strftime('%H:%M')
+    # trimmed_advanced_time_str = Time.parse(advanced_time_str).strftime('%H:%M')
     visit '/admin/event/new'
     fill_in 'Name', with: 'Greg'
     fill_in 'Description', with: 'testDescription'
@@ -125,8 +125,8 @@ RSpec.describe 'Adding Events', type: :feature do
     expect(page).to have_content('codey')
     expect(page).to have_content('testDescription')
     expect(page).to have_content(date_str)
-    #expect(page).to have_content(trimmed_time_str)
-    #expect(page).to have_content(trimmed_advanced_time_str)
+    # expect(page).to have_content(trimmed_time_str)
+    # expect(page).to have_content(trimmed_advanced_time_str)
   end
 
   scenario 'valid add event - only required fields' do
@@ -206,8 +206,8 @@ RSpec.describe 'Deleting Events', type: :feature do
     expect(page).to have_content(date_str)
     expect(page).to have_content('codey')
     tr = page.find('tr', text: 'Betty')
-    eventId = tr.find('.id_field').text
-    visit '/admin/event/' + eventId + '/delete'
+    event_id = tr.find('.id_field').text
+    visit "/admin/event/#{event_id}/delete"
     click_on "Yes, I'm sure"
     visit '/admin/event'
     expect(page).not_to have_content('Betty')
@@ -233,9 +233,9 @@ RSpec.describe 'Deleting Events', type: :feature do
     expect(page).to have_content(date_str)
     expect(page).to have_content('codey')
     tr = page.find('tr', text: 'Bobby')
-    eventId = tr.find('.id_field').text
-    visit '/admin/event/' + eventId + '/delete'
-    click_on "Cancel"
+    event_id = tr.find('.id_field').text
+    visit "/admin/event/#{event_id}/delete"
+    click_on 'Cancel'
     visit '/admin/event'
     expect(page).to have_content('Bobby')
     expect(page).to have_content('bobbyDescription')

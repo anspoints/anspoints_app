@@ -89,11 +89,11 @@ RSpec.describe 'Editing Contacts', type: :feature do
     expect(page).to have_content(bio)
     visit '/admin/contact?model_name=contact&set=1'
     expect(page).to have_content(affiliation)
-    # check the edit page 
+    # check the edit page
     visit '/admin/contact'
     tr = page.find('tr', text: firstname)
-    contactId = tr.find('.id_field').text
-    visit '/admin/contact/' + contactId + '/edit'
+    contact_id = tr.find('.id_field').text
+    visit "/admin/contact/#{contact_id}/edit"
     expect(page).to have_field('contact[firstname]', with: firstname)
     expect(page).to have_field('contact[lastname]', with: lastname)
     expect(page).to have_field('contact[title]', with: title)
@@ -143,10 +143,10 @@ RSpec.describe 'Editing Contacts', type: :feature do
     expect(page).to have_content(firstname)
     expect(page).to have_content(lastname)
     expect(page).to have_content(email)
-    # check the edit page 
+    # check the edit page
     tr = page.find('tr', text: firstname)
-    contactId = tr.find('.id_field').text
-    visit '/admin/contact/' + contactId + '/edit'
+    contact_id = tr.find('.id_field').text
+    visit "/admin/contact/#{contact_id}/edit"
     expect(page).to have_field('contact[firstname]', with: firstname)
     expect(page).to have_field('contact[lastname]', with: lastname)
     expect(page).to have_field('contact[email]', with: email)
@@ -183,10 +183,10 @@ RSpec.describe 'Editing Contacts', type: :feature do
     expect(page).to have_content(firstname)
     expect(page).to have_content(lastname)
     expect(page).to have_content(email)
-    # check the edit page 
+    # check the edit page
     tr = page.find('tr', text: firstname)
-    contactId = tr.find('.id_field').text
-    visit '/admin/contact/' + contactId + '/edit'
+    contact_id = tr.find('.id_field').text
+    visit "/admin/contact/#{contact_id}/edit"
     expect(page).to have_field('contact[firstname]', with: firstname)
     expect(page).to have_field('contact[lastname]', with: lastname)
     expect(page).to have_field('contact[email]', with: email)
@@ -218,10 +218,10 @@ RSpec.describe 'Editing Contacts', type: :feature do
     expect(page).to have_content(firstname)
     expect(page).to have_content(lastname)
     expect(page).to have_content(email)
-    # check the edit page 
+    # check the edit page
     tr = page.find('tr', text: firstname)
-    contactId = tr.find('.id_field').text
-    visit '/admin/contact/' + contactId + '/edit'
+    contact_id = tr.find('.id_field').text
+    visit "/admin/contact/#{contact_id}/edit"
     expect(page).to have_field('contact[firstname]', with: firstname)
     expect(page).to have_field('contact[lastname]', with: lastname)
     expect(page).to have_field('contact[email]', with: email)
@@ -253,10 +253,10 @@ RSpec.describe 'Editing Contacts', type: :feature do
     expect(page).to have_content(firstname)
     expect(page).to have_content(lastname)
     expect(page).to have_content(email)
-    # check the edit page 
+    # check the edit page
     tr = page.find('tr', text: firstname)
-    contactId = tr.find('.id_field').text
-    visit '/admin/contact/' + contactId + '/edit'
+    contact_id = tr.find('.id_field').text
+    visit "/admin/contact/#{contact_id}/edit"
     expect(page).to have_field('contact[firstname]', with: firstname)
     expect(page).to have_field('contact[lastname]', with: lastname)
     expect(page).to have_field('contact[email]', with: email)

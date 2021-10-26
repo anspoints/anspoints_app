@@ -19,6 +19,21 @@ Metrics/BlockLength:
   # Required for Rails config
   Enabled: false
 
+# Differences due to development on Mac/Windows
+Layout/EndOfLine:
+  Enabled: False
+
+# File formatted by Ruby Convention - fix suggested seems outdated
+Metrics/AbcSize:
+  Enabled: False
+
+# Delivers false positives - unresolved issue on GitHub
+Lint/UselessAssignment:
+  Enabled: False
+
+# Not something potentially dangerous and all the lines are only business logic
+Metrics/MethodLength:
+  Enabled: False
 # Not important but it is auto-correctable, so eh
 #Style/FrozenStringLiteralComment:
 #  Enabled: false

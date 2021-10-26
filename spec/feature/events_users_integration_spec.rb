@@ -20,7 +20,9 @@ RSpec.describe 'Checking In', type: :feature do
     click_on 'Check In'
     correct_event_join_path = join_event_path(Event.find_by(eventCode: 'codey'))
     expect(page).to have_current_path(correct_event_join_path)
-    fill_in 'Email:', with: 'guy@fieri.com'
+    fill_in 'Email:', with: 'sally@tamu.edu'
+    fill_in 'First name:', with: 'Sally'
+    fill_in 'Last name:', with: 'Hatchet'
     click_on 'Check In'
     expect(page).to have_content('You have signed in successfully. You may now close this page.')
   end
