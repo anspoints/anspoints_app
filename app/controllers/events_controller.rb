@@ -69,8 +69,8 @@ class EventsController < ApplicationController
     @event.destroy
   end
 
-  def show; 
-    redirect_to :controller => 'events', :action => 'index'
+  def show
+    redirect_to controller: 'events', action: 'index'
   end
 
   #########################
