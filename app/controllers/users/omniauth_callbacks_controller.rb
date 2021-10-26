@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def google_oauth2
     user = User.from_google(from_google_params)
@@ -7,7 +9,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       flash[:success] = t 'devise.omniauth_callbacks.success', kind: 'Google'
       sign_in_and_redirect user, event: :authentication
     else
-      flash[:alert] = t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
+      flash[:alert] =
+        t 'devise.omniauth_callbacks.failure', kind: 'Google', reason: "#{auth.info.email} is not authorized."
       redirect_to new_user_session_path
     end
   end
@@ -27,7 +30,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def from_google_params
     @from_google_params ||= {
       uid: auth.uid,
-      email: auth.info.email      
+      email: auth.info.email
     }
   end
 

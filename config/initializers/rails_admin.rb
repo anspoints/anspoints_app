@@ -14,14 +14,13 @@ RailsAdmin.config do |config|
       warden.authenticate! scope: :user
     end
     config.current_user_method(&:current_user)
-  
+
     RailsAdmin.config do |config|
       config.authorize_with do
         redirect_to '/users/sign_out' unless current_user.isAdmin
       end
     end
   end
-  
 
   ## == CancanCan ==
   # config.authorize_with :cancancan
