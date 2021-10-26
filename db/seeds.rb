@@ -15,9 +15,11 @@ when 'development'
   Event.create([{ name: 'Test Event2', eventCode: 'TestCode', description: 'lorem ipsum emporium',
                   date: Date.yesterday, startTime: Time.current }])
   # create a user
-  user = User.create([{ isAdmin: false, email: 'testuser@tamu.edu' }])
+  user = User.create([{ isAdmin: false, email: 'testuser@tamu.edu', first_name: 'ANSP_ADMIN',
+                        last_name: 'ANSP_ADMIN' }])
   # create an admin user
-  admin = User.create([{ isAdmin: true, email: 'adminuser@tamu.edu' }])
+  admin = User.create([{ isAdmin: true, email: 'adminuser@tamu.edu', first_name: 'ANSP_ADMIN',
+                         last_name: 'ANSP_ADMIN' }])
   # create EventsUsers (point tracking)
   EventsUsers.create([{ user_id: user[0].id, event_id: event[0].id }])
   # create a contact
@@ -25,6 +27,8 @@ when 'development'
                     affiliation: 'Texas A&M', email: 'gmoney@gmail.com' }])
 when 'production'
   # master user
-  !User.find_or_create_by(isAdmin: true, email: 'ans.pointstracker@gmail.com',
-                          firstname: 'ANSP_ADMIN', lastname: 'ANSP_ADMIN')
+  User.find_or_create_by(isAdmin: true, email: 'ans.pointstracker@gmail.com',
+                         first_name: 'ANSP_ADMIN', last_name: 'ANSP_ADMIN')
+  User.find_or_create_by(isAdmin: true, email: 'ans.auditor.123@gmail.com',
+                         first_name: 'ANSP_AUDITOR', last_name: 'ANSP_AUDITOR')
 end
