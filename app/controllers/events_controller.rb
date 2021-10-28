@@ -11,10 +11,10 @@ class EventsController < ApplicationController
   # view all events
   def index
     # do not return the eventCode mainly
-    columns = Event.attribute_names - ["eventCode"]
+    columns = Event.attribute_names - ['eventCode']
     # Conversion to a naive time since the database stores local times without timezone info
     # RailsAdmin breaks if you try to use real Ruby/Rails timezone support
-    now = Time.now.in_time_zone("Central Time (US & Canada)").change(offset: 0)
+    now = Time.now.in_time_zone('Central Time (US & Canada)').change(offset: 0)
     today = now.to_date
     # now.. means in the range [now, infinity). You can interpret it as now-or-after (while ..now is before-to-now)
     @events = Event.where(date: today..)
@@ -25,14 +25,6 @@ class EventsController < ApplicationController
     @past_events = Event.where(date: ..(today - 1)).or(Event.where(endTime: ..now))
                         .select(columns)
                         .order(date: :desc, startTime: :desc)
-    # @past_events = Event.select(:id, :name, :date, :startTime, :endTime, :description)
-    #                     .where('"events"."date" < ? or ("events"."endTime" is null or "events"."endTime" < ?)',
-    #                            Date.today, Time.current)
-    #                     .order(date: :desc, startTime: :desc)
-    # @events = Event.select(:id, :name, :date, :startTime, :endTime, :description)
-    #                .where('"events"."date" >= ? and ("events"."endTime" is null or "events"."endTime" >= ?) and ("events"."startTime" is null or "events"."startTime" <= ?)',
-    #                       Date.today, Time.current, Time.current)
-    #                .order(date: :asc, startTime: :asc)
   end
 
   def raw_qr
