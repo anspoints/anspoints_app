@@ -29,7 +29,7 @@ class EventsController < ApplicationController
 
   def raw_qr
     # /qr/:code; bare-bones xhtml
-    render inline: helpers.make_form(params[:code])
+    render inline: helpers.make_form(params[:code], request.host)
   end
 
   def qr

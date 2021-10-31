@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get :join
     end
   end
+  get '/events/join', to: 'events#join_by_code'
   post '/events/join', to: 'events#join_by_code'
   post '/checkin', to: 'events_users#create'
   get '/qr/:code', to: 'events#raw_qr'
