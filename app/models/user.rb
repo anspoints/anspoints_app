@@ -22,4 +22,9 @@ class User < ApplicationRecord
   rescue StandardError
     nil
   end
+
+  def name
+    # Expected by RailsAdmin for its views
+    "#{first_name} #{last_name}"
+  end
 end

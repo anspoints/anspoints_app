@@ -6,6 +6,7 @@ class EventsUsersController < ApplicationController
       user_params = event_user_params
       user_params.require(%i[user_id event_id])
     rescue ActionController::ParameterMissing
+      flash[:error] = 'Could not check in with the provided information. Please ensure all fields are filled in.'
       redirect_back fallback_location: '/events'
       return
     end
@@ -18,6 +19,7 @@ class EventsUsersController < ApplicationController
         @eventuser.save
         render('events_users/success')
       else
+        flash[:error] = 'Could not check in with the provided information. Please ensure all fields are filled in.'
         redirect_back fallback_location: '/events'
       end
     end
@@ -32,6 +34,7 @@ class EventsUsersController < ApplicationController
   private
 
   def event_user_params
+    # Validates parameters, converts email to ID, and updates name records before passing on user ID and event ID
     event_user = params.require(:eventuser)
     event_user.permit(:event_id, :user_id, :email, :first_name, :last_name)
     event_user.require(%i[event_id first_name last_name])
@@ -43,15 +46,15 @@ class EventsUsersController < ApplicationController
            end
 
     # Update name in case it is outdated
-    user.update(first_name: event_user[:first_name], last_name: event_user[:last_name])
+    first_name = event_user.delete(:first_name).titleize
+    last_name = event_user.delete(:last_name).titleize
+    user.update(first_name: first_name, last_name: last_name)
     user.save
     event_user[:user_id] = user.id
 
     event_user.require(%i[user_id])
 
     event_user.delete(:email)
-    event_user.delete(:first_name)
-    event_user.delete(:last_name)
 
     event_user
   end

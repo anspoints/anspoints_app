@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   resources :contacts, :points
   resources :events do
     member do
-      # FIXME: note that these are "insecure" if (and only if) a member can find the ID,
-      # FIXME--since they can then pull up the code or join form from anywhere
       get :qr
       get :join
     end
