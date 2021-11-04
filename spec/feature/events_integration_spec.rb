@@ -5,7 +5,7 @@ require 'rails_helper'
 
 RSpec.describe 'Viewing Events', type: :feature do
   scenario 'valid show all' do
-    dateStr = Date.today.to_formatted_s(:long)
+    dateStr = Event.naive_now.to_date.to_formatted_s(:long)
     visit '/admin/event/new'
     fill_in 'Name', with: 'Eta'
     fill_in 'event[date]', with: dateStr
