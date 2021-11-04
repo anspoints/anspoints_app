@@ -42,7 +42,7 @@ class EventsUsersController < ApplicationController
     user = if event_user.key?(:user_id)
              User.find(event_user[:user_id])
            else
-             User.find_or_initialize_by(email: event_user.require(:email))
+             User.find_or_initialize_by(email: event_user.require(:email).downcase)
            end
 
     # Update name in case it is outdated

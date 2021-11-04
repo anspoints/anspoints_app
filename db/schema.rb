@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_021240) do
+ActiveRecord::Schema.define(version: 2021_11_04_162538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2021_10_26_021240) do
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "uid"
     t.string "email"
     t.boolean "isAdmin"
     t.datetime "created_at", precision: 6, null: false
@@ -56,4 +55,6 @@ ActiveRecord::Schema.define(version: 2021_10_26_021240) do
     t.string "last_name"
   end
 
+  add_foreign_key "events_users", "events", on_delete: :cascade
+  add_foreign_key "events_users", "users", on_delete: :cascade
 end

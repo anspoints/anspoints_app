@@ -4,12 +4,26 @@ require 'date'
 require 'date_validator'
 
 class Event < ApplicationRecord
+  attribute :name, :string
+  attribute :eventCode, :string
+  attribute :description, :string
+  attribute :date, :date
+  attribute :startTime, :time
+  attribute :endTime, :time
+
   validates :name, presence: true
   validates :date, presence: true
   validates :eventCode, presence: true
-  validates :endTime, date: { after: proc { :startTime }, allow_blank: true }
+  validates :endTime, date: { after: :startTime, allow_blank: true }
+
+  has_many :events_users, class_name: "EventsUsers", inverse_of: :event, dependent: :destroy
+  has_many :users, through: :events_users, inverse_of: :events
 
   attribute :eventCode, :string, default: -> { generate_code }
+
+  # def point_value
+  #   1
+  # end
 
   def self.naive_now
     # Conversion to a naive time since the database stores local times for events without timezone info
