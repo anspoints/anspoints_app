@@ -20,23 +20,25 @@ class Event < ApplicationRecord
   def self.ongoing
     now = naive_now
     today = now.to_date
-    # now.. means in the range [now, infinity). You can interpret it as now-or-after (while ..now is before-to-now)
-    where(date: today, startTime: [nil, ..now], endTime: [nil, now..])
+    # (now..) means in the range [now, infinity). You can interpret it as now-or-after (while (..now) is before-to-now)
+    where(date: today, startTime: [nil, (..now)], endTime: [nil, (now..)])
       .order(date: :desc, startTime: :desc)
   end
 
   def self.upcoming
     now = naive_now
     today = now.to_date
-    where(date: today, startTime: now..).or(where(date: (today + 1)..))
-                                        .order(date: :asc, startTime: :asc)
+    tomorrow = today + 1
+    where(date: today, startTime: (now..)).or(where(date: (tomorrow..)))
+                                          .order(date: :asc, startTime: :asc)
   end
 
   def self.past
     now = naive_now
     today = now.to_date
-    where(date: today, endTime: ..now).or(where(date: ..(today - 1)))
-                                      .order(date: :desc, startTime: :desc)
+    yesterday = today - 1
+    where(date: today, endTime: (..now)).or(where(date: (..yesterday)))
+                                        .order(date: :desc, startTime: :desc)
   end
 
   def self.from_code(code)
