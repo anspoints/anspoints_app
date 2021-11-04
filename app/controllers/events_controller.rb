@@ -17,14 +17,19 @@ class EventsController < ApplicationController
     now = Time.now.in_time_zone('Central Time (US & Canada)').change(offset: 0)
     today = now.to_date
     # now.. means in the range [now, infinity). You can interpret it as now-or-after (while ..now is before-to-now)
-    @events = Event.where(date: today..)
-                   .and(Event.where(startTime: ..now).or(Event.where(startTime: nil)))
-                   .and(Event.where(endTime: now..).or(Event.where(endTime: nil)))
-                   .select(columns)
-                   .order(date: :asc, startTime: :asc)
-    @past_events = Event.where(date: ..(today - 1)).or(Event.where(endTime: ..now))
-                        .select(columns)
-                        .order(date: :desc, startTime: :desc)
+    all_events = Event.all.select(columns).order(date: :desc, startTime: :desc)
+    @ongoing_events = all_events.where(date: today, startTime: [nil, ..now], endTime: [nil, now..])
+    @upcoming_events = all_events.where(date: today, startTime: now..).or(all_events.where(date: (today + 1)..))
+                                 .reorder(date: :asc, startTime: :asc)
+    @past_events = all_events.where(date: today, endTime: ..now).or(all_events.where(date: ..(today - 1)))
+    # @events = Event.where(date: today..)
+    #                .and(Event.where(startTime: ..now).or(Event.where(startTime: nil)))
+    #                .and(Event.where(endTime: now..).or(Event.where(endTime: nil)))
+    #                .select(columns)
+    #                .order(date: :asc, startTime: :asc)
+    # @past_events = Event.where(date: ..(today - 1)).or(Event.where(date: today).and(Event.where(endTime: ..now)))
+    #                     .select(columns)
+    #                     .order(date: :desc, startTime: :desc)
   end
 
   def raw_qr

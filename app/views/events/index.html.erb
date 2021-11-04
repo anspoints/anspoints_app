@@ -1,43 +1,42 @@
 <div class="modal fade" id="eventCodeModal" tabindex="-1" role="dialog" aria-labelledby="eventCodeLabel" aria-hidden="true">
-    <%= render 'layouts/event_code_modal' %>
+    <%= render partial: 'event_code_modal' %>
 </div>
 
 
 <div class="events-container container">
 
     <div class="d-flex flex-row justify-content-between event-divider">
-        <div class="p-2" style="padding-left: 0 !important">Upcoming Events</div>
-        <div class="p-2"><span class="badge badge-secondary" style="background-color: #474B4F"><%= @events.length || 0 %></span></div>
+        <div class="p-2" style="padding-left: 0 !important">Ongoing Events</div>
+        <div class="p-2"><span class="badge badge-secondary" style="background-color: #474B4F"><%= @ongoing_events.length || 0 %></span></div>
     </div>
     <hr/>
 
     <div class="d-flex flex-row">
-    <% if @events.length == 0 %>
+    <% if @ongoing_events.length == 0 %>
+        <span class="text-muted small">No Ongoing Events</span>
+    <% end %>
+    </div>
+
+    <% @ongoing_events.each do |e| %>
+    <%= render partial: 'event_card', locals: {event: e, joinable: true} %>
+    <% end %>
+
+    <br/>
+
+    <div class="d-flex flex-row justify-content-between event-divider">
+        <div class="p-2" style="padding-left: 0 !important">Upcoming Events</div>
+        <div class="p-2"><span class="badge badge-secondary" style="background-color: #474B4F"><%= @upcoming_events.length || 0 %></span></div>
+    </div>
+    <hr/>
+
+    <div class="d-flex flex-row">
+    <% if @upcoming_events.length == 0 %>
         <span class="text-muted small">No Upcoming Events</span>
     <% end %>
     </div>
 
-    <% @events.each do |e| %>
-    <div class="card event-card">
-        <div class="card-body">
-            <h5 class="card-title"><strong><%= e.name %></strong></h5>
-            <span><%= e.date.to_formatted_s(:long) || 'No Day Set' %></span>
-            <% unless e.startTime.blank? %>
-                <span class="card-subtitle mb-2 text-muted event-date"><%= e.startTime.strftime("%I:%M %p")  %></span>
-                <% unless e.endTime.blank? %>
-                    <span> - </span>
-                <% end %>
-            <% end %>
-            <% unless e.endTime.blank? %>
-                <span class="card-subtitle mb-2 text-muted event-date"><%= e.endTime.strftime("%I:%M %p") %></span>
-            <% end %>
-            <br/>
-            <p><%= e.description || '' %></p>
-            <span class="badge bg-secondary">EventType</span>
-            <%= link_to "Join", "#", class: "btn btn-primary",
-                        :data => { :event_id => e.id, :event_name => e.name, :bs_toggle => "modal", :bs_target => "#eventCodeModal"} %>
-        </div>
-    </div>
+    <% @upcoming_events.each do |e| %>
+    <%= render partial: 'event_card', locals: {event: e, joinable: false} %>
     <% end %>
 
     <br/>
@@ -55,23 +54,6 @@
     </div>
 
     <% @past_events.each do |e| %>
-    <div class="card event-card">
-        <div class="card-body">
-            <h5 class="card-title"><strong><%= e.name %></strong></h5>
-            <span><%= e.date.to_formatted_s(:long) || 'No Day Set' %></span>
-            <% unless e.startTime.blank? %>
-                <span class="card-subtitle mb-2 text-muted event-date"><%= e.startTime.strftime("%I:%M %p") %></span>
-                <% unless e.endTime.blank? %>
-                    <span> - </span>
-                <% end %>
-            <% end %>
-            <% unless e.endTime.blank? %>
-                <span class="card-subtitle mb-2 text-muted event-date"><%= e.endTime.strftime("%I:%M %p") %></span>
-            <% end %>
-            <br/>
-            <p><%= e.description || '' %></p>
-            <span class="badge bg-secondary">EventType</span>
-        </div>
-    </div>
+    <%= render partial: 'event_card', locals: {event: e, joinable: false} %>
     <% end %>
 </div>
