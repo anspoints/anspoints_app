@@ -13,7 +13,7 @@
     <% end %>
     <br/>
     <p><%= event.description || '' %></p>
-    <span class="badge bg-secondary">EventType</span>
+    <span class="badge bg-secondary" style="background-color: <%= event.event_types.color %> !important"><%= event.event_types.name %></span>
     <% if joinable %>
       <%= link_to "Join", "#", class: "btn btn-primary", data: { bs_toggle: "modal", bs_target: "#eventCodeModal" } %>
     <% end %>

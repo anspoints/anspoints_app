@@ -39,6 +39,7 @@ class Event < ApplicationRecord
     # (now..) means in the range [now, infinity). You can interpret it as now-or-after (while (..now) is before-to-now)
     where(date: today, startTime: [nil, (..now)], endTime: [nil, (now..)])
       .order(date: :desc, startTime: :desc)
+      .joins(:event_types)
   end
 
   def self.upcoming
@@ -47,6 +48,7 @@ class Event < ApplicationRecord
     tomorrow = today + 1
     where(date: today, startTime: (now..)).or(where(date: (tomorrow..)))
                                           .order(date: :asc, startTime: :asc)
+                                          .joins(:event_types)
   end
 
   def self.past
@@ -55,6 +57,7 @@ class Event < ApplicationRecord
     yesterday = today - 1
     where(date: today, endTime: (..now)).or(where(date: (..yesterday)))
                                         .order(date: :desc, startTime: :desc)
+                                        .joins(:event_types)
   end
 
   def self.from_code(code)
