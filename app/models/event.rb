@@ -16,7 +16,7 @@ class Event < ApplicationRecord
   validates :eventCode, presence: true
   validates :endTime, date: { after: :startTime, allow_blank: true }
 
-  has_many :events_users, class_name: "EventsUsers", inverse_of: :event, dependent: :destroy
+  has_many :events_users, class_name: 'EventsUsers', inverse_of: :event, dependent: :destroy
   has_many :users, through: :events_users, inverse_of: :events
 
   attribute :eventCode, :string, default: -> { generate_code }
