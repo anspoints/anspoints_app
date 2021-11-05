@@ -11,6 +11,7 @@ class EventsUsers < ApplicationRecord
   belongs_to :user, inverse_of: :events_users
 
   def name
+    # Expected by RailsAdmin for its views
     "#{user.name} @ #{event.name}"
   end
 
