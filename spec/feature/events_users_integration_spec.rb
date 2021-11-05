@@ -4,6 +4,18 @@
 require 'rails_helper'
 
 RSpec.describe 'Checking In', type: :feature do
+  # add event type
+  o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
+  tag_name = (0...10).map { o[rand(o.length)] }.join
+  tag_color = '#AFE1AF'
+  before(:all) do
+    visit '/admin/event_types/new'
+    fill_in 'event_types[name]', with: tag_name
+    fill_in 'event_types[pointValue]', with: 4
+    fill_in 'event_types[color]', with: tag_color
+    click_on 'Save'
+  end
+
   scenario 'can join using event code' do
     date_str = Event.naive_now.to_date.to_formatted_s(:long)
     visit '/admin/event/new'
@@ -12,6 +24,7 @@ RSpec.describe 'Checking In', type: :feature do
     fill_in 'Description', with: 'testDescription'
     fill_in 'event[date]', with: date_str
     fill_in 'event[eventCode]', with: 'codey'
+    select tag_name, from: 'event[event_types_id]'
     click_on 'Save'
     visit events_path
     expect(page).to have_content('Ongoing Events')
@@ -35,6 +48,7 @@ RSpec.describe 'Checking In', type: :feature do
     fill_in 'Description', with: 'testDescription'
     fill_in 'event[date]', with: date_str
     fill_in 'event[eventCode]', with: 'codey'
+    select tag_name, from: 'event[event_types_id]'
     click_on 'Save'
     visit qr_event_path(Event.from_code('codey'))
     expect(page).to have_css('.iframe-within-card')
