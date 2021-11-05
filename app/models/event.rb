@@ -90,4 +90,41 @@ class Event < ApplicationRecord
     code = length.times.map { valid_characters.sample }.join until code && !Event.exists?(eventCode: code)
     code
   end
+
+  def attendance
+    users.size
+  end
+
+  rails_admin do
+    configure :startTime do
+      label 'Start time'
+    end
+
+    configure :endTime do
+      label 'End time'
+    end
+
+    configure :eventCode do
+      label 'Event code'
+    end
+
+    configure :events_users do
+      label 'Check-ins'
+      hide
+    end
+
+    configure :users do
+      label 'Attendees'
+    end
+
+    configure :attendance do
+      formatted_value { bindings[:object].attendance }
+      read_only true
+      help ''
+    end
+
+    list do
+      fields :id, :name, :eventCode, :date, :startTime, :attendance
+    end
+  end
 end

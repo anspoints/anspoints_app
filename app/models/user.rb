@@ -34,4 +34,33 @@ class User < ApplicationRecord
     # Expected by RailsAdmin for its views
     "#{first_name} #{last_name}"
   end
+
+  def count_attended
+    events.size
+  end
+
+  rails_admin do
+    configure :isAdmin do
+      label 'Admin'
+    end
+
+    configure :events_users do
+      label 'Check-ins'
+      hide
+    end
+
+    configure :events do
+      label 'Attended'
+    end
+
+    configure :count_attended do
+      formatted_value { bindings[:object].count_attended }
+      read_only true
+      help ''
+    end
+
+    list do
+      fields :id, :email, :first_name, :last_name, :count_attended
+    end
+  end
 end
