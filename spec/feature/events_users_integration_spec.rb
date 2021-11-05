@@ -8,7 +8,7 @@ RSpec.describe 'Checking In', type: :feature do
     date_str = Event.naive_now.to_date.to_formatted_s(:long)
     visit '/admin/event/new'
     fill_in 'Name', with: 'Greg'
-    fill_in 'Eventcode', with: 'abc'
+    fill_in 'Event code', with: 'abc'
     fill_in 'Description', with: 'testDescription'
     fill_in 'event[date]', with: date_str
     fill_in 'event[eventCode]', with: 'codey'
@@ -31,7 +31,7 @@ RSpec.describe 'Checking In', type: :feature do
     date_str = Event.naive_now.to_date.to_formatted_s(:long)
     visit '/admin/event/new'
     fill_in 'Name', with: 'Greg'
-    fill_in 'Eventcode', with: 'abc'
+    fill_in 'Event code', with: 'abc'
     fill_in 'Description', with: 'testDescription'
     fill_in 'event[date]', with: date_str
     fill_in 'event[eventCode]', with: 'codey'

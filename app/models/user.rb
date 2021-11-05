@@ -12,7 +12,14 @@ class User < ApplicationRecord
   validates :isAdmin, inclusion: { in: [true, false] }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
+  has_many :events_users, class_name: 'EventsUsers', inverse_of: :user, dependent: :destroy
+  has_many :events, through: :events_users, inverse_of: :users
+
   devise :omniauthable, omniauth_providers: [:google_oauth2]
+
+  # def total_points
+  #   events.sum { |e| e.point_value }
+  # end
 
   def self.from_google(options)
     # return nil unless options[:email] =~ /@tamu.edu\z/
@@ -26,5 +33,34 @@ class User < ApplicationRecord
   def name
     # Expected by RailsAdmin for its views
     "#{first_name} #{last_name}"
+  end
+
+  def count_attended
+    events.size
+  end
+
+  rails_admin do
+    configure :isAdmin do
+      label 'Admin'
+    end
+
+    configure :events_users do
+      label 'Check-ins'
+      hide
+    end
+
+    configure :events do
+      label 'Attended'
+    end
+
+    configure :count_attended do
+      formatted_value { bindings[:object].count_attended }
+      read_only true
+      help ''
+    end
+
+    list do
+      fields :id, :email, :first_name, :last_name, :count_attended
+    end
   end
 end
