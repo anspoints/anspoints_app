@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_04_162538) do
+ActiveRecord::Schema.define(version: 2021_11_04_192708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 2021_11_04_162538) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "event_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.integer "pointValue", default: 1
+    t.string "color", default: "#AFE1AF"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "eventCode"
@@ -36,6 +44,8 @@ ActiveRecord::Schema.define(version: 2021_11_04_162538) do
     t.time "endTime"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "event_types_id"
+    t.index ["event_types_id"], name: "index_events_on_event_types_id"
   end
 
   create_table "events_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -47,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_162538) do
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "uid"
     t.string "email"
     t.boolean "isAdmin"
     t.datetime "created_at", precision: 6, null: false
@@ -55,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_162538) do
     t.string "last_name"
   end
 
+  add_foreign_key "events", "event_types", column: "event_types_id"
   add_foreign_key "events_users", "events", on_delete: :cascade
   add_foreign_key "events_users", "users", on_delete: :cascade
 end

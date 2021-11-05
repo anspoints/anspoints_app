@@ -18,6 +18,8 @@ class Event < ApplicationRecord
 
   has_many :events_users, class_name: "EventsUsers", inverse_of: :event, dependent: :destroy
   has_many :users, through: :events_users, inverse_of: :events
+  
+  belongs_to :event_types, class_name: "EventTypes"
 
   attribute :eventCode, :string, default: -> { generate_code }
 
