@@ -31,7 +31,7 @@ RSpec.describe 'Editing Events', type: :feature do
     click_on 'Save'
     visit '/admin/event'
     expect(page).to have_content('Greg')
-    expect(page).to have_content('testDescription')
+    # expect(page).to have_content('testDescription')
     expect(page).to have_content(date_str)
     expect(page).to have_content('codey')
     # expect(page).to have_content(trimmed_time_str)
@@ -64,7 +64,7 @@ RSpec.describe 'Editing Events', type: :feature do
     visit '/admin/event'
     expect(page).to have_content('Danny')
     expect(page).to have_content('cba_code')
-    expect(page).to have_content('descriptionTest')
+    # expect(page).to have_content('descriptionTest')
     expect(page).to have_content(new_date_str)
     # expect(page).to have_content(trimmed_new_time_str)
     # expect(page).to have_content(trimmed_new_advanced_time_str)
@@ -87,7 +87,7 @@ RSpec.describe 'Editing Events', type: :feature do
     visit '/admin/event'
     expect(page).to have_content('Buddy')
     expect(page).to have_content('codey')
-    expect(page).to have_content('testDescription')
+    # expect(page).to have_content('testDescription')
     expect(page).to have_content(date_str)
     # test the edit page
     tr = page.find('tr', text: 'Buddy')
@@ -104,7 +104,7 @@ RSpec.describe 'Editing Events', type: :feature do
     visit '/admin/event'
     expect(page).to have_content('Buddy')
     expect(page).to have_content('cbad___')
-    expect(page).to have_content('testDescription')
+    # expect(page).to have_content('testDescription')
     expect(page).to have_content(date_str)
   end
 end
@@ -140,7 +140,7 @@ RSpec.describe 'Adding Events', type: :feature do
     visit '/admin/event'
     expect(page).to have_content('Greg')
     expect(page).to have_content('codey')
-    expect(page).to have_content('testDescription')
+    # expect(page).to have_content('testDescription')
     expect(page).to have_content(date_str)
     # expect(page).to have_content(trimmed_time_str)
     # expect(page).to have_content(trimmed_advanced_time_str)
@@ -210,7 +210,7 @@ RSpec.describe 'Reviewing Events', type: :feature do
     click_on 'Save'
     visit '/admin/event'
     expect(page).to have_content('Derek')
-    expect(page).to have_content('testDescription')
+    # expect(page).to have_content('testDescription')
     expect(page).to have_content(date_str)
     expect(page).to have_content('codey')
     visit '/'
@@ -248,7 +248,7 @@ RSpec.describe 'Deleting Events', type: :feature do
     click_on 'Save'
     visit '/admin/event'
     expect(page).to have_content('Betty')
-    expect(page).to have_content('bettyDescription')
+    # expect(page).to have_content('bettyDescription')
     expect(page).to have_content(date_str)
     expect(page).to have_content('codey')
     tr = page.find('tr', text: 'Betty')
@@ -257,7 +257,7 @@ RSpec.describe 'Deleting Events', type: :feature do
     click_on "Yes, I'm sure"
     visit '/admin/event'
     expect(page).not_to have_content('Betty')
-    expect(page).not_to have_content('bettyDescription')
+    # expect(page).not_to have_content('bettyDescription')
     expect(page).not_to have_content('codey')
   end
 
@@ -276,7 +276,7 @@ RSpec.describe 'Deleting Events', type: :feature do
     click_on 'Save'
     visit '/admin/event'
     expect(page).to have_content('Bobby')
-    expect(page).to have_content('bobbyDescription')
+    # expect(page).to have_content('bobbyDescription')
     expect(page).to have_content(date_str)
     expect(page).to have_content('codey')
     tr = page.find('tr', text: 'Bobby')
@@ -285,7 +285,7 @@ RSpec.describe 'Deleting Events', type: :feature do
     click_on 'Cancel'
     visit '/admin/event'
     expect(page).to have_content('Bobby')
-    expect(page).to have_content('bobbyDescription')
+    # expect(page).to have_content('bobbyDescription')
     expect(page).to have_content(date_str)
     expect(page).to have_content('codey')
   end
