@@ -1,0 +1,21 @@
+<div class="card event-card">
+  <div class="card-body">
+    <h5 class="card-title"><strong><%= event.name %></strong></h5>
+    <span><%= event.date.to_formatted_s(:long) || 'No Day Set' %></span>
+    <% unless event.startTime.blank? %>
+      <span class="card-subtitle mb-2 text-muted event-date"><%= event.startTime.strftime("%I:%M %p") %></span>
+      <% unless event.endTime.blank? %>
+        <span> - </span>
+      <% end %>
+    <% end %>
+    <% unless event.endTime.blank? %>
+      <span class="card-subtitle mb-2 text-muted event-date"><%= event.endTime.strftime("%I:%M %p") %></span>
+    <% end %>
+    <br/>
+    <p><%= event.description || '' %></p>
+    <span class="badge bg-secondary" style="background-color: <%= event.event_types.color %> !important"><%= event.event_types.name %></span>
+    <% if joinable %>
+      <%= link_to "Join", "#", class: "btn btn-primary", data: { bs_toggle: "modal", bs_target: "#eventCodeModal" } %>
+    <% end %>
+  </div>
+</div>

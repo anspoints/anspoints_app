@@ -36,6 +36,7 @@ gem 'rexml'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry'
   gem 'rspec-rails'
 end
 
@@ -75,5 +76,11 @@ gem 'date_validator'
 gem 'rails_admin'
 
 gem 'devise'
+
+gem 'omniauth'
+
+gem 'omniauth-google-oauth2'
+
+gem 'omniauth-rails_csrf_protection'
 
 gem 'rqrcode'

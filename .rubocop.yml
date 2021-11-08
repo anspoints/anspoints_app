@@ -19,6 +19,12 @@ Metrics/BlockLength:
   # Required for Rails config
   Enabled: false
 
+Layout/LineLength:
+  # Should not be checked for high entropy strings (they aren't supposed to be readable anyway)
+  # Devise requires a few of those
+  Exclude:
+    - 'config/initializers/devise.rb'
+
 # Differences due to development on Mac/Windows
 Layout/EndOfLine:
   Enabled: False
@@ -30,6 +36,11 @@ Metrics/AbcSize:
 # Delivers false positives - unresolved issue on GitHub
 Lint/UselessAssignment:
   Enabled: False
+
+Lint/ShadowingOuterLocalVariable:
+  # Necessary in this gem-specific file because other constructs didn't work
+  Exclude:
+    - 'config/initializers/rails_admin.rb'
 
 # Not something potentially dangerous and all the lines are only business logic
 Metrics/MethodLength:
@@ -50,3 +61,8 @@ Style/Documentation:
     - 'app/controllers/**/*'
     - 'app/helpers/**/*'
     - 'config/application.rb'
+
+Style/ClassAndModuleChildren:
+  # This is only used for very specific omniauth constructs
+  Exclude:
+    - 'app/controllers/users/**/*'

@@ -9,6 +9,27 @@ RailsAdmin.config do |config|
   # end
   # config.current_user_method(&:current_user)
 
+  if Rails.env.production?
+    config.authenticate_with do
+      warden.authenticate! scope: :user
+    end
+    config.current_user_method(&:current_user)
+
+    RailsAdmin.config do |config|
+      config.authorize_with do
+        redirect_to '/users/sign_out' unless current_user.isAdmin
+      end
+    end
+  end
+
+  config.model EventTypes do
+    list do
+      field :name do
+        queryable true
+      end
+    end
+  end
+
   ## == CancanCan ==
   # config.authorize_with :cancancan
 

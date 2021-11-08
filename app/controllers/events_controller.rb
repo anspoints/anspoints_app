@@ -10,20 +10,16 @@ class EventsController < ApplicationController
 
   # view all events
   def index
-    # do not return the eventCode mainly
-    @past_events = Event.select(:id, :name, :date, :startTime, :endTime, :description)
-                        .where('"events"."date" < ? and ("events"."endTime" is null or "events"."endTime" < ?)',
-                               Date.today, Time.current)
-                        .order(date: :asc, startTime: :asc)
-    @events = Event.select(:id, :name, :date, :startTime, :endTime, :description)
-                   .where('"events"."date" >= ? and ("events"."endTime" is null or "events"."endTime" <= ?)',
-                          Date.today, Time.current)
-                   .order(date: :asc, startTime: :asc)
+    # do not return the eventCode or ID because putting those into the view would bypass their intended exclusivity
+    columns = Event.attribute_names - %w[eventCode id]
+    @ongoing_events = Event.ongoing.select(columns)
+    @upcoming_events = Event.upcoming.select(columns)
+    @past_events = Event.past.select(columns)
   end
 
   def raw_qr
     # /qr/:code; bare-bones xhtml
-    render inline: helpers.make_form(params[:code])
+    render inline: helpers.make_form(params[:code], request.host)
   end
 
   def qr
@@ -31,12 +27,13 @@ class EventsController < ApplicationController
   end
 
   def join_by_code
-    event = Event.find_by(eventCode: params[:event][:eventCode])
+    code = params[:event][:eventCode]
+    event = Event.from_code(code)
     if event.nil?
-      # TODO: render this as a popup on the page
       # it would be cleaner to make the join method try to find the event
       # through several methods and allow it to end up nil
-      redirect_to action: 'index', eventNotFound: true
+      flash[:error] = "No event was found with the event code #{code}."
+      redirect_to action: 'index'
     else
       redirect_to action: 'join', id: event.id
     end
