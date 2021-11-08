@@ -9,7 +9,7 @@
             <span class="text-muted small">No Contacts</span>
         <% else %>
             <div class="input-group mx-auto justify-content-center" style="width: 50%">
-                <%= form_tag('/contact/index', :method => "get", id: "search-form", class: "d-flex w-100") do %>
+                <%= form_tag('/contact/index', :method => "get", class: "d-flex w-100") do %>
                 <%= text_field_tag :search, params[:search], placeholder: "Search for a contact", class: "form-control text-center", style: "text-align: left !important" %>
                 <%= submit_tag "Search", class: "btn btn-primary", style: "margin-left: 4px" %>
                 <% end %>

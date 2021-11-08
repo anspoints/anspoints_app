@@ -11,6 +11,7 @@ class ContactsController < ApplicationController
   # view all events
   def index
     @contacts = Contact.all
+    // @contacts=Contact.search(params[:search])
   end
 
   ###########################
