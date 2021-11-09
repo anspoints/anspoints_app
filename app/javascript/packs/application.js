@@ -26,12 +26,24 @@ function requestEventPassword(eventId, eventName) {
     console.log(eventName);
 }
 
-function handleNavClick(event) {
-    console.log(this);
-    console.log(this.style.color);
-    console.log(this.style.background);
-    this.style.color = this.style.color === themeDarkGrey ? whiteColor : themeDarkGrey;
-    this.style.backgroundColor = this.style.backgroundColor === themeBackgroundColor ? themeDarkBlue : themeBackgroundColor;
+function addShortcutKeys() {
+    const links = document.querySelectorAll(
+        "a[data-event-id]"
+    );
+    $(document).on("keyup", function (e) {
+        if(e.ctrlKey && e.key == 'z')
+            console.log('click on events');
+            // links[0].click();
+        else if(e.ctrlKey && e.key == 'x')
+            console.log('click on points');
+            // links[1].click();
+        else if(e.ctrlKey && e.key == 'c')
+            console.log('click on contacts');
+            // links[2].click();
+        else if(e.ctrlKey && e.key == 'v')
+            console.log('click on admin');
+            // links[3].click();
+    })
 }
   
 window.addEventListener("load", () => {
@@ -48,20 +60,6 @@ window.addEventListener("load", () => {
             requestEventPassword(eventId, eventName);
         });
     });
-    /*
-    const navLinks = document.querySelectorAll(
-        "a.nav-link"
-    );
-    navLinks.forEach((element) => {
-        element.addEventListener("click", (event) => {
-            console.log(element.style.color)
-            console.log(element.style.backgroundColor);
-            navLinks.forEach(ele => {
-                ele.style.color = whiteColor;
-                ele.style.backgroundColor = themeBackgroundColor;
-            });
-            element.style.color = themeDarkGrey;
-            element.style.backgroundColor = themeBackgroundColor;
-        });
-    }); */
+    
+    addShortcutKeys();
 });
