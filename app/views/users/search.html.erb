@@ -8,12 +8,20 @@
     <% end %>
     </div>
 </div>
-<div id="user-search-results" class="results-container container text-center">
+<div id="user-search-results" class="results-container container">
     <% if @searched_user != nil %>
     <div class="card">
         <div class="card-body">
-            <span><%= @searched_user.email || 'no email' %></span>
-            <span>Points <%= @points_count || 0 %></span>
+            <div class="row">
+                <div class="col-9 text-left my-auto">
+                    <h5 class="card-title"><%= @searched_user.email || 'no email' %></h5>
+                </div>
+                <div class="col-3">
+                    <span class="badge bg-secondary w-100" style="height: 5rem">Points<br></br>
+                        <span style="font-size: 2rem"><%= @points_count || 0 %></span>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
     <% else %>
