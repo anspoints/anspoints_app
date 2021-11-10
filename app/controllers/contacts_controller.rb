@@ -2,7 +2,7 @@
 
 class ContactsController < ApplicationController
   # fetch the event immediately on these actions
- before_action :set_contact, only: %i[show edit delete]
+  before_action :set_contact, only: %i[show edit delete]
 
   ###########################
   ###### user endpoints #####
@@ -17,7 +17,7 @@ class ContactsController < ApplicationController
     input = params[:input]
     return @contacts = Contact.all if input.nil?
 
-    return @contacts = Contact.all if input == ""
+    return @contacts = Contact.all if input == ''
 
     logger.info(input)
     @contacts = Contact.all.where('"contacts"."lastname" = ?', input)
@@ -59,5 +59,4 @@ class ContactsController < ApplicationController
   def contact_params
     params.require(:contact).permit(:firstname, :lastname, :title, :bio, :affiliation, :email)
   end
-
 end

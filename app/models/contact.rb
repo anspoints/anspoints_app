@@ -6,7 +6,6 @@ class Contact < ApplicationRecord
   validates :lastname, presence: true
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
-
   def name
     "#{firstname} #{lastname}"
   end
@@ -29,5 +28,4 @@ class Contact < ApplicationRecord
       fields :id, :email, :name, :affiliation, :title
     end
   end
-
 end
