@@ -28,4 +28,5 @@ class Contact < ApplicationRecord
       fields :id, :email, :name, :affiliation, :title
     end
   end
+  
 end
