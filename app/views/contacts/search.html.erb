@@ -13,7 +13,7 @@
     <div style="margin-top: 2%">
         <% if @contacts != nil %>
             <% @contacts.each do |e| %>
-                <div class="card event-card">
+                <div class="card event-card" style="margin-bottom: 1%">
                     <div class="card-body">
                         <h5 class="card-title"><strong><%=e.firstname%> <%=e.lastname%></strong></h5>
                         <% unless e.title.blank? %>
