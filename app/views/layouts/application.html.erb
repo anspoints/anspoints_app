@@ -6,7 +6,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% if cookies[:moon] == 'true' %>
+      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% else %>
+      <%= stylesheet_link_tag 'application_dark', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% end %>
+
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <style>
         .flash__alert   { color: black; }

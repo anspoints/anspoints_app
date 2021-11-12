@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       get :join
     end
   end
+  get '/moon', to: 'application#moon', as: 'moon' # dark mode
+  get '/sun', to: 'application#sun', as: 'sun' # light mode
   get '/events/join', to: 'events#join_by_code'
   post '/events/join', to: 'events#join_by_code'
   post '/checkin', to: 'events_users#create'
@@ -22,6 +24,7 @@ Rails.application.routes.draw do
   get '/users/search'
   get '/users/show'
   get '/contacts/search'
+  get '/contacts', to: 'contacts#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'events#index'
 end

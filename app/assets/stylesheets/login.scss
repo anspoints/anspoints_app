@@ -1,7 +1,7 @@
-@import "home";
+@import 'home';
 
 .title{
-    color: #3A546C !important;
+    color: $theme-dark-blue;
     margin-top: 2rem;
     margin-bottom: 2rem;
     text-align: center;

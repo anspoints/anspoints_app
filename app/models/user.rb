@@ -39,6 +39,21 @@ class User < ApplicationRecord
     events.size
   end
 
+  def self.count_points(user_id)
+    current_event_types = EventTypes.all
+    point_hash = {}
+    current_event_types.each do |event_type|
+      point_hash[event_type.id] = event_type.pointValue
+    end
+    this_users_events = Event.joins(:events_users)
+                             .where('"events_users"."user_id" = ?', user_id)
+    this_users_points = 0
+    this_users_events.each do |event|
+      this_users_points += point_hash[event.event_types_id]
+    end
+    this_users_points
+  end
+
   rails_admin do
     configure :isAdmin do
       label 'Admin'

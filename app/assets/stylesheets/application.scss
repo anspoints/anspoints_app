@@ -13,4 +13,17 @@
  *= require_tree .
  *= require_self
  */
-/*@import "bootstrap/scss/bootstrap";*/
+:root {
+    --background-color: white;
+    --text-color: black;
+    --theme-background-color: #F0F0F0;
+    --theme-splash-font-color: #3A546C;
+    --theme-dark-blue: #3A546C;
+    --theme-dark-grey: #474B4F;
+    --theme-light-grey: #cccccc;
+    --theme-lighter-grey: #f7f7f7;
+}
+body {
+    color: var(--text-color) !important;
+    background-color: var(--theme-background-color);
+}

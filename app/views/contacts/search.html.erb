@@ -1,6 +1,6 @@
 <div class="contacts-container container">
 
-    <div class="p-2" style="background-color: #F0F0F0 !important; color: #3A546C; text-align: center">
+    <div class="p-2" class="page-title">
         <h2>Contacts</h2>
     </div>
 
@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><strong><%=e.firstname%> <%=e.lastname%></strong></h5>
                         <% unless e.title.blank? %>
-                            <span class="card-subtitle mb-2"><%= e.title %></span>
+                            <h6 class="card-subtitle mb-2 text-muted"><%= e.title %></h6>
                         <% end %>
                         <br/>
                         <% unless e.affiliation.blank? %>

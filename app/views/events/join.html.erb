@@ -1,5 +1,6 @@
 <div class="event-name">
-  <h2>Checking in for <strong><%= @event.name %></strong></h2>
+  <h2>Checking in for <strong><%= @event.name %></strong></h2></br>
+  <span>Worth <string><%= @event.event_types.pointValue %></strong> points</span>
 </div>
 <div class="checkin-form">
   <form action="/checkin" method="post" accept-charset="UTF-8">
