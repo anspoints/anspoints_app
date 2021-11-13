@@ -13,6 +13,17 @@ class ContactsController < ApplicationController
     @contacts = Contact.all
   end
 
+  def search
+    input = params[:input]
+    return @contacts = Contact.all if input.nil?
+
+    return @contacts = Contact.all if input == ''
+
+    logger.info(input)
+    @contacts = Contact.all.where('"contacts"."lastname" = ?', input)
+    return if @contacts.nil?
+  end
+
   ###########################
   ##### admin endpoints #####
   ###########################
