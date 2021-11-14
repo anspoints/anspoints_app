@@ -31,24 +31,43 @@
       </div>
     </div>
 
+    <% types_count = @event_types_array.length %>
     <div class="table-container">
       <table id="pointsTable" class="table table-responsive table-bordered table-hover table-striped table-md" data-toggle="table">
         <thead class="table-head">
           <tr>
+            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="right"></th>
+            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="right"></th>
+            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="right"></th>
+            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="right"></th>
+            <th colspan='<%= types_count + 1%>' scope="col" id="empty-header" class="table-header" data-field="points" data-align="right">Points</th>
+          </tr>
+          <tr>
             <th scope="col" id="table-header" class="table-header" data-field="index" data-align="right" data-sortable="true">#</th>
+            <th scope="col" id="table-header" class="table-header" data-field="first_name" data-align="right" data-sortable="true">First Name</th>
+            <th scope="col" id="table-header" class="table-header" data-field="last_name" data-align="right" data-sortable="true">Last Name</th>
             <th scope="col" id="table-header" class="table-header" data-field="email" data-align="right" data-sortable="true"><%= link_to "Email", :sort => "count"%></th>
-            <th scope="col" id="table-header" class="table-header" data-field="points" data-align="right" data-sortable="true"><%= link_to "Points", :sort => "count"%></th>
+            <% @event_types_array.each do |type| %>
+              <th scope="col" id="table-header" class="table-header" data-field="event_category"><%= type %></th>
+            <% end %>
+            <th scope="col" id="table-header" class="table-header" data-field="empty" data-align="right" data-sortable="true"><%= link_to "Total", :sort => "count"%></th>
+
           </tr>
         </thead>
         <tbody>
-          <% i = 1 %>
+          <% total = 1 %>
           <% @user_points_counts.each do |data| %>
           <tr>
-            <td><%= i %></td>
+            <td><%= total %></td>
+            <td><%= data.first_name %></td>
+            <td><%= data.last_name %></td>
             <td><%= data.email %></td>
+            <% @event_types_array.each do |type| %>
+              <td><%= type %></td>
+            <% end %>
             <td><%= data.count %></td>
           </tr>
-          <% i = i + 1 %> 
+          <% total = total + 1 %> 
           <% end %>
         </tbody>
       </table>

@@ -16,6 +16,18 @@
     }
 }
 
+#empty-header{
+    z-index: 100;
+    text-align: center;
+    font-family: var(--bs-body-font-family);
+    font-weight: inherit;
+    font-size: medium;
+    border-width: medium !important;
+    border-color: #3A546C;
+    background-color: #3A546C !important;
+    color: white !important;
+}
+
 #table-header a:link, 
 #table-header a:visited, 
 #table-header a:active{
