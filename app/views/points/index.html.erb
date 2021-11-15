@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <% types_count = @event_types_array.length %>
+    <% types_count = @type_points_dict.keys.length %>
     <div class="table-container">
       <table id="pointsTable" class="table table-responsive table-bordered table-hover table-striped table-md" data-toggle="table">
         <thead class="table-head">
@@ -47,7 +47,7 @@
             <th scope="col" id="table-header" class="table-header" data-field="first_name" data-align="right" data-sortable="true">First Name</th>
             <th scope="col" id="table-header" class="table-header" data-field="last_name" data-align="right" data-sortable="true">Last Name</th>
             <th scope="col" id="table-header" class="table-header" data-field="email" data-align="right" data-sortable="true"><%= link_to "Email", :sort => "count"%></th>
-            <% @event_types_array.each do |type| %>
+            <% @type_points_dict.keys.each do |type| %>
               <th scope="col" id="table-header" class="table-header" data-field="event_category"><%= type %></th>
             <% end %>
             <th scope="col" id="table-header" class="table-header" data-field="empty" data-align="right" data-sortable="true"><%= link_to "Total", :sort => "count"%></th>
@@ -55,19 +55,19 @@
           </tr>
         </thead>
         <tbody>
-          <% total = 1 %>
-          <% @user_points_counts.each do |data| %>
+          <% index = 1 %>
+          <% @user_points_dict.each do |userid, point_counts| %>
           <tr>
-            <td><%= total %></td>
-            <td><%= data.first_name %></td>
-            <td><%= data.last_name %></td>
-            <td><%= data.email %></td>
-            <% @event_types_array.each do |type| %>
-              <td><%= type %></td>
+            <td><%= index %></td>
+            <% @user_details_dict[userid].each do |info| %>
+            <td><%= info %></td>
             <% end %>
-            <td><%= data.count %></td>
+            <% @type_points_dict.keys.each do |type| %>
+            <td><%= point_counts[type] %></td>
+            <% end %>
+            <td><%= point_counts["Total"] %></td>
           </tr>
-          <% total = total + 1 %> 
+          <% index = index + 1 %> 
           <% end %>
         </tbody>
       </table>
@@ -84,7 +84,7 @@
 
       // Loop through all table rows, and hide those who don't match the search query
       for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1];
+        td = tr[i].getElementsByTagName("td")[3];
         if (td) {
           txtValue = td.textContent || td.innerText;
           if (txtValue.toUpperCase().indexOf(filter) > -1) {
