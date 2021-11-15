@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     # get 'users/sign_out', to: 'users/sessions#destroy', as: :exit_user_session
   end
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  resources :contacts, :points
+  resources :points
   resources :events do
     member do
       get :qr
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/qr/:code', to: 'events#raw_qr'
   get '/users/search'
   get '/users/show'
+  get '/contacts/search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'events#index'
 end

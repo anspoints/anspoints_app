@@ -1,0 +1,43 @@
+<div class="contacts-container container">
+
+    <div class="p-2" style="background-color: #F0F0F0 !important; color: #3A546C; text-align: center">
+        <h2>Contacts</h2>
+    </div>
+
+    <%= form_tag('/contacts/search', :method => "get", id: "search-form", class: "d-flex w-100") do %>
+        <%= text_field_tag :input, params[:input], placeholder: "Search by Last Name", class: "form-control text-center", style: "text-align: left !important" %>
+        <%= submit_tag "Search", class: "btn btn-primary", style: "margin-left: 4px" %>
+    <% end %>
+   
+
+    <div style="margin-top: 2%">
+        <% if @contacts != nil %>
+            <% @contacts.each do |e| %>
+                <div class="card event-card" style="margin-bottom: 1%">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong><%=e.firstname%> <%=e.lastname%></strong></h5>
+                        <% unless e.title.blank? %>
+                            <span class="card-subtitle mb-2"><%= e.title %></span>
+                        <% end %>
+                        <br/>
+                        <% unless e.affiliation.blank? %>
+                            <span class="card-subtitle mb-2"><%= e.affiliation %></span>
+                        <% end %>
+                        <br/>
+                        <% unless e.email.blank? %>
+                            <span class="card-subtitle mb-2"><%= e.email %></span>
+                        <% end %>
+                        <br/>
+                        <br/>
+                        <% unless e.bio.blank? %>
+                            <h6 class="card-title">Bio</h6>
+                            <span class="card-subtitle mb-2 text-muted"><%= e.bio %></span>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
+        <% else %>
+             <span class="text-muted small" style="text-align: center">No Contacts</span>
+        <% end %>
+    </div>
+</div>
