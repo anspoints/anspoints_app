@@ -59,8 +59,8 @@ RSpec.describe 'Admin points view functionality', type: :feature do
     expect(page).to have_content('You have signed in successfully. You may now close this page.')
     visit '/points'
     expect(page).to have_content('superman@tamu.edu')
-    find('#searchTableInput').set('superman')
+    fill_in 'searchTableInput' , with: 'superman'
     expect(page).not_to have_content('batman@tamu.edu')
-    expect(page).to have_content('4') #points validation
+    expect(page).to have_content('4') # points validation
   end
 end
