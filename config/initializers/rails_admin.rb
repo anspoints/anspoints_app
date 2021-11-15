@@ -9,7 +9,7 @@ RailsAdmin.config do |config|
   # end
   # config.current_user_method(&:current_user)
 
-  if Rails.env.production?
+  #if Rails.env.production?
     config.authenticate_with do
       warden.authenticate! scope: :user
     end
@@ -18,12 +18,13 @@ RailsAdmin.config do |config|
     RailsAdmin.config do |config|
       config.authorize_with do
         unless current_user.isAdmin
-          flash[:error] = "#{current_user.email} is not an admin! Please try again with a different user or contact an administrator."
+          flash[:error] = "#{current_user.email} is not an admin! Please try again with a different user 
+            or contact an administrator."
           redirect_to '/users/sessions/failed'
         end
       end
     end
-  end
+  #end
 
   config.model EventTypes do
     list do
