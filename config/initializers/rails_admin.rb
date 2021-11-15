@@ -9,7 +9,7 @@ RailsAdmin.config do |config|
   # end
   # config.current_user_method(&:current_user)
 
-  #if Rails.env.production?
+  if Rails.env.production?
     config.authenticate_with do
       warden.authenticate! scope: :user
     end
@@ -24,7 +24,7 @@ RailsAdmin.config do |config|
         end
       end
     end
-  #end
+  end
 
   config.model EventTypes do
     list do
