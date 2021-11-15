@@ -19,15 +19,33 @@
       <h1 class="title">Admin Points Dashboard</h1>
     </div> 
 
-    <div class="row">
-      <div class="col-8 ">
-        <div class="user-search-container">
-          <input class="form-control" type="text" id="searchTableInput" onkeyup="filterTable()" placeholder="Search emails..">
+    <div class="filters-container">
+      <div class="row">
+        <div class="col-4 ">
+          <div class="user-search-container">
+            <input class="form-control" type="text" id="searchTableInput" onkeyup="filterTable()" placeholder="Search emails..">
+          </div>
         </div>
-      </div>
 
-      <div class="col-4 export-button-container">
-        <button class="export-button btn btn-secondary" onclick="download_table_as_csv();">Export Results to CSV</button>
+        <div class="col-4">
+          <div class="date-container">
+            <div class="row">
+              <div class="col-4 date-title-container">
+                <p class="date-title">Date Range:</p>
+              </div>
+              <div class="col-8 date-input-container">
+                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                    <i class="fa fa-calendar"></i>&nbsp;
+                    <span></span> <i class="fa fa-caret-down"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-4 export-button-container">
+          <button class="export-button btn btn-secondary" onclick="download_table_as_csv();">Export Results to CSV</button>
+        </div>
       </div>
     </div>
 
@@ -73,6 +91,54 @@
       </table>
     </div>
   
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <script type="text/javascript">
+      $(function() {
+
+          var start = moment().subtract(1, 'years');
+          var end = moment();
+
+          function cb(start, end) {
+              $('#reportrange span').html(start.format("MM/DD/YYYY") + ' - ' + end.format('MM/DD/YYYY'));
+          }
+
+          var semester_start = moment()
+          var semester_end = moment()
+          if(moment().get("month") < 7){
+            semester_start = moment().startOf('year')
+            if(moment().get("month") < 5){
+              semester_end = moment()
+            } else{
+              semester_end = moment().startOf('year').add(5, 'months')
+            }
+          } else{
+            semester_start = moment().startOf('year').add(7, 'months')
+            if(moment().get("month") < 11){
+              semester_end = moment()
+            } else{
+              semester_end = moment().startOf('year').add(11, 'months')
+            }
+          }
+
+          $('#reportrange').daterangepicker({
+              startDate: start,
+              endDate: end,
+              ranges: {
+                'Today': [moment(), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Semester': [semester_start, semester_end],
+                'Last Year': [moment().subtract(1, 'year'), moment()],
+              }
+          }, cb);
+
+          cb(start, end);
+
+      });
+      </script>
     <script>
     function filterTable() {
       // Declare variables
@@ -127,7 +193,7 @@
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-    }
-      </script>
+      }
+    </script>
   </body>
 </html>

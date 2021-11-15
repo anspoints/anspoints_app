@@ -28,6 +28,23 @@
     color: white !important;
 }
 
+.filters-container{
+    padding-right: 15px;
+}
+
+.date-title{
+    padding-top: 15px;
+}
+
+.date-input-container{
+    text-align: center;
+    padding-top: 10px;
+}
+
+.date-title-container{
+    text-align: right;
+}
+
 #table-header a:link, 
 #table-header a:visited, 
 #table-header a:active{
@@ -73,6 +90,5 @@
 }
 
 .export-button{
-    margin-right: 10px;
     margin-top: 10px;
 }
