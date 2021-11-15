@@ -16,7 +16,7 @@ RSpec.describe 'Admin points view functionality', type: :feature do
     click_on 'Save'
   end
 
-  scenario 'can view point totals by user and filter search' do
+  scenario 'can view point totals by user' do
     date_str = Event.naive_now.to_date.to_formatted_s(:long)
     visit '/admin/event/new'
     fill_in 'Name', with: 'Random'
@@ -59,8 +59,7 @@ RSpec.describe 'Admin points view functionality', type: :feature do
     expect(page).to have_content('You have signed in successfully. You may now close this page.')
     visit '/points'
     expect(page).to have_content('superman@tamu.edu')
-    fill_in 'searchTableInput' , with: 'superman'
-    expect(page).not_to have_content('batman@tamu.edu')
+    expect(page).to have_content('batman@tamu.edu')
     expect(page).to have_content('4') # points validation
   end
 end
