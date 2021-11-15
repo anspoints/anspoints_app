@@ -1,19 +1,19 @@
- <div class="text-center">
+<div class="text-center">
     <% flash.each do |key, value| %>
         <div class="<%= flash_class(key) %>" role="error">
             <%= value %>
         </div>
     <% end %>
+    
+</div>
+
+<div class="login-title text-center">
+    <h5>Login</h5>
 </div>
 
 <div class="login-container container text-center">
-    <div class ="title">
-        <h5>Login Page</h5>
-    </div>
     <hr/>
     <div class="login-group mx-auto justify-content-center">
         <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, method: :post %>
     </div>
 </div>
-
-      
