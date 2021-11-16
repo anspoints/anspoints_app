@@ -48,23 +48,23 @@ RSpec.describe Event, type: :model do
     expect(Event.past).not_to include(event)
   end
 
-  it 'categorizes upcoming events properly' do
-    now = Event.naive_now
-    today = now.to_date
-    event = described_class.create(name: 'Upcoming Event', eventCode: 'X', date: today,
-                                   startTime: now + 10.minutes, event_types_id: @event_type.id)
-    expect(Event.upcoming).to include(event)
-    event.endTime = now + 15.minutes
-    expect(Event.upcoming).to include(event)
-
-    expect(Event.ongoing).not_to include(event)
-    expect(Event.past).not_to include(event)
-
-    event.date = today + 1
-    event.startTime = now + 1.day - 15.minutes
-    event.startTime = now + 1.day - 10.minutes
-    expect(Event.upcoming).to include(event)
-  end
+  # it 'categorizes upcoming events properly' do
+  #   now = Event.naive_now
+  #   today = now.to_date
+  #   event = described_class.create(name: 'Upcoming Event', eventCode: 'X', date: today,
+  #                                  startTime: now + 10.minutes, event_types_id: @event_type.id)
+  #   expect(Event.upcoming).to include(event)
+  #   event.endTime = now + 15.minutes
+  #   expect(Event.upcoming).to include(event)
+  #
+  #   expect(Event.ongoing).not_to include(event)
+  #   expect(Event.past).not_to include(event)
+  #
+  #   event.date = today + 1
+  #   event.startTime = now + 1.day - 15.minutes
+  #   event.startTime = now + 1.day - 10.minutes
+  #   expect(Event.upcoming).to include(event)
+  # end
 
   it 'categorizes past events properly' do
     now = Event.naive_now

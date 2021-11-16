@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/qr/:code', to: 'events#raw_qr'
   get '/users/search'
   get '/users/show'
+  post '/users/import'
   get '/contacts/search'
   get '/contacts', to: 'contacts#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
