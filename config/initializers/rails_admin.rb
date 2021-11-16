@@ -17,7 +17,11 @@ RailsAdmin.config do |config|
 
     RailsAdmin.config do |config|
       config.authorize_with do
-        redirect_to '/users/sign_out' unless current_user.isAdmin
+        unless current_user.isAdmin
+          flash[:error] = "#{current_user.email} is not an admin! Please try again with a different user
+            or contact an administrator."
+          redirect_to '/users/sessions/failed'
+        end
       end
     end
   end
