@@ -101,7 +101,7 @@ class Event < ApplicationRecord
   end
 
   # Produces a hash of user_id => points aggregated from all of the events provided
-  def self.count_points(events_list=Event)
+  def self.count_points(events_list = Event)
     events_list.joins(:events_users, :event_types).group(:user_id).sum('"event_types"."pointValue"')
   end
 

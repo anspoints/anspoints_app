@@ -40,7 +40,7 @@ class User < ApplicationRecord
   end
 
   # Enter in a query such as user.count_points(Event.where(...)) to see a user's points from those events
-  def count_points(limited_to_events=Event)
+  def count_points(limited_to_events = Event)
     limited_to_events.includes(:events_users).where(events_users: { user: self })
                      .includes(:event_types).sum('"event_types"."pointValue"')
   end
