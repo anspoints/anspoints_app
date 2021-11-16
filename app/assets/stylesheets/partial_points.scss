@@ -19,7 +19,7 @@
 #table-header a:link, 
 #table-header a:visited, 
 #table-header a:active{
-    color: #FFFFFF !important;
+    color: $theme-lighter-grey !important;
     text-decoration: blink !important;
 }
 
@@ -63,4 +63,8 @@
 .export-button{
     margin-right: 10px;
     margin-top: 10px;
+}
+
+tbody tr td {
+    color: var(--text-color);
 }
