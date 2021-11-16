@@ -16,50 +16,27 @@ ActiveStorage.start()
 
 //= require_tree.
 
-const themeDarkGrey = "#474B4F";
-const themeDarkBlue = "#3A546C";
-const themeBackgroundColor = "#F0F0F0";
-const whiteColor = "#FFF";
-
-function requestEventPassword(eventId, eventName) {
-    console.log(eventId);
-    console.log(eventName);
-}
-
-function addShortcutKeys() {
-    const links = document.querySelectorAll(
-        "a[data-event-id]"
-    );
-    $(document).on("keyup", function (e) {
-        if(e.ctrlKey && e.key == 'z')
-            console.log('click on events');
-            // links[0].click();
-        else if(e.ctrlKey && e.key == 'x')
-            console.log('click on points');
-            // links[1].click();
-        else if(e.ctrlKey && e.key == 'c')
-            console.log('click on contacts');
-            // links[2].click();
-        else if(e.ctrlKey && e.key == 'v')
-            console.log('click on admin');
-            // links[3].click();
-    })
+function themeSwitch() {
+    const currTheme = $('body').attr("data-theme");
+    console.log(currTheme);
+    if (currTheme === "light" ) {
+        $('body').attr("data-theme", "dark");
+    } else {
+        $("body").attr("data-theme", "light");
+    }
 }
   
 window.addEventListener("load", () => {
-    const links = document.querySelectorAll(
-        "a[data-event-id]"
-    );
-    console.log(links); 
-    links.forEach((element) => {
-        element.addEventListener("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-    
-            const {eventId, eventName} = element.dataset;
-            requestEventPassword(eventId, eventName);
-        });
+    //$("#themeSwitch").on("click", function (e) {    
+    // });
+    $('#themeSwitch').on("click", function (event) {
+        event.preventDefault();
+        const currTheme = $('body').attr("data-theme");
+        console.log(currTheme);
+        if (currTheme === "light" ) {
+            $('body').attr("data-theme", "dark");
+        } else {
+            $("body").attr("data-theme", "light");
+        }
     });
-    
-    addShortcutKeys();
 });

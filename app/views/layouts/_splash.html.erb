@@ -7,6 +7,12 @@
             </a>
         </div>
     </div>
-    
-    
+
+</div>
+<div class="position-fixed top-0 end-0" style="margin: 10px">
+    <% if cookies[:moon] == 'true' %>
+        <%= button_to '', sun_path, method: :get, class: 'sun' %>
+    <% else %>
+        <%= button_to '', moon_path, method: :get, class: 'moon' %>
+    <% end %>
 </div>

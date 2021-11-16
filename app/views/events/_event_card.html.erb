@@ -5,13 +5,13 @@
     </p>
     <span><%= event.date.to_formatted_s(:long) || 'No Day Set' %></span>
     <% unless event.startTime.blank? %>
-      <span class="card-subtitle mb-2 text-muted event-date"><%= event.startTime.strftime("%I:%M %p") %></span>
+      <span class="card-subtitle mb-2 event-date"><%= event.startTime.strftime("%I:%M %p") %></span>
       <% unless event.endTime.blank? %>
         <span> - </span>
       <% end %>
     <% end %>
     <% unless event.endTime.blank? %>
-      <span class="card-subtitle mb-2 text-muted event-date"><%= event.endTime.strftime("%I:%M %p") %></span>
+      <span class="card-subtitle mb-2 event-date"><%= event.endTime.strftime("%I:%M %p") %></span>
     <% end %>
     <br/>
     <p><%= event.description || '' %></p>

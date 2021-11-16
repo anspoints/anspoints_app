@@ -11,6 +11,7 @@ class ContactsController < ApplicationController
   # view all events
   def index
     @contacts = Contact.all
+    redirect_to controller: 'contacts', action: 'search'
   end
 
   def search
