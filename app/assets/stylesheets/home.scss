@@ -1,14 +1,11 @@
 @import "bootstrap/scss/bootstrap";
 
-// Theme colors //
-$theme-background-color: #F0F0F0;
-$theme-dark-blue: #3A546C;
-$theme-dark-grey: #474B4F;
-$theme-light-grey: #DEDEDE;
-
-body {
-    background-color: $theme-background-color !important;
-}
+$theme-background-color: var(--theme-background-color) !important;
+$theme-dark-blue: var(--theme-dark-blue) !important;
+$theme-dark-grey: var(--theme-dark-grey) !important;
+$theme-light-grey: var(--theme-light-grey) !important;
+$theme-lighter-grey: var(--theme-lighter-grey) !important;
+$theme-splash-font-color: var(--theme-splash-font-color) !important;
 
 hr {
     margin-top: 1rem;
@@ -19,9 +16,50 @@ hr {
 
 .home-splash {
     height: 20vh;
+    background-color: $theme-lighter-grey;
+    color: $theme-splash-font-color;
+    min-height: 18mm;
     background-color: white;
     color: $theme-dark-blue;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+
+.page-title {
+    color: $theme-dark-blue !important;
+    text-align: center;
+}
+
+.card {
+    color: var(--text-color) !important;
+    background-color: $theme-lighter-grey;
+}
+
+.sun {
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-image: asset-url("icons/sun.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.moon {
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-image: asset-url("icons/moon.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.logo-image {
+    width: auto;
+    max-height: 8vh;
+    min-height: 8mm;
+  }

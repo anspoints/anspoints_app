@@ -4,18 +4,19 @@
             <%= value %>
         </div>
     <% end %>
-    
 </div>
 
-<div class="login-title text-center">
+<div class ="login-title text-center">
     <h5>Login</h5>
 </div>
 
 <div class="login-container container text-center">
     <hr/>
-    <div class="login-group center">
+    <div class="login-group mx-auto justify-content-center">
         <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post do %>
             <%= image_tag('btn_google_signin_dark.png', :class => "login-button") %>
         <% end %>
     </div>
+
+    <%= link_to "Sign Out", exit_user_session_path, method: :get %>
 </div>

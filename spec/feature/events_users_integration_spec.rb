@@ -8,7 +8,7 @@ RSpec.describe 'Checking In', type: :feature do
   o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
   tag_name = (0...10).map { o[rand(o.length)] }.join
   tag_color = '#AFE1AF'
-  before(:all) do
+  before(:each) do
     visit '/admin/event_types/new'
     fill_in 'event_types[name]', with: tag_name
     fill_in 'event_types[pointValue]', with: 4
@@ -28,7 +28,7 @@ RSpec.describe 'Checking In', type: :feature do
     click_on 'Save'
     visit events_path
     expect(page).to have_content('Ongoing Events')
-    first(:link_or_button, 'Join').click  # resolves ambiguity if multiple ongoing events exist in the database
+    first(:link_or_button, 'Sign In').click  # resolves ambiguity if multiple ongoing events exist in the database
     fill_in 'Enter the meeting code', with: 'codey'
     click_on 'Check In'
     correct_event_join_path = join_event_path(Event.from_code('codey'))

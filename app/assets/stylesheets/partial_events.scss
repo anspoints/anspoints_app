@@ -1,23 +1,30 @@
-@import "home";
+@import 'home';
 
 .events-container {
     margin-top: 2rem;
     margin-bottom: 2rem;
-    color: $theme-dark-grey;
+    // color: $theme-dark-grey;
     .event-divider {
         margin-top: 10px;
         margin-bottom: 10px;
     }
     .event-card {
-        background-color: white !important;
         padding: 14px 20px 14px 20px;
         border-radius: 14px;
         box-shadow: 0px 5px 5px $theme-light-grey;
         margin-bottom: 10px;
         .event-date {
+            color: white !important;
             background-color: $theme-light-grey;
             padding: 4px;
             border-radius: 5px;
         }
     }
 }
+
+.btn-primary {
+    color: #fff  !important;
+    background-color: #3A546C !important;
+    border-color: #3A546C !important;
+}
+

@@ -24,5 +24,6 @@ module AnspointsApp
     # config.active_record.time_zone_aware_attributes = false
 
     # config.eager_load_paths << Rails.root.join("extras")
+    config.middleware.use ActionDispatch::Cookies
   end
 end

@@ -100,6 +100,11 @@ class Event < ApplicationRecord
     users.size
   end
 
+  # Produces a hash of user_id => points aggregated from all of the events provided
+  def self.count_points(events_list = Event)
+    events_list.joins(:events_users, :event_types).group(:user_id).sum('"event_types"."pointValue"')
+  end
+
   rails_admin do
     configure :startTime do
       label 'Start time'
@@ -120,6 +125,10 @@ class Event < ApplicationRecord
 
     configure :users do
       label 'Attendees'
+    end
+
+    configure :event_types do
+      label 'Type'
     end
 
     configure :attendance do
