@@ -13,7 +13,9 @@
 
 <div class="login-container container text-center">
     <hr/>
-    <div class="login-group mx-auto justify-content-center">
-        <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, method: :post %>
+    <div class="login-group center">
+        <%= link_to user_google_oauth2_omniauth_authorize_path, method: :post do %>
+            <%= image_tag('btn_google_signin_dark.png', :class => "login-button") %>
+        <% end %>
     </div>
 </div>
