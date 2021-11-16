@@ -85,8 +85,8 @@ gem 'omniauth-rails_csrf_protection'
 
 gem 'rqrcode'
 
-gem "momentjs-rails", "~> 2.20"
+gem 'momentjs-rails', '~> 2.20'
 
-gem "jquery-rails", "~> 4.4"
+gem 'jquery-rails', '~> 4.4'
 
-gem "bootstrap-datepicker-rails", "~> 1.9"
+gem 'bootstrap-datepicker-rails', '~> 1.9'

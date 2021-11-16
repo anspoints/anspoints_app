@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'date'
 
 class PointsController < ActionController::Base
@@ -9,10 +10,10 @@ class PointsController < ActionController::Base
     @start_date = Event.naive_now.to_date.prev_year.to_formatted_s(:long)
     @end_date = Event.naive_now.to_date.to_formatted_s(:long)
 
-    @start_date = Date.strptime(params[:date_start], "%m/%d/%Y") unless params[:date_start].blank?
+    @start_date = Date.strptime(params[:date_start], '%m/%d/%Y') unless params[:date_start].blank?
     Rails.logger.debug @start_date
 
-    @end_date = Date.strptime(params[:date_end], "%m/%d/%Y") unless params[:date_end].blank?
+    @end_date = Date.strptime(params[:date_end], '%m/%d/%Y') unless params[:date_end].blank?
     Rails.logger.debug @end_date
 
     @event_types = Event.select('"events"."id" AS event_id, "event_types"."name" AS event_type, "events"."date" AS event_date')
@@ -20,9 +21,7 @@ class PointsController < ActionController::Base
                         .group('"events"."id", "event_types"."name", "events"."date"')
     @event_types_dict = {}
     @event_types.each do |event|
-      if(event.event_date.to_date >= @start_date.to_date and event.event_date.to_date <= @end_date.to_date)
-        @event_types_dict.merge!({ event.event_id => event.event_type })
-      end
+      @event_types_dict.merge!({ event.event_id => event.event_type }) if (event.event_date.to_date >= @start_date.to_date) && (event.event_date.to_date <= @end_date.to_date)
     end
     Rails.logger.debug @event_types_dict
 
@@ -79,8 +78,8 @@ class PointsController < ActionController::Base
       @user_points_dict[user].each do |category, points|
         Rails.logger.debug category
         Rails.logger.debug points
-        if category != 'Total'
-          @total += points unless points.nil? # add total points from each event type
+        if category != 'Total' && !points.nil?
+          @total += points # add total points from each event type
         end
       end
       @user_points_dict[user].merge!({ 'Total' => @total })
@@ -99,20 +98,20 @@ class PointsController < ActionController::Base
     end
     Rails.logger.debug @user_points_dict
 
-    if params[:sort] != 'count'
-      @user_points_counts = EventsUsers.select('"users"."first_name" AS first_name, "users"."last_name" AS last_name, "users"."email" AS email, count(*) AS count')
+    @user_points_counts = if params[:sort] != 'count'
+                            EventsUsers.select('"users"."first_name" AS first_name, "users"."last_name" AS last_name, "users"."email" AS email, count(*) AS count')
                                        .joins('RIGHT JOIN "users" ON "events_users"."user_id" = "users"."id"')
                                        .group('"users"."first_name", "users"."last_name", "users"."email"').order('count DESC')
 
-    elsif params[:sort] == 'count'
-      @user_points_counts = EventsUsers.select('"users"."email" AS email, count(*) AS count')
+                          elsif params[:sort] == 'count'
+                            EventsUsers.select('"users"."email" AS email, count(*) AS count')
                                        .joins('INNER JOIN "users" ON "events_users"."user_id" = "users"."id"')
                                        .group('"users"."email"').order('count DESC').reorder('count ASC')
 
-    else
-      @user_points_counts = EventsUsers.select('"users"."email" AS email, count(*) AS count')
+                          else
+                            EventsUsers.select('"users"."email" AS email, count(*) AS count')
                                        .joins('INNER JOIN "users" ON "events_users"."user_id" = "users"."id"')
                                        .group('"users"."email"')
-    end
+                          end
   end
 end

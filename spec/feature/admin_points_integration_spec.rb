@@ -33,7 +33,7 @@ RSpec.describe 'Admin points view functionality', type: :feature do
     click_on 'Save'
     visit events_path
     expect(page).to have_content('Ongoing Events')
-    first(:link_or_button, 'Sign In').click  # resolves ambiguity if multiple ongoing events exist in the database
+    first(:link_or_button, 'Sign In').click # resolves ambiguity if multiple ongoing events exist in the database
     fill_in 'Enter the meeting code', with: 'password'
     click_on 'Check In'
     correct_event_join_path = join_event_path(Event.from_code('password'))
@@ -47,7 +47,7 @@ RSpec.describe 'Admin points view functionality', type: :feature do
     expect(page).to have_content('batman@tamu.edu')
     visit events_path
     expect(page).to have_content('Ongoing Events')
-    first(:link_or_button, 'Join').click  # resolves ambiguity if multiple ongoing events exist in the database
+    first(:link_or_button, 'Sign In').click # resolves ambiguity if multiple ongoing events exist in the database
     fill_in 'Enter the meeting code', with: 'password'
     click_on 'Check In'
     correct_event_join_path = join_event_path(Event.from_code('password'))
