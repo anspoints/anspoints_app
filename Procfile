@@ -1,1 +1,1 @@
-release: rails db:migrate
+release: trap '' SIGTERM; rake db:migrate & rake db:seed & wait -n; kill -SIGTERM -$$; wait
