@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'date'
 
 class PointsController < ActionController::Base
   def index
@@ -86,6 +87,18 @@ class PointsController < ActionController::Base
       @user_points_dict[userid] = @point_map
     end
     Rails.logger.debug @user_points_dict
+    @start_date = Event.naive_now.to_date.prev_year.to_formatted_s(:long)
+    @end_date = Event.naive_now.to_date.to_formatted_s(:long)
+
+    if defined? params[:date_start]
+      @start_date = params[:date_start]
+      Rails.logger.debug @start_date
+    end
+    
+    if defined? params[:date_start]
+      @end_date = params[:date_end]
+      Rails.logger.debug @end_date
+    end
 
     if params[:sort] != 'count'
       @user_points_counts = EventsUsers.select('"users"."first_name" AS first_name, "users"."last_name" AS last_name, "users"."email" AS email, count(*) AS count')

@@ -34,9 +34,10 @@
                 <p class="date-title">Date Range:</p>
               </div>
               <div class="col-8 date-input-container">
-                <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
+                <div id="reportrange" onload= "selectDates()" onmouseup="selectDates()" onmouseout="selectDates()" style="background: #fff; cursor: pointer; padding: 8px 8px; border: 1px solid #ddd; border-radius: 4px; width: 100%">
                     <i class="fa fa-calendar"></i>&nbsp;
-                    <span></span> <i class="fa fa-caret-down"></i>
+                    <span id="dateRange" class=""></span>
+                    <i class="fa fa-caret-down"></i>
                 </div>
               </div>
             </div>
@@ -94,6 +95,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <script type="text/javascript">
@@ -108,7 +110,7 @@
 
           var semester_start = moment()
           var semester_end = moment()
-          if(moment().get("month") < 7){
+          if(moment().get("month") < 6){
             semester_start = moment().startOf('year')
             if(moment().get("month") < 5){
               semester_end = moment()
@@ -136,8 +138,41 @@
           }, cb);
 
           cb(start, end);
-
       });
+      </script>
+
+      <script>
+        function selectDates(){
+          var range = document.getElementById('dateRange').textContent;
+          console.log(range)
+          var rangeList = range.split('-')
+          console.log(rangeList)
+          var startDate = rangeList[0].trim()
+          var endDate = rangeList[1].trim()
+          console.log(window.location.pathname + "?date_start=" + startDate + "&date_end=" + endDate)
+          document.getElementById('dateRange').className = "?date_start=" + startDate + "&date_end=" + endDate
+          
+          const paramsString = window.location.search + "?date_start=" + startDate + "&date_end=" + endDate;
+          let searchParams = new URLSearchParams(paramsString);
+
+          //Iterate the search parameters.
+          for (let p of searchParams) {
+            console.log(p);
+          }
+          if(searchParams.has('sort')){
+            searchParams.delete('sort');
+          }
+          if(searchParams.has('date_start')){
+            searchParams.delete('date_start');
+          }
+          if(searchParams.has('date_end')){
+            searchParams.delete('date_end');
+          }
+          searchParams.set('date_start', startDate);
+          searchParams.append('date_end', endDate);
+  
+          window.location.href = window.location.pathname + "?" + searchParams.toString()
+        }
       </script>
     <script>
     function filterTable() {
