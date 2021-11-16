@@ -30,6 +30,12 @@ Layout/LineLength:
 Layout/EndOfLine:
   Enabled: False
 
+Metrics/PerceivedComplexity:
+  Enabled: False
+
+Metrics/CyclomaticComplexity:
+  Enabled: False
+
 # File formatted by Ruby Convention - fix suggested seems outdated
 Metrics/AbcSize:
   Enabled: False
