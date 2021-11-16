@@ -5,6 +5,7 @@ class User < ApplicationRecord
   attribute :email, :string
   attribute :first_name, :string
   attribute :last_name, :string
+  attribute :dues_paid, :boolean, default: false
 
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, presence: true
@@ -30,6 +31,8 @@ class User < ApplicationRecord
     nil
   end
 
+  def self.from_csv(file); end
+
   def name
     # Expected by RailsAdmin for its views
     "#{first_name} #{last_name}"
@@ -37,6 +40,12 @@ class User < ApplicationRecord
 
   def count_attended
     events.size
+  end
+
+  # Enter in a query such as user.count_points(Event.where(...)) to see a user's points from those events
+  def count_points(limited_to_events = Event)
+    limited_to_events.includes(:events_users).where(events_users: { user: self })
+                     .includes(:event_types).sum('"event_types"."pointValue"')
   end
 
   rails_admin do

@@ -17,7 +17,12 @@ RailsAdmin.config do |config|
 
     RailsAdmin.config do |config|
       config.authorize_with do
-        redirect_to '/users/sign_out' unless current_user.isAdmin
+        unless current_user.isAdmin
+          flash[:error] = "#{current_user.email} is not an admin! Please try again with a different user
+            or contact an administrator."
+          User.find(current_user.id).destroy unless current_user.last_name != 'lastAdmin'
+          redirect_to '/users/sessions/failed'
+        end
       end
     end
   end
@@ -55,6 +60,18 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
+
+    member :qr_code do
+      action_name :qr_code
+      link_icon 'icon-qrcode'
+      only Event
+    end
+
+    collection :import do
+      action_name :import
+      link_icon 'icon-upload'
+      only User
+    end
 
     ## With an audit adapter, you can add:
     # history_index

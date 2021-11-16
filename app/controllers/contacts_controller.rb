@@ -11,6 +11,18 @@ class ContactsController < ApplicationController
   # view all events
   def index
     @contacts = Contact.all
+    redirect_to controller: 'contacts', action: 'search'
+  end
+
+  def search
+    input = params[:input]
+    return @contacts = Contact.all if input.nil?
+
+    return @contacts = Contact.all if input == ''
+
+    logger.info(input)
+    @contacts = Contact.all.where('"contacts"."lastname" = ?', input)
+    return if @contacts.nil?
   end
 
   ###########################

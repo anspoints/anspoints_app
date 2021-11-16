@@ -7,8 +7,12 @@ class EventTypes < ApplicationRecord
 
   validates :name, presence: true
 
-  validates :pointValue, presence: true,
-                         inclusion: 1..100
-  validates :color, presence: true,
-                    format: { with: /\A\#{1}[0-9a-fA-F]{6}\z/ }
+  validates :pointValue, presence: true
+  validates_numericality_of(:pointValue, greater_than_or_equal_to: 0)
+
+  validates :color, presence: true, format: { with: /\A[0-9a-fA-F]{6}+\z/ }
+
+  rails_admin do
+    configure :color, :color
+  end
 end

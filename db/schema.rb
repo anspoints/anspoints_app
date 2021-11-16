@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_05_193740) do
+ActiveRecord::Schema.define(version: 2021_11_16_001822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_193740) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.uuid "event_types_id"
+    t.string "zoom"
     t.index ["event_types_id"], name: "index_events_on_event_types_id"
   end
 

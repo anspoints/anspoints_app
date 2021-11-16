@@ -1,13 +1,16 @@
-@import "home";
+@import 'home';
 
-.title{
-    color: #3A546C !important;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    text-align: center;
+.login-title{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
 
 .login-container{
+    color: $theme-light-grey;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.login-button {
+    max-width: 2in;
 }

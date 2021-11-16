@@ -5,10 +5,10 @@ require 'rails_helper'
 
 RSpec.describe 'Editing Events', type: :feature do
   # add event type
-  tag_color = '#AFE1AF'
+  tag_color = 'AFE1AF'
   o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
   tag_name = (0...10).map { o[rand(o.length)] }.join
-  before(:all) do
+  before(:each) do
     visit '/admin/event_types/new'
     fill_in 'event_types[name]', with: tag_name
     fill_in 'event_types[pointValue]', with: 4
@@ -111,10 +111,10 @@ end
 
 RSpec.describe 'Adding Events', type: :feature do
   # add event type
-  tag_color = '#AFE1AF'
+  tag_color = 'AFE1AF'
   o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
   tag_name = (0...10).map { o[rand(o.length)] }.join
-  before(:all) do
+  before(:each) do
     visit '/admin/event_types/new'
     fill_in 'event_types[name]', with: tag_name
     fill_in 'event_types[pointValue]', with: 4
@@ -184,10 +184,10 @@ end
 
 RSpec.describe 'Reviewing Events', type: :feature do
   # add event type
-  tag_color = '#AFE1AF'
+  tag_color = 'AFE1AF'
   o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
   tag_name = (0...10).map { o[rand(o.length)] }.join
-  before(:all) do
+  before(:each) do
     visit '/admin/event_types/new'
     fill_in 'event_types[name]', with: tag_name
     fill_in 'event_types[pointValue]', with: 4
@@ -222,10 +222,10 @@ end
 
 RSpec.describe 'Deleting Events', type: :feature do
   # add event type
-  tag_color = '#AFE1AF'
+  tag_color = 'AFE1AF'
   o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
   tag_name = (0...10).map { o[rand(o.length)] }.join
-  before(:all) do
+  before(:each) do
     visit '/admin/event_types/new'
     fill_in 'event_types[name]', with: tag_name
     fill_in 'event_types[pointValue]', with: 4
