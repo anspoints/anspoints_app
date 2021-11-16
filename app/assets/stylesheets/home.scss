@@ -19,6 +19,7 @@ hr {
 
 .home-splash {
     height: 20vh;
+    min-height: 18mm;
     background-color: white;
     color: $theme-dark-blue;
     display: flex;
@@ -26,12 +27,8 @@ hr {
     align-items: center;
 }
 
-.main-logo {
-    max-width: 100%;
-}
-
-img {
+.logo-image {
     width: auto;
-    height: auto;
     max-height: 8vh;
+    min-height: 8mm;
   }
