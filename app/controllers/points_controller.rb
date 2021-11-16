@@ -6,12 +6,23 @@ class PointsController < ActionController::Base
     # put any code here that you need
     # (although for a static view you probably won't have any)
 
-    @event_types = Event.select('"events"."id" AS event_id, "event_types"."name" AS event_type')
+    @start_date = Event.naive_now.to_date.prev_year.to_formatted_s(:long)
+    @end_date = Event.naive_now.to_date.to_formatted_s(:long)
+
+    @start_date = Date.strptime(params[:date_start], "%m/%d/%Y") unless params[:date_start].blank?
+    Rails.logger.debug @start_date
+
+    @end_date = Date.strptime(params[:date_end], "%m/%d/%Y") unless params[:date_end].blank?
+    Rails.logger.debug @end_date
+
+    @event_types = Event.select('"events"."id" AS event_id, "event_types"."name" AS event_type, "events"."date" AS event_date')
                         .joins('INNER JOIN "event_types" ON "events"."event_types_id" = "event_types"."id"')
-                        .group('"events"."id", "event_types"."name"')
+                        .group('"events"."id", "event_types"."name", "events"."date"')
     @event_types_dict = {}
     @event_types.each do |event|
-      @event_types_dict.merge!({ event.event_id => event.event_type })
+      if(event.event_date.to_date >= @start_date.to_date and event.event_date.to_date <= @end_date.to_date)
+        @event_types_dict.merge!({ event.event_id => event.event_type })
+      end
     end
     Rails.logger.debug @event_types_dict
 
@@ -87,18 +98,6 @@ class PointsController < ActionController::Base
       @user_points_dict[userid] = @point_map
     end
     Rails.logger.debug @user_points_dict
-    @start_date = Event.naive_now.to_date.prev_year.to_formatted_s(:long)
-    @end_date = Event.naive_now.to_date.to_formatted_s(:long)
-
-    if defined? params[:date_start]
-      @start_date = params[:date_start]
-      Rails.logger.debug @start_date
-    end
-    
-    if defined? params[:date_start]
-      @end_date = params[:date_end]
-      Rails.logger.debug @end_date
-    end
 
     if params[:sort] != 'count'
       @user_points_counts = EventsUsers.select('"users"."first_name" AS first_name, "users"."last_name" AS last_name, "users"."email" AS email, count(*) AS count')

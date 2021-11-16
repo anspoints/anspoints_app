@@ -37,11 +37,16 @@
               <div class="col-4 date-title-container">
                 <p class="date-title">Date Range:</p>
               </div>
-              <div class="col-8 date-input-container">
-                <div id="reportrange" onload= "selectDates()" onmouseup="selectDates()" onmouseout="selectDates()" style="background: #fff; cursor: pointer; padding: 8px 8px; border: 1px solid #ddd; border-radius: 4px; width: 100%">
-                    <i class="fa fa-calendar"></i>&nbsp;
-                    <span id="dateRange" class=""></span>
-                    <i class="fa fa-caret-down"></i>
+              <div class="col-4 date-input-container">
+                <div id="reportrange" onload="selectDates()" style="background: #fff; cursor: pointer; padding: 8px 8px; border: 1px solid #ddd; border-radius: 4px; width: 100%">
+                  <i class="fa fa-calendar"></i>&nbsp;
+                  <span id="dateRange" class=""></span>
+                  <i class="fa fa-caret-down"></i>
+                </div>
+              </div>
+              <form action="javascript:void(0)" onsubmit="selectDates()" class="col-4 date-button-container">
+                <input type="submit">
+              </form>
                 </div>
               </div>
             </div>
@@ -104,9 +109,15 @@
 
     <script type="text/javascript">
       $(function() {
-
           var start = moment().subtract(1, 'years');
           var end = moment();
+          var params = new URLSearchParams(window.location.search)
+          if(params.has('date_start')){
+            start = moment(params.get('date_start'))
+          }
+          if(params.has('date_end')){
+            end = moment(params.get('date_end'))
+          }
 
           function cb(start, end) {
               $('#reportrange span').html(start.format("MM/DD/YYYY") + ' - ' + end.format('MM/DD/YYYY'));
