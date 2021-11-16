@@ -122,6 +122,10 @@ class Event < ApplicationRecord
       label 'Attendees'
     end
 
+    configure :event_types do
+      label 'Type'
+    end
+
     configure :attendance do
       formatted_value { bindings[:object].attendance }
       read_only true

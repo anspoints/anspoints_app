@@ -12,7 +12,7 @@ class EventsUsers < ApplicationRecord
 
   def name
     # Expected by RailsAdmin for its views
-    "#{user.name} @ #{event.name}"
+    user.nil? || event.nil? ? "Check-in Event" : "#{user.name} @ #{event.name}"
   end
 
   validates :event_id, presence: true,
