@@ -5,7 +5,7 @@ require 'rails_helper'
 
 RSpec.describe 'Editing Events', type: :feature do
   # add event type
-  tag_color = '#AFE1AF'
+  tag_color = 'AFE1AF'
   o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
   tag_name = (0...10).map { o[rand(o.length)] }.join
   before(:each) do
