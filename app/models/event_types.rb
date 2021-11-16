@@ -12,8 +12,7 @@ class EventTypes < ApplicationRecord
 
   validates :color, presence: true, format: { with: /\A[0-9a-fA-F]{6}+\z/ }
 
-                  
   rails_admin do
     configure :color, :color
-  end 
+  end
 end
