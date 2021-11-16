@@ -25,6 +25,14 @@ when 'development'
   # create a contact
   Contact.create([{ firstname: 'Test Firstname', lastname: 'Test Lastname', title: 'Professor', bio: 'A genius',
                     affiliation: 'Texas A&M', email: 'gmoney@gmail.com' }])
+when 'test'
+  # master user
+  User.find_or_create_by(isAdmin: true, email: 'ans.pointstracker@gmail.com',
+                          first_name: 'ANSP_TEST_ADMIN', last_name: 'ANSP_TEST_ADMIN')
+  User.find_or_create_by(isAdmin: true, email: 'ans.auditor.123@gmail.com',
+                          first_name: 'ANSP_TEST_AUDITOR', last_name: 'ANSP_TEST_AUDITOR')
+  Contact.create([{ firstname: 'TEST Firstname', lastname: 'TEST Lastname', title: 'TEST Professor', bio: 'A genius',
+    affiliation: 'Texas A&M', email: 'gmoney@gmail.com' }])
 when 'production'
   # master user
   User.find_or_create_by(isAdmin: true, email: 'ans.pointstracker@gmail.com',
