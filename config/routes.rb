@@ -15,12 +15,14 @@ Rails.application.routes.draw do
       get :qr
       get :join
     end
+    collection do
+      get :join, to: 'events#join_by_code'
+      post :join, to: 'events#join_by_code'
+    end
   end
+  post '/checkin', to: 'events_users#create'
   get '/moon', to: 'application#moon', as: 'moon' # dark mode
   get '/sun', to: 'application#sun', as: 'sun' # light mode
-  get '/events/join', to: 'events#join_by_code'
-  post '/events/join', to: 'events#join_by_code'
-  post '/checkin', to: 'events_users#create'
   get '/qr/:code', to: 'events#raw_qr'
   get '/users/search'
   get '/users/show'

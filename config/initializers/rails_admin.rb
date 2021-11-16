@@ -61,6 +61,12 @@ RailsAdmin.config do |config|
     delete
     show_in_app
 
+    member :qr_code do
+      action_name :qr_code
+      link_icon 'icon-qrcode'
+      only Event
+    end
+
     ## With an audit adapter, you can add:
     # history_index
     # history_show
