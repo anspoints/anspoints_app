@@ -7,7 +7,7 @@ RSpec.describe 'Admin points view functionality', type: :feature do
   # add event type
   o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
   tag_name = (0...10).map { o[rand(o.length)] }.join
-  tag_color = '#AFE1AF'
+  tag_color = 'AFE1AF'
   before(:all) do
     visit '/admin/event_types/new'
     fill_in 'event_types[name]', with: tag_name
