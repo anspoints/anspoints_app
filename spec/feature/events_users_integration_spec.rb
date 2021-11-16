@@ -28,7 +28,7 @@ RSpec.describe 'Checking In', type: :feature do
     click_on 'Save'
     visit events_path
     expect(page).to have_content('Ongoing Events')
-    first(:link_or_button, 'Check In').click  # resolves ambiguity if multiple ongoing events exist in the database
+    first(:link_or_button, 'Log Point').click  # resolves ambiguity if multiple ongoing events exist in the database
     fill_in 'Enter the meeting code', with: 'codey'
     click_on 'Check In'
     correct_event_join_path = join_event_path(Event.from_code('codey'))

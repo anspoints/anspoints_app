@@ -16,7 +16,7 @@
     <br/>
     <p><%= event.description || '' %></p>
     <% if joinable %>
-      <%= link_to "Check In", "#", class: "btn btn-color", data: { bs_toggle: "modal", bs_target: "#eventCodeModal" } %>
+      <%= link_to "Log Point", "#", class: "btn btn-color", data: { bs_toggle: "modal", bs_target: "#eventCodeModal" } %>
       <% unless event.zoom.blank? %>
         <%= link_to "Zoom Link", event.zoom, target: "_blank", class: "btn btn-primary" %>
       <% end %>
