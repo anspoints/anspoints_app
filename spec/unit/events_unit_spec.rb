@@ -7,7 +7,7 @@ RSpec.describe Event, type: :model do
   before(:each) do
     o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
     tag_name = (0...10).map { o[rand(o.length)] }.join
-    @event_type = EventTypes.new(name: tag_name, color: '#AFE1AF', pointValue: 1)
+    @event_type = EventTypes.new(name: tag_name, color: 'AFE1AF', pointValue: 1)
     @event_type.save
     @event = Event.new(name: 'ryan', eventCode: 'mujit', description: 'test',
                        date: '2021-10-28', startTime: '19:35:00', endTime: '19:50:00',
