@@ -31,7 +31,7 @@
           </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-8">
           <div class="date-container">
             <div class="row">
               <div class="col-4 date-title-container">
@@ -43,18 +43,15 @@
                   <span id="dateRange" class=""></span>
                   <i class="fa fa-caret-down"></i>
                 </div>
+                <form action="javascript:void(0)" onsubmit="selectDates()" class="col-4 date-button-container">
+                  <input type="submit">
+                </form>
               </div>
-              <form action="javascript:void(0)" onsubmit="selectDates()" class="col-4 date-button-container">
-                <input type="submit">
-              </form>
-                </div>
+              <div class="col-4 export-button-container">
+                <button class="export-button btn btn-secondary" onclick="download_table_as_csv();">Export Results to CSV</button>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="col-4 export-button-container">
-          <button class="export-button btn btn-secondary" onclick="download_table_as_csv();">Export Results to CSV</button>
         </div>
       </div>
     </div>

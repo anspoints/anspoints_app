@@ -80,7 +80,7 @@ class PointsController < ActionController::Base
         Rails.logger.debug category
         Rails.logger.debug points
         if category != 'Total'
-          @total += points # add total points from each event type
+          @total += points unless points.nil? # add total points from each event type
         end
       end
       @user_points_dict[user].merge!({ 'Total' => @total })
