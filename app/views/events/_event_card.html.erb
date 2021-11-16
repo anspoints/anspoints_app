@@ -14,13 +14,12 @@
       <span class="card-subtitle mb-2 text-muted event-date"><%= event.endTime.strftime("%I:%M %p") %></span>
     <% end %>
     <br/>
-    <% unless event.zoom.blank? %>
-      <%= link_to "Zoom Link", event.zoom, target: "_blank" %>
-    <% end %>
-    <br/>
     <p><%= event.description || '' %></p>
     <% if joinable %>
-      <%= link_to "Join", "#", class: "btn btn-primary", data: { bs_toggle: "modal", bs_target: "#eventCodeModal" } %>
+      <%= link_to "Check In", "#", class: "btn btn-color", data: { bs_toggle: "modal", bs_target: "#eventCodeModal" } %>
+      <% unless event.zoom.blank? %>
+        <%= link_to "Zoom Link", event.zoom, target: "_blank", class: "btn btn-primary" %>
+      <% end %>
     <% end %>
   </div>
 </div>
