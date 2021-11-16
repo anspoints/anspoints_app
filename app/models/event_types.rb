@@ -8,7 +8,7 @@ class EventTypes < ApplicationRecord
   validates :name, presence: true
 
   validates :pointValue, presence: true
-  validates_numericality_of(:pointValue, greater_than: 0)
+  validates_numericality_of(:pointValue, greater_than_or_equal_to: 0)
 
   validates :color, presence: true,
                     format: { with: /\A\#{1}[0-9a-fA-F]{6}\z/ }
