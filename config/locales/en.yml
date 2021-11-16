@@ -31,3 +31,7 @@
 
 en:
   hello: "Hello world"
+  admin:
+    actions:
+      qr_code:
+        menu: "View QR code"
