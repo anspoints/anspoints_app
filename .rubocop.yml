@@ -22,6 +22,7 @@ Metrics/BlockLength:
 Layout/LineLength:
   # Should not be checked for high entropy strings (they aren't supposed to be readable anyway)
   # Devise requires a few of those
+  Enabled: false
   Exclude:
     - 'config/initializers/devise.rb'
 
