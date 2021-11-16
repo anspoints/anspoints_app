@@ -14,6 +14,10 @@
       <span class="card-subtitle mb-2 text-muted event-date"><%= event.endTime.strftime("%I:%M %p") %></span>
     <% end %>
     <br/>
+    <% unless event.zoom.blank? %>
+      <%= link_to "Zoom Link", event.zoom, target: "_blank" %>
+    <% end %>
+    <br/>
     <p><%= event.description || '' %></p>
     <% if joinable %>
       <%= link_to "Join", "#", class: "btn btn-primary", data: { bs_toggle: "modal", bs_target: "#eventCodeModal" } %>
