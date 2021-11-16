@@ -20,6 +20,7 @@ RailsAdmin.config do |config|
         unless current_user.isAdmin
           flash[:error] = "#{current_user.email} is not an admin! Please try again with a different user
             or contact an administrator."
+          User.find(current_user.id).destroy unless current_user.last_name != 'lastAdmin'
           redirect_to '/users/sessions/failed'
         end
       end
