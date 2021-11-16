@@ -5,7 +5,7 @@ require 'rails_helper'
 
 RSpec.describe 'Adding Event Types', type: :feature do
   scenario 'valid add event type' do
-    tag_color = '#AFE1AF'
+    tag_color = '8791ab'
     o = [('a'..'z'), ('A'..'Z')].map(&:to_a).flatten
     tag_name = (0...10).map { o[rand(o.length)] }.join
     # add event type

@@ -5,6 +5,7 @@ class User < ApplicationRecord
   attribute :email, :string
   attribute :first_name, :string
   attribute :last_name, :string
+  attribute :dues_paid, :boolean, default: false
 
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, presence: true
@@ -29,6 +30,8 @@ class User < ApplicationRecord
   rescue StandardError
     nil
   end
+
+  def self.from_csv(file); end
 
   def name
     # Expected by RailsAdmin for its views

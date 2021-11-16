@@ -1,0 +1,26 @@
+<p><strong>Use this page to import a member dues CSV spreadsheet.</strong></p>
+<p>The expected format is:</p>
+<br/>
+<table style="width: 30%">
+  <thead>
+  <tr>
+    <th>Name</th> <th>Email</th> <th>...</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Joe Amam</td> <td>joe.amam@tamu.edu</td>
+  </tr>
+  </tbody>
+</table>
+<br/>
+<p>Other columns are allowed, but ignored.</p>
+
+<hr/>
+
+<%= form_with url: '/users/import', method: :post do |form| %>
+  <%= form.label :file, 'CSV File' %>
+  <%= form.file_field :file %>
+  <br/>
+  <%= form.submit 'Upload' %>
+<% end %>

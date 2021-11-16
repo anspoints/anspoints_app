@@ -12,6 +12,7 @@ class EventsUsersController < ApplicationController
     end
     if EventsUsers.exists?(event_id: user_params[:event_id], user_id: user_params[:user_id])
       # Already checked in
+      @eventuser = EventsUsers.find_by(event_id: user_params[:event_id], user_id: user_params[:user_id])
       render('events_users/success')
     else
       @eventuser = EventsUsers.new(event_id: user_params[:event_id], user_id: user_params[:user_id])

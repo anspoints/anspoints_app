@@ -1,1 +1,9 @@
-<p class="alert alert-success text-lg-center">You have signed in successfully. You may now close this page.</p>
+<p class="alert alert-success text-lg-center">
+  You have signed in successfully. You may now close this page.
+
+  <% if @eventuser.user.dues_paid %>
+  <br/><br/>
+  Your email was recognized as a member whose dues are paid.
+  <% end %>
+
+</p>

@@ -67,6 +67,12 @@ RailsAdmin.config do |config|
       only Event
     end
 
+    collection :import do
+      action_name :import
+      link_icon 'icon-upload'
+      only User
+    end
+
     ## With an audit adapter, you can add:
     # history_index
     # history_show

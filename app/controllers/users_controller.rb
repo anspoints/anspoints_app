@@ -24,6 +24,25 @@ class UsersController < ApplicationController
     redirect_to controller: 'users', action: 'search'
   end
 
+  def import
+    # noinspection RubyMismatchedParameterType
+    csv = CSV.new(params.require(:file).open, headers: true)
+    csv.each do |row|
+      # puts row.to_s
+      next if row[0].nil? || row[0].empty? || row[1].nil? || row[1].empty?
+
+      name = row[0]
+      name = name.delete_prefix('Mr. ').delete_prefix('Mrs. ').delete_prefix('Miss ').delete_prefix('Dr. ')
+      last_name = name.split.last
+      first_name = name.chomp(" #{last_name}")
+      email = row[1]
+      user = User.create_with(first_name: first_name, last_name: last_name).create_or_find_by(email: email)
+      user.update(dues_paid: true)
+    end
+    flash[:success] = 'Imported CSV successfully.'
+    redirect_back fallback_location: '/admin/user/import'
+  end
+
   ###########################
   ##### admin endpoints #####
   ###########################
