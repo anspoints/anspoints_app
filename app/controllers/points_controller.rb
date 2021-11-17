@@ -56,7 +56,7 @@ class PointsController < ActionController::Base
     @event_users_array.each do |user, event|
       @type = @event_types_dict[event] # event type for event id
       # p "TYPE:  #{@type}"
-      @points = @type_points_dict[@type] # point value of event type
+      @points = @type_points_dict[@type] || 0 # point value of event type
       # p "POINTS: #{@points}"
       if @user_points_dict.key?(user) # if user is already in map
         if @user_points_dict[user].key?(@type) # check if event type for user already in map
