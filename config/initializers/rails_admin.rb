@@ -27,14 +27,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model EventTypes do
-    list do
-      field :name do
-        queryable true
-      end
-    end
-  end
-
   ## == CancanCan ==
   # config.authorize_with :cancancan
 

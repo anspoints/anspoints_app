@@ -9,11 +9,11 @@ class UsersController < ApplicationController
   ###########################
 
   def search
-    input = params[:input]
-    return if input.nil?
+    @input = params[:input]
+    return if @input.nil?
 
-    logger.info(input)
-    @searched_user = User.all.where('"users"."email" = ?', input).first
+    logger.info(@input)
+    @searched_user = User.all.where('"users"."email" = ?', @input).first
     return if @searched_user.nil?
 
     @points_count = @searched_user.count_points

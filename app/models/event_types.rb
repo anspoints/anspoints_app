@@ -13,6 +13,21 @@ class EventTypes < ApplicationRecord
   validates :color, presence: true, format: { with: /\A[0-9a-fA-F]{6}+\z/ }
 
   rails_admin do
+    label 'Event Type'
+
     configure :color, :color
+
+    configure :pointValue do
+      label 'Point value'
+    end
+
+    list do
+      field :name do
+        queryable true
+      end
+
+      field :pointValue
+      field :color
+    end
   end
 end
