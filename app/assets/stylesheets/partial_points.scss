@@ -8,12 +8,24 @@
     font-size: medium;
     border-width: medium !important;
     border-color: $theme-dark-blue;
-    background-color: $theme-lighter-grey;
-    color: $theme-splash-font-color;
-    &:hover {
-        background-color: $theme-light-grey !important;
-        color: $theme-dark-grey !important;
+    background-color:  $theme-dark-blue;
+    color: white !important;
+}
+
+.thead-dark {
+    th {
+      color: white;
+      background-color: $theme-dark-blue;
+      border-color: $theme-dark-blue;
     }
+  }
+
+.li{
+    color: #000000 !important;
+}
+
+.i{
+    color: #000000 !important;
 }
 
 #empty-header{
@@ -23,9 +35,9 @@
     font-weight: inherit;
     font-size: medium;
     border-width: medium !important;
-    border-color: #3A546C;
-    background-color: #3A546C !important;
-    color: white !important;
+    border-color: $theme-light-grey;
+    background-color:  $theme-light-grey;
+    color: $theme-splash-font-color;
 }
 
 .filters-container{
@@ -84,9 +96,16 @@
     padding-top: 5px;
 }
 
+.date-button-container{
+    margin-bottom: 0px;
+    text-align: center;
+    padding-top: 10px;
+}
+
 .export-button-container{
     text-align: right;
     padding-right: 10px;
+    padding-bottom: 8px;
 }
 
 .export-button{

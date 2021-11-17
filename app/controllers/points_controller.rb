@@ -97,21 +97,5 @@ class PointsController < ActionController::Base
       @user_points_dict[userid] = @point_map
     end
     Rails.logger.debug @user_points_dict
-
-    @user_points_counts = if params[:sort] != 'count'
-                            EventsUsers.select('"users"."first_name" AS first_name, "users"."last_name" AS last_name, "users"."email" AS email, count(*) AS count')
-                                       .joins('RIGHT JOIN "users" ON "events_users"."user_id" = "users"."id"')
-                                       .group('"users"."first_name", "users"."last_name", "users"."email"').order('count DESC')
-
-                          elsif params[:sort] == 'count'
-                            EventsUsers.select('"users"."email" AS email, count(*) AS count')
-                                       .joins('INNER JOIN "users" ON "events_users"."user_id" = "users"."id"')
-                                       .group('"users"."email"').order('count DESC').reorder('count ASC')
-
-                          else
-                            EventsUsers.select('"users"."email" AS email, count(*) AS count')
-                                       .joins('INNER JOIN "users" ON "events_users"."user_id" = "users"."id"')
-                                       .group('"users"."email"')
-                          end
   end
 end
