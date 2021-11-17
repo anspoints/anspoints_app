@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     return if @searched_user.nil?
 
     @points_count = @searched_user.count_points
-    # EventsUsers.all.where('"events_users"."user_id" = ?', @searched_user.id).count
+    @events = @searched_user.events.order(date: :desc)
   end
 
   def show

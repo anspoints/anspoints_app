@@ -1,7 +1,7 @@
 <div class="card event-card">
   <div class="card-body">
     <p>
-      <span class="card-title"><strong><%= event.name %></strong>   <span class="badge bg-secondary" style="background-color: #<%= event.event_types.color %> !important"><%= event.event_types.name %></span></span>
+      <span class="card-title"><strong><%= event.name %></strong>   <span class="badge bg-secondary" style="background-color: <%= "#" + event.event_types.color %> !important"><%= event.event_types.name %></span></span>
     </p>
     <span><%= event.date.to_formatted_s(:long) || 'No Day Set' %></span>
     <% unless event.startTime.blank? %>
