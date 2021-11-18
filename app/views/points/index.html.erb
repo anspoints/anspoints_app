@@ -5,8 +5,10 @@
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
       <% if cookies[:moon] == 'true' %>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
         <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
       <% else %>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.css">
         <%= stylesheet_link_tag 'application_dark', media: 'all', 'data-turbolinks-track': 'reload' %>
       <% end %>
       <%= javascript_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -30,28 +32,29 @@
             <input class="form-control" type="text" id="searchTableInput" onkeyup="filterTable()" placeholder="Search emails..">
           </div>
         </div>
-
-        <div class="col-8">
+        <div class="col-6">
           <div class="date-container">
             <div class="row">
-              <div class="col-4 date-title-container">
-                <p class="date-title">Date Range:</p>
+              <div class="col-2 date-title-container">
+                <p class="date-title">Dates:</p>
               </div>
-              <div class="col-4 date-input-container">
-                <div id="reportrange" onload="selectDates()" style="background: #fff; cursor: pointer; padding: 8px 8px; border: 1px solid #ddd; border-radius: 4px; width: 100%">
+              <div class="col-8 date-input-container">
+                <div id="reportrange" onload="selectDates()" style="background: #fff; cursor: pointer; padding: 8px 8px; border: 1px solid #ddd; border-radius: 4px; width: 100% color: #000000;">
                   <i class="fa fa-calendar"></i>&nbsp;
-                  <span id="dateRange" class=""></span>
+                  <span id="dateRange" class="" style="color: #000000 !important;"></span>
                   <i class="fa fa-caret-down"></i>
                 </div>
-                <form action="javascript:void(0)" onsubmit="selectDates()" class="col-4 date-button-container">
-                  <input type="submit" value="Filter"/>
-                </form>
               </div>
-              <div class="col-4 export-button-container">
-                <button class="export-button btn btn-secondary" onclick="download_table_as_csv();">Export Results to CSV</button>
+              <div class="col-2">
+                <form action="javascript:void(0)" onsubmit="selectDates()" class="date-button-container">
+                  <input class="btn btn-secondary" type="submit" value="Filter"/>
+                </form>
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-2 export-button-container">
+          <button class="export-button btn btn-secondary" onclick="download_table_as_csv();">Export Results to CSV</button>
         </div>
       </div>
     </div>
@@ -59,23 +62,23 @@
     <% types_count = @type_points_dict.keys.length %>
     <div class="table-container">
       <table id="pointsTable" class="table table-responsive table-bordered table-hover table-striped table-md" data-toggle="table">
-        <thead class="table-head">
+        <thead class="table-head thead-dark">
           <tr>
-            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="right"></th>
-            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="right"></th>
-            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="right"></th>
-            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="right"></th>
-            <th colspan='<%= types_count + 1%>' scope="col" id="empty-header" class="table-header" data-field="points" data-align="right">Points</th>
+            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="left"></th>
+            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="left"></th>
+            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="left"></th>
+            <th scope="col" id="empty-header" class="table-header" data-field="empty" data-align="left"></th>
+            <th colspan='<%= types_count + 1 %>' scope="col" id="empty-header" class="table-header" data-field="points" data-align="center">Points</th>
           </tr>
           <tr>
-            <th scope="col" id="table-header" class="table-header" data-field="index" data-align="right" data-sortable="true">#</th>
-            <th scope="col" id="table-header" class="table-header" data-field="first_name" data-align="right" data-sortable="true">First Name</th>
-            <th scope="col" id="table-header" class="table-header" data-field="last_name" data-align="right" data-sortable="true">Last Name</th>
-            <th scope="col" id="table-header" class="table-header" data-field="email" data-align="right" data-sortable="true"><%= link_to "Email", :sort => "count"%></th>
+            <th scope="col" id="table-header" class="table-header" data-field="index" data-align="left" data-sortable="true">#</th>
+            <th scope="col" id="table-header" class="table-header" data-field="first_name" data-align="left" data-sortable="true">First Name</th>
+            <th scope="col" id="table-header" class="table-header" data-field="last_name" data-align="left" data-sortable="true">Last Name</th>
+            <th scope="col" id="table-header" class="table-header" data-field="email" data-align="left" data-sortable="true">Email</th>
             <% @type_points_dict.keys.each do |type| %>
-              <th scope="col" id="table-header" class="table-header" data-field="event_category"><%= type %></th>
+              <th scope="col" id="table-header" class="table-header" data-field="<%= type %>" data-align="left" data-sortable="true"><%= type %></th>
             <% end %>
-            <th scope="col" id="table-header" class="table-header" data-field="empty" data-align="right" data-sortable="true"><%= link_to "Total", :sort => "count"%></th>
+            <th scope="col" id="table-header" class="table-header" data-field="empty" data-align="left" data-sortable="true">Total</th>
 
           </tr>
         </thead>
@@ -83,14 +86,14 @@
           <% index = 1 %>
           <% @user_points_dict.each do |userid, point_counts| %>
           <tr>
-            <td><%= index %></td>
+            <td style="text-align: left;" ><%= index %></td>
             <% @user_details_dict[userid].each do |info| %>
-            <td><%= info %></td>
+            <td style="text-align: left;" ><%= info %></td>
             <% end %>
             <% @type_points_dict.keys.each do |type| %>
-            <td><%= point_counts[type] %></td>
+            <td style="text-align: left;" ><%= point_counts[type] %></td>
             <% end %>
-            <td><%= point_counts["Total"] %></td>
+            <td style="text-align: left;" ><%= point_counts["Total"] %></td>
           </tr>
           <% index = index + 1 %> 
           <% end %>
@@ -103,10 +106,11 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
+    <script src="https://unpkg.com/bootstrap-table@1.19.1/dist/bootstrap-table.min.js"></script>
+    
     <script type="text/javascript">
       $(function() {
-          var start = moment().subtract(1, 'years');
+          var start = moment().subtract(4, 'months');
           var end = moment();
           var params = new URLSearchParams(window.location.search)
           if(params.has('date_start')){
@@ -148,9 +152,9 @@
                 'Last Year': [moment().subtract(1, 'year'), moment()],
               }
           }, cb);
-
+          
           cb(start, end);
-      });
+          });
       </script>
 
       <script>
