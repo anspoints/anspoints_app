@@ -45,3 +45,7 @@ en:
         menu: "Help"
         title: "Wiki"
         breadcrumb: "Wiki"
+      points:
+        menu: "Member Points"
+        title: "Member Points"
+        breadcrumb: "Points"
