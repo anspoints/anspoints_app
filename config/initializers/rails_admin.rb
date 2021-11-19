@@ -65,6 +65,11 @@ RailsAdmin.config do |config|
       only User
     end
 
+    root :wiki do
+      action_name :wiki
+      link_icon 'icon-book'
+    end
+
     ## With an audit adapter, you can add:
     # history_index
     # history_show
