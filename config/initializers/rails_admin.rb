@@ -27,14 +27,6 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model EventTypes do
-    list do
-      field :name do
-        queryable true
-      end
-    end
-  end
-
   ## == CancanCan ==
   # config.authorize_with :cancancan
 
@@ -65,12 +57,41 @@ RailsAdmin.config do |config|
       action_name :qr_code
       link_icon 'icon-qrcode'
       only Event
+      controller do
+        proc do
+          redirect_to "/events/#{@object.id}/qr"
+        end
+      end
     end
 
     collection :import do
       action_name :import
       link_icon 'icon-upload'
       only User
+    end
+
+    root :wiki do
+      action_name :wiki
+      link_icon 'icon-book'
+      controller do
+        proc do
+          redirect_to 'https://github.com/anspoints/anspoints_app/wiki/Admin-Manual'
+        end
+      end
+    end
+
+    root :points do
+      action_name :points
+      link_icon 'icon-user'
+      show_in_navigation false
+      show_in_sidebar true
+      show_in_menu false
+      sidebar_label 'Reports'
+      controller do
+        proc do
+          redirect_to '/points'
+        end
+      end
     end
 
     ## With an audit adapter, you can add:

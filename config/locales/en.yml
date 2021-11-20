@@ -41,3 +41,11 @@ en:
         menu: "Import"
         title: "Member Dues CSV Import"
         breadcrumb: "Import"
+      wiki:
+        menu: "Help"
+        title: "Wiki"
+        breadcrumb: "Wiki"
+      points:
+        menu: "Member Points"
+        title: "Member Points"
+        breadcrumb: "Points"

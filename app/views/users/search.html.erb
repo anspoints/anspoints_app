@@ -19,14 +19,51 @@
                     <h5 class="card-title"><%= @searched_user.email || 'no email' %></h5>
                 </div>
                 <div class="col-3">
-                    <span class="badge bg-secondary w-100" style="height: 5rem">Points<br></br>
-                        <span style="font-size: 2rem"><%= @points_count || 0 %></span>
+                  <div class="badge bg-secondary w-100 d-flex flex-column align-items-center justify-content-center"
+                       style="height: 5rem">
+                    <span>
+                      Points
+                      <br/><span style="font-size: 2rem"><%= @points_count || 0 %></span>
                     </span>
+                  </div>
                 </div>
             </div>
         </div>
     </div>
-    <% else %>
+
+    <% unless @events.empty? %>
+      <br/><hr/><br/>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">You attended:</h4>
+
+          <% @events.each do |event| %>
+            <br/>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= event.name %>
+                </h5>
+                <h6 class="card-subtitle text-muted">
+                  <%= event.event_types.name %>
+                </h6>
+
+                <p class="card-text" style="padding-top: 3px">
+                  Worth <strong><%= event.event_types.pointValue %></strong> <%= event.event_types.pointValue == 1 ? "point" : "points" %>
+                </p>
+                <% unless event.zoom.blank? %>
+                  <%= link_to "Zoom Link", event.zoom, target: "_blank", class: "card-link btn btn-secondary"%>
+                <% end %>
+              </div>
+              <div class="card-footer"><%= event.date.to_formatted_s(:long) %></div>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+    <% end %>
+
+    <% elsif not @input.nil? %>
     <span>No user found</span>
     <% end %>
 </div>
