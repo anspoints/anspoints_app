@@ -44,4 +44,10 @@ Avoid using scaffolding as it creates extra files & may produce unanticipated si
 https://staging-anspoints-app-1.herokuapp.com/
 
 **Production Site**
+http://anspoints.herokuapp.com/
 
+**User Manual**
+http://anspoints.herokuapp.com/User-Manual
+
+**Admin Manuel (Maintenance, Deployment, Instrutions, etc.)**
+https://github.com/anspoints/anspoints_app/wiki/Admin-Manual
