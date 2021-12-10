@@ -105,4 +105,6 @@ https://anspoints.herokuapp.com/
 
 **Admin Manual:** (Maintenance, Deployment, Instructions, etc.): https://github.com/anspoints/anspoints_app/wiki/Admin-Manual
 
+**Video Demo of Installation Guide:** https://drive.google.com/file/d/1PHHmOfkxdzi5C-llhX7PsU-EyMeJ7z9h/view?usp=sharing
+
 These manuals are also available directly through the web application. If additional assistance is required, please reach out to the customer.
