@@ -37,6 +37,10 @@ Clone this repository:
 
 Run the rspec test suite: <code>rspec ./spec</code>
 
+Run the rubocop tests: <code>rubocop</code>
+
+Run the brakeman tests: <code>brakeman</code>
+
 
 ## Execute Code
 
