@@ -43,10 +43,10 @@ For Windows:
 If you accidentally quit:
 <code>docker exec -it "container-name" bash</code>
 
-In the Docker image, cd to the anspoints_app directory
+In the Docker image, cd to the anspoints_app directory:
 <code>cd ANSPoints/anspoints_app</code>
 
-Install all gems
+Install all gems:
 <code>bundle install</code>
 
 Create the database:
