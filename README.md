@@ -9,7 +9,7 @@ This code has been run and tested on:
 - Rails - 6.1.4
 - Gems - listed in <code>Gemfile</code>
 - PostgreSQL - 13.3
-- Node - 12.4.0
+- Node - v12.4.0
 - Yarn - 1.22.4
 
 ## External Dependencies
