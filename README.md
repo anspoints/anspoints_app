@@ -55,6 +55,9 @@ In the Docker image, cd to the anspoints_app directory:
 Install all gems:
 <code>bundle install</code>
 
+Install npm:
+<code>npm install</code>
+
 Create the database:
 <code>rails db:create</code>
 
